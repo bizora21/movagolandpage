@@ -1,0 +1,55 @@
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { name, email, subject, message } = body;
+
+    // Validate required fields
+    if (!name || !email || !subject || !message) {
+      return NextResponse.json(
+        { error: 'Todos os campos são obrigatórios' },
+        { status: 400 }
+      );
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: 'Email inválido' },
+        { status: 400 }
+      );
+    }
+
+    // TODO: Integrate with email service (Resend, Nodemailer, or SendGrid)
+    // For now, just log the data
+    console.log('Contact form submission:', { name, email, subject, message });
+
+    // Example integration with Resend:
+    // const resend = new Resend(process.env.RESEND_API_KEY);
+    // await resend.emails.send({
+    //   from: 'MOVAGO <noreply@movago.co.mz>',
+    //   to: 'ola@movago.co.mz',
+    //   subject: `Novo contacto: ${subject}`,
+    //   html: `
+    //     <h2>Novo contacto de ${name}</h2>
+    //     <p><strong>Email:</strong> ${email}</p>
+    //     <p><strong>Assunto:</strong> ${subject}</p>
+    //     <p><strong>Mensagem:</strong></p>
+    //     <p>${message}</p>
+    //   `,
+    // });
+
+    return NextResponse.json(
+      { success: true, message: 'Mensagem enviada com sucesso' },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error('Contact form error:', error);
+    return NextResponse.json(
+      { error: 'Erro ao enviar mensagem' },
+      { status: 500 }
+    );
+  }
+}

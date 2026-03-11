@@ -1,0 +1,11 @@
+# Robots.txt for MOVAGO
+# https://movago.co.mz
+
+User-agent: *
+Allow: /
+
+# Disallow API routes
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://movago.co.mz/sitemap.xml
