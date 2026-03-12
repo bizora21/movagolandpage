@@ -1,5 +1,8 @@
 import { MetadataRoute } from 'next';
 
+// Configuração necessária para static export
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://movago.co.mz';
 

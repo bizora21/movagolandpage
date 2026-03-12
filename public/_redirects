@@ -1,0 +1,3 @@
+# Redirecionamentos para Cloudflare Pages
+# SPA fallback para todas as rotas não encontradas
+/* /index.html 200

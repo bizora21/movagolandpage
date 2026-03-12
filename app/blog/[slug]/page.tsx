@@ -82,6 +82,19 @@ Boas viagens com a MOVAGO! 🚗
   `,
 };
 
+// Função necessária para static export - gera os slugs disponíveis
+export function generateStaticParams() {
+  // Retorne uma lista de slugs que devem ser gerados estaticamente
+  return [
+    { slug: 'como-usar-movago' },
+    { slug: 'dicas-motoristas' },
+    { slug: 'novidades-movago' },
+  ];
+}
+
+// Necessário para export estático com rotas dinâmicas
+export const dynamic = 'force-static';
+
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   return {
     title: `${blogPost.title} — MOVAGO`,

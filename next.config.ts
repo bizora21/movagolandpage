@@ -1,7 +1,15 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: 'export',
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
+  // Desativa telemetria
+  env: {
+    NEXT_TELEMETRY_DISABLED: '1',
+  },
 };
 
 export default nextConfig;
