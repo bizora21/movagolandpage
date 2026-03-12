@@ -2,47 +2,58 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { OrganizationSchema, MobileAppSchema, WebSiteSchema } from "@/components/seo/JsonLd";
+import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "MOVAGO — Sistema Inteligente de Mobilidade",
-  description: "Sistema inteligente de mobilidade urbana. Encontre rotas de transporte público em tempo real.",
-  keywords: ["transporte público", "mobilidade urbana", "MOVAGO app", "rotas de transporte"],
-  authors: [{ name: "MOVAGO" }],
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'MOVAGO — Transporte Urbano Inteligente',
+    template: '%s | MOVAGO',
+  },
+  description: 'Plataforma de mobilidade urbana inteligente. Viagens rápidas, seguras e acessíveis.',
+  keywords: ['transporte urbano', 'mobilidade', 'MOVAGO', 'ride hailing', 'app transporte'],
+  authors: [{ name: 'MOVAGO', url: SITE_URL }],
+  creator: 'MOVAGO',
+  publisher: 'MOVAGO',
   openGraph: {
-    title: "MOVAGO — Sistema Inteligente de Mobilidade",
-    description: "Sistema inteligente de mobilidade urbana. Baixe a app agora!",
-    url: "https://movago.co.mz",
-    siteName: "MOVAGO",
-    locale: "pt_MZ",
-    type: "website",
-    images: [
-      {
-        url: "/images/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "MOVAGO App",
-      },
-    ],
+    type: 'website',
+    locale: 'pt_PT',
+    url: SITE_URL,
+    siteName: 'MOVAGO',
+    title: 'MOVAGO — Transporte Urbano Inteligente',
+    description: 'Plataforma de mobilidade urbana inteligente.',
+    images: [{
+      url: '/images/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'MOVAGO — Transporte Urbano Inteligente',
+    }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "MOVAGO — Sistema Inteligente de Mobilidade",
-    description: "Sistema inteligente de mobilidade urbana.",
-    images: ["/images/og-image.png"],
+    card: 'summary_large_image',
+    title: 'MOVAGO — Transporte Urbano Inteligente',
+    description: 'Plataforma de mobilidade urbana inteligente.',
+    images: ['/images/og-image.png'],
   },
+  icons: {
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
+    other: [
+      { rel: 'mask-icon', url: '/favicon.svg', color: '#F97316' },
+    ],
+  },
+  manifest: '/site.webmanifest',
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+    googleBot: { index: true, follow: true },
   },
-  verification: {
-    google: "your-google-verification-code",
+  alternates: {
+    canonical: SITE_URL,
   },
 };
 
@@ -62,6 +73,9 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
+        <OrganizationSchema />
+        <MobileAppSchema />
+        <WebSiteSchema />
         <Navbar />
         <main className="min-h-screen">
           {children}

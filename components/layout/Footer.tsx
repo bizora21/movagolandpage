@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { Instagram, Facebook, Linkedin, MessageCircle } from 'lucide-react';
-import { FOOTER_LINKS, SOCIAL_LINKS, SITE_NAME, SITE_TAGLINE } from '@/lib/constants';
+import { Mail, Phone, MapPin, Instagram, Facebook, Linkedin, MessageCircle } from 'lucide-react';
+import { FOOTER_LINKS, SOCIAL_LINKS, SITE_NAME, SITE_TAGLINE, CONTACT_INFO } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 
 export function Footer() {
@@ -21,6 +21,29 @@ export function Footer() {
             <p className="text-[rgb(var(--color-text-muted))] mb-6 max-w-sm">
               {SITE_TAGLINE}
             </p>
+            
+            {/* Contact Information */}
+            <div className="space-y-3 mb-6">
+              <a 
+                href={`mailto:${CONTACT_INFO.email}`}
+                className="flex items-center gap-3 text-[rgb(var(--color-text-muted))] hover:text-white transition-colors"
+              >
+                <Mail size={18} className="text-[rgb(var(--color-primary))]" />
+                <span className="text-sm">{CONTACT_INFO.email}</span>
+              </a>
+              <a 
+                href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`}
+                className="flex items-center gap-3 text-[rgb(var(--color-text-muted))] hover:text-white transition-colors"
+              >
+                <Phone size={18} className="text-[rgb(var(--color-primary))]" />
+                <span className="text-sm">{CONTACT_INFO.phone}</span>
+              </a>
+              <div className="flex items-center gap-3 text-[rgb(var(--color-text-muted))]">
+                <MapPin size={18} className="text-[rgb(var(--color-primary))]" />
+                <span className="text-sm">Sede: {CONTACT_INFO.location}</span>
+              </div>
+            </div>
+
             <div className="flex gap-4">
               {SOCIAL_LINKS.map((social) => {
                 const Icon = {
@@ -115,8 +138,7 @@ export function Footer() {
             ))}
           </div>
           <div className="flex items-center gap-2 text-sm text-[rgb(var(--color-text-muted))]">
-            <span>Feito em</span>
-            <span>🇲🇿</span>
+            <span>Sede: {CONTACT_INFO.location}</span>
           </div>
         </div>
       </div>

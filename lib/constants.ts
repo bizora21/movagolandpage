@@ -1,6 +1,20 @@
-export const SITE_URL = 'https://movago.co.mz';
+export const SITE_URL = 'https://movagomz.com';
 export const SITE_NAME = 'MOVAGO';
-export const SITE_TAGLINE = 'Sistema Inteligente de Mobilidade';
+export const SITE_TAGLINE = 'Move smarter. Move with MOVAGO.';
+
+// Contact Information
+export const CONTACT_INFO = {
+  email: 'movago@outlook.pt',
+  phone: '+258 86 318 1415',
+  location: 'Maputo',
+  whatsapp: '258863181415',
+} as const;
+
+// App Store Links
+export const APP_STORES = {
+  googlePlay: 'https://play.google.com/store/apps/details?id=mz.movagomz.app',
+  appStore: null, // Em desenvolvimento
+} as const;
 
 export const NAVIGATION = [
   { name: 'Sobre', href: '/sobre' },

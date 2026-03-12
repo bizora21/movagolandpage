@@ -1,17 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  /* MOVAGO Design System - Dark Theme by Default */
-  --color-primary: 249 115 22; /* Orange-500 */
-  --color-primary-dark: 234 108 10; /* Orange-600 */
-  --color-secondary: 30 41 59; /* Slate-800 */
-  --color-bg: 15 23 42; /* Slate-900 */
-  --color-surface: 30 41 59; /* Slate-800 */
-  --color-text: 248 250 252; /* Slate-50 */
-  --color-text-muted: 148 163 184; /* Slate-400 */
-  --color-accent: 56 189 248; /* Sky-400 */
-  --radius: 12px;
+  /* MOVAGO Professional Design System */
+  --primary: #F97316;          /* Laranja MOVAGO - CTAs, destaques */
+  --primary-hover: #EA6C0A;    /* Hover dos botões */
+  --bg-dark: #0A0F1E;          /* Background principal - azul muito escuro */
+  --bg-surface: #111827;       /* Cards e secções */
+  --bg-elevated: #1F2937;      /* Hover states, elementos elevados */
+  --text-primary: #F9FAFB;     /* Texto principal */
+  --text-muted: #9CA3AF;       /* Texto secundário */
+  --text-subtle: #6B7280;      /* Rodapés, labels */
+  --accent-blue: #3B82F6;      /* Informação, badges */
+  --success: #10B981;          /* Confirmações */
+  --border: #1F2937;           /* Bordas subtis */
+  
+  /* Legacy compatibility - converted to new system */
+  --color-primary: 249 115 22;
+  --color-primary-dark: 234 108 10;
+  --color-secondary: 30 41 59;
+  --color-bg: 10 15 30;
+  --color-surface: 17 24 39;
+  --color-text: 249 250 251;
+  --color-text-muted: 156 163 175;
+  --color-accent: 59 130 246;
+  
+  --radius: 10px;              /* Cantos arredondados dos botões */
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 * {

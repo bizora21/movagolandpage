@@ -55,11 +55,12 @@ export function Navbar() {
               <Button href="#download">Baixar App</Button>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Touch target 44x44px */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden text-white p-2"
+              className="lg:hidden text-white p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-white/10 rounded-lg transition-colors"
               aria-label="Toggle menu"
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
