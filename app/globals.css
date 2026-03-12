@@ -1,30 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  /* MOVAGO Professional Design System */
-  --primary: #F97316;          /* Laranja MOVAGO - CTAs, destaques */
-  --primary-hover: #EA6C0A;    /* Hover dos botões */
+  /* MOVAGO Professional Blue Design System */
+  --primary: #3B82F6;          /* Azul profissional - CTAs, destaques */
+  --primary-hover: #2563EB;    /* Hover dos botões - azul mais escuro */
   --bg-dark: #0A0F1E;          /* Background principal - azul muito escuro */
   --bg-surface: #111827;       /* Cards e secções */
   --bg-elevated: #1F2937;      /* Hover states, elementos elevados */
   --text-primary: #F9FAFB;     /* Texto principal */
   --text-muted: #9CA3AF;       /* Texto secundário */
   --text-subtle: #6B7280;      /* Rodapés, labels */
-  --accent-blue: #3B82F6;      /* Informação, badges */
+  --accent-blue: #60A5FA;      /* Informação, badges - azul claro */
   --success: #10B981;          /* Confirmações */
   --border: #1F2937;           /* Bordas subtis */
   
-  /* Legacy compatibility - converted to new system */
-  --color-primary: 249 115 22;
-  --color-primary-dark: 234 108 10;
+  /* Tailwind RGB format */
+  --color-primary: 59 130 246;
+  --color-primary-dark: 37 99 235;
   --color-secondary: 30 41 59;
   --color-bg: 10 15 30;
   --color-surface: 17 24 39;
   --color-text: 249 250 251;
   --color-text-muted: 156 163 175;
-  --color-accent: 59 130 246;
+  --color-accent: 96 165 250;
   
-  --radius: 10px;              /* Cantos arredondados dos botões */
+  --radius: 10px;
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
   --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
@@ -52,20 +52,6 @@ a {
   text-decoration: none;
 }
 
-/* Custom animations */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
 /* Glass morphism effect */
 .glass {
   background: rgba(30, 41, 59, 0.8);
@@ -74,9 +60,9 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Gradient text */
+/* Gradient text - Azul profissional */
 .gradient-text {
-  background: linear-gradient(135deg, rgb(249 115 22) 0%, rgb(251 146 60) 100%);
+  background: linear-gradient(135deg, rgb(59 130 246) 0%, rgb(96 165 250) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

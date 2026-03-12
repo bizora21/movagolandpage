@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Download, MapPin, CheckCircle } from 'lucide-react';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
 import { Card, CardContent } from '@/components/ui/Card';
@@ -29,48 +28,40 @@ const steps = [
 export function HowItWorks() {
   return (
     <SectionWrapper id="how-it-works">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+      <div className="text-center mb-12 lg:mb-16">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
           Como Funciona
         </h2>
-        <p className="text-xl text-[rgb(var(--color-text-muted))] max-w-2xl mx-auto">
+        <p className="text-lg sm:text-xl text-[rgb(var(--color-text-muted))] max-w-2xl mx-auto">
           Em apenas 3 passos simples, está pronto para viajar
         </p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-8">
-        {steps.map((step, index) => {
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {steps.map((step) => {
           const Icon = step.icon;
           return (
-            <motion.div
-              key={step.step}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-            >
-              <Card variant="glass" className="h-full relative">
-                <CardContent className="p-8">
-                  {/* Step number */}
-                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-[rgb(var(--color-primary))] rounded-full flex items-center justify-center text-white font-bold text-xl">
-                    {step.step}
-                  </div>
+            <Card key={step.step} variant="glass" className="h-full relative">
+              <CardContent className="p-6 lg:p-8">
+                {/* Step number */}
+                <div className="absolute -top-3 -right-3 w-10 h-10 lg:w-12 lg:h-12 bg-[rgb(var(--color-primary))] rounded-full flex items-center justify-center text-white font-bold text-lg lg:text-xl">
+                  {step.step}
+                </div>
 
-                  {/* Icon */}
-                  <div className="w-16 h-16 bg-[rgb(var(--color-primary))]/10 rounded-2xl flex items-center justify-center mb-6">
-                    <Icon className="text-[rgb(var(--color-primary))]" size={32} />
-                  </div>
+                {/* Icon */}
+                <div className="w-14 h-14 lg:w-16 lg:h-16 bg-[rgb(var(--color-primary))]/10 rounded-2xl flex items-center justify-center mb-4 lg:mb-6">
+                  <Icon className="text-[rgb(var(--color-primary))]" size={28} />
+                </div>
 
-                  {/* Content */}
-                  <h3 className="text-2xl font-bold text-white mb-4">
-                    {step.title}
-                  </h3>
-                  <p className="text-[rgb(var(--color-text-muted))] leading-relaxed">
-                    {step.description}
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
+                {/* Content */}
+                <h3 className="text-xl lg:text-2xl font-bold text-white mb-3 lg:mb-4">
+                  {step.title}
+                </h3>
+                <p className="text-[rgb(var(--color-text-muted))] leading-relaxed text-sm lg:text-base">
+                  {step.description}
+                </p>
+              </CardContent>
+            </Card>
           );
         })}
       </div>

@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { 
   MapPin, 
   Navigation, 
@@ -24,41 +23,33 @@ const iconMap: Record<string, React.ComponentType<{ className?: string; size?: n
 
 export function Features() {
   return (
-    <SectionWrapper className="bg-[rgb(var(--color-secondary))]">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+    <SectionWrapper className="bg-[rgb(var(--color-secondary))]" id="features">
+      <div className="text-center mb-12 lg:mb-16">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
           Por Que Escolher a MOVAGO?
         </h2>
-        <p className="text-xl text-[rgb(var(--color-text-muted))] max-w-2xl mx-auto">
+        <p className="text-lg sm:text-xl text-[rgb(var(--color-text-muted))] max-w-2xl mx-auto">
           Recursos pensados para a sua segurança e conveniência
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {FEATURES.map((feature, index) => {
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {FEATURES.map((feature) => {
           const IconComponent = iconMap[feature.icon];
           return (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Card variant="default" className="h-full hover:border-[rgb(var(--color-primary))]/50 transition-colors">
-                <CardContent className="p-6">
-                  <div className="w-14 h-14 bg-[rgb(var(--color-primary))]/10 rounded-xl flex items-center justify-center mb-4">
-                    {IconComponent && <IconComponent className="text-[rgb(var(--color-primary))]" size={28} />}
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-[rgb(var(--color-text-muted))] leading-relaxed">
-                    {feature.description}
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
+            <Card key={feature.title} variant="default" className="h-full hover:border-[rgb(var(--color-primary))]/50 transition-colors">
+              <CardContent className="p-6">
+                <div className="w-14 h-14 bg-[rgb(var(--color-primary))]/10 rounded-xl flex items-center justify-center mb-4">
+                  {IconComponent && <IconComponent className="text-[rgb(var(--color-primary))]" size={28} />}
+                </div>
+                <h3 className="text-lg lg:text-xl font-bold text-white mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-[rgb(var(--color-text-muted))] leading-relaxed text-sm lg:text-base">
+                  {feature.description}
+                </p>
+              </CardContent>
+            </Card>
           );
         })}
       </div>

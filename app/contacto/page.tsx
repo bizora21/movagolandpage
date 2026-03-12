@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useState } from "react";
+import { CONTACT_INFO } from "@/lib/constants";
 
 export default function ContactoPage() {
   const [formData, setFormData] = useState({
@@ -62,8 +63,8 @@ export default function ContactoPage() {
                   </div>
                   <div>
                     <h3 className="text-white font-semibold mb-1">Email</h3>
-                    <a href="mailto:ola@movago.co.mz" className="text-[rgb(var(--color-text-muted))] hover:text-white transition-colors">
-                      ola@movago.co.mz
+                    <a href={`mailto:${CONTACT_INFO.email}`} className="text-[rgb(var(--color-text-muted))] hover:text-white transition-colors">
+                      {CONTACT_INFO.email}
                     </a>
                   </div>
                 </div>
@@ -78,8 +79,8 @@ export default function ContactoPage() {
                   </div>
                   <div>
                     <h3 className="text-white font-semibold mb-1">Telefone</h3>
-                    <a href="tel:+258841234567" className="text-[rgb(var(--color-text-muted))] hover:text-white transition-colors">
-                      +258 84 123 4567
+                    <a href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`} className="text-[rgb(var(--color-text-muted))] hover:text-white transition-colors">
+                      {CONTACT_INFO.phone}
                     </a>
                   </div>
                 </div>
@@ -93,10 +94,9 @@ export default function ContactoPage() {
                     <MapPin className="text-[rgb(var(--color-primary))]" size={24} />
                   </div>
                   <div>
-                    <h3 className="text-white font-semibold mb-1">Endereço</h3>
+                    <h3 className="text-white font-semibold mb-1">Sede</h3>
                     <p className="text-[rgb(var(--color-text-muted))]">
-                      Av. Julius Nyerere, 1234<br />
-                      Maputo, Moçambique
+                      {CONTACT_INFO.location}
                     </p>
                   </div>
                 </div>
