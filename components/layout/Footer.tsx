@@ -8,8 +8,8 @@ export function Footer() {
 
   return (
     <footer className="bg-[rgb(var(--color-secondary))] border-t border-slate-700/50">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+      <div className="container mx-auto px-4 sm:px-6 py-12 md:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2 mb-4">
@@ -122,11 +122,11 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-slate-700/50 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[rgb(var(--color-text-muted))] text-sm">
+        <div className="border-t border-slate-700/50 mt-8 md:mt-12 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-[rgb(var(--color-text-muted))] text-sm text-center md:text-left">
             © {currentYear} {SITE_NAME}. Todos os direitos reservados.
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
             {FOOTER_LINKS.legal.map((link) => (
               <Link
                 key={link.name}
@@ -136,9 +136,6 @@ export function Footer() {
                 {link.name}
               </Link>
             ))}
-          </div>
-          <div className="flex items-center gap-2 text-sm text-[rgb(var(--color-text-muted))]">
-            <span>Sede: {CONTACT_INFO.location}</span>
           </div>
         </div>
       </div>

@@ -27,14 +27,14 @@ export function Navbar() {
           isScrolled ? 'glass py-4' : 'bg-transparent py-6'
         )}
       >
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between gap-2">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-[rgb(var(--color-primary))] rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-xl">M</span>
+            <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 bg-[rgb(var(--color-primary))] rounded-xl flex items-center justify-center flex-shrink-0">
+                <span className="text-white font-bold text-lg sm:text-xl">M</span>
               </div>
-              <span className="text-white font-bold text-xl">{SITE_NAME}</span>
+            <span className="text-white font-bold text-lg sm:text-xl sm:inline-block hidden">{SITE_NAME}</span>
             </Link>
 
             {/* Desktop Navigation */}

@@ -39,12 +39,38 @@ body {
   background-color: rgb(var(--color-bg));
   color: rgb(var(--color-text));
   font-feature-settings: "rlig" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
   scroll-behavior: smooth;
   max-width: 100vw;
   overflow-x: hidden;
+  position: relative;
+}
+
+/* Melhorias para dispositivos móveis */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+  
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Prevenir zoom acidental em iOS */
+  * {
+    touch-action: manipulation;
+  }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 380px) {
+  html {
+    font-size: 13px;
+  }
 }
 
 a {

@@ -24,29 +24,29 @@ export function Hero() {
       <div className="absolute top-20 left-10 w-72 h-72 bg-[rgb(var(--color-primary))]/3 rounded-full blur-3xl" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-[rgb(var(--color-accent))]/3 rounded-full blur-3xl" />
 
-      <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center py-20 lg:py-32">
+      <div className="container mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-16 lg:py-32">
         {/* Text Content */}
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           <Badge variant="default">🚀 Sistema Inteligente de Mobilidade</Badge>
           
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight text-white">
             A forma mais{' '}
             <span className="gradient-text">inteligente</span>{' '}
             de se mover
           </h1>
           
-          <p className="text-base sm:text-lg lg:text-xl text-[rgb(var(--color-text-muted))] max-w-xl leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[rgb(var(--color-text-muted))] max-w-xl leading-relaxed">
             Transporte seguro, rápido e acessível. Tecnologia de ponta 
             para passageiros e motoristas.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button variant="primary" size="lg" href="https://play.google.com/store/apps/details?id=com.movago" className="w-full sm:w-auto justify-center">
-              <Play size={20} />
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <Button variant="primary" size="lg" href="https://play.google.com/store/apps/details?id=com.movago" className="w-full sm:w-auto justify-center text-sm sm:text-base">
+              <Play size={18} className="sm:w-5" />
               Google Play
             </Button>
-            <Button variant="outline" size="lg" href="https://apps.apple.com/app/movago" className="w-full sm:w-auto justify-center">
-              <Apple size={20} />
+            <Button variant="outline" size="lg" href="https://apps.apple.com/app/movago" className="w-full sm:w-auto justify-center text-sm sm:text-base">
+              <Apple size={18} className="sm:w-5" />
               App Store
             </Button>
           </div>
@@ -83,27 +83,27 @@ export function Hero() {
               />
             </div>
             
-            {/* Static notification cards - no animations */}
-            <div className="absolute -right-4 sm:-right-8 top-16 sm:top-20 bg-[rgb(var(--color-surface))] rounded-xl p-3 shadow-lg border border-slate-700/50 max-w-[200px]">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-green-500 text-sm">✓</span>
+            {/* Static notification cards - no animations - Hidden on very small screens */}
+            <div className="hidden sm:block absolute -right-2 md:-right-4 lg:-right-8 top-12 md:top-16 lg:top-20 bg-[rgb(var(--color-surface))] rounded-xl p-2 md:p-3 shadow-lg border border-slate-700/50 max-w-[160px] md:max-w-[200px]">
+              <div className="flex items-center gap-1.5 md:gap-2">
+                <div className="w-6 h-6 md:w-8 md:h-8 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-green-500 text-xs md:text-sm">✓</span>
                 </div>
-                <div className="text-sm min-w-0">
-                  <div className="text-white font-medium truncate">Viagem confirmada</div>
-                  <div className="text-[rgb(var(--color-text-muted))] text-xs">A chegar em 2 min</div>
+                <div className="text-xs md:text-sm min-w-0">
+                  <div className="text-white font-medium truncate text-xs md:text-sm">Viagem confirmada</div>
+                  <div className="text-[rgb(var(--color-text-muted))] text-[10px] md:text-xs">A chegar em 2 min</div>
                 </div>
               </div>
             </div>
 
-            <div className="absolute -left-4 sm:-left-8 bottom-24 sm:bottom-32 bg-[rgb(var(--color-surface))] rounded-xl p-3 shadow-lg border border-slate-700/50 max-w-[200px]">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-[rgb(var(--color-primary))]/20 rounded-full flex items-center justify-center text-[rgb(var(--color-primary))] flex-shrink-0">
-                  <span className="text-sm">★</span>
+            <div className="hidden sm:block absolute -left-2 md:-left-4 lg:-left-8 bottom-20 md:bottom-24 lg:bottom-32 bg-[rgb(var(--color-surface))] rounded-xl p-2 md:p-3 shadow-lg border border-slate-700/50 max-w-[160px] md:max-w-[200px]">
+              <div className="flex items-center gap-1.5 md:gap-2">
+                <div className="w-6 h-6 md:w-8 md:h-8 bg-[rgb(var(--color-primary))]/20 rounded-full flex items-center justify-center text-[rgb(var(--color-primary))] flex-shrink-0">
+                  <span className="text-xs md:text-sm">★</span>
                 </div>
-                <div className="text-sm min-w-0">
-                  <div className="text-white font-medium truncate">Excelente!</div>
-                  <div className="text-[rgb(var(--color-text-muted))] text-xs">4.9 estrelas</div>
+                <div className="text-xs md:text-sm min-w-0">
+                  <div className="text-white font-medium truncate text-xs md:text-sm">Excelente!</div>
+                  <div className="text-[rgb(var(--color-text-muted))] text-[10px] md:text-xs">4.9 estrelas</div>
                 </div>
               </div>
             </div>
