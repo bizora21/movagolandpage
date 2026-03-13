@@ -8,7 +8,7 @@ import { APP_STORES } from '@/lib/constants';
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[rgb(var(--color-bg))] pt-20 sm:pt-24 lg:pt-0">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[rgb(var(--color-bg))] pt-28 sm:pt-32 lg:pt-0">
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
@@ -44,24 +44,24 @@ export function Hero() {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 relative z-10">
             <Button 
               variant="primary" 
-              size="lg" 
+              size="md" 
               href={APP_STORES.googlePlay}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto justify-center text-sm sm:text-base relative z-10"
+              className="w-full sm:w-auto justify-center text-xs sm:text-sm relative z-10"
             >
-              <Play size={18} className="sm:w-5" />
+              <Play size={16} className="sm:w-4" />
               Google Play
             </Button>
             <Button 
               variant="outline" 
-              size="lg" 
+              size="md" 
               href="https://apps.apple.com/app/movago"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto justify-center text-sm sm:text-base relative z-10"
+              className="w-full sm:w-auto justify-center text-xs sm:text-sm relative z-10"
             >
-              <Apple size={18} className="sm:w-5" />
+              <Apple size={16} className="sm:w-4" />
               App Store
             </Button>
           </div>
