@@ -35,7 +35,7 @@ export function ContactCTA() {
               <div className="text-white font-semibold mb-1">Email</div>
               <a 
                 href={`mailto:${CONTACT_INFO.email}`} 
-                className="text-[rgb(var(--color-text-muted))] hover:text-white transition-colors text-sm lg:text-base"
+                className="inline-block text-[rgb(var(--color-text-muted))] hover:text-white transition-colors text-sm lg:text-base py-2 px-1 -mx-1 rounded-lg hover:bg-white/5"
               >
                 {CONTACT_INFO.email}
               </a>
@@ -50,7 +50,7 @@ export function ContactCTA() {
               <div className="text-white font-semibold mb-1">Telefone</div>
               <a 
                 href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`} 
-                className="text-[rgb(var(--color-text-muted))] hover:text-white transition-colors text-sm lg:text-base"
+                className="inline-block text-[rgb(var(--color-text-muted))] hover:text-white transition-colors text-sm lg:text-base py-2 px-1 -mx-1 rounded-lg hover:bg-white/5"
               >
                 {CONTACT_INFO.phone}
               </a>
