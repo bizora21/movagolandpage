@@ -1,3 +1,8 @@
 # Redirecionamentos para Cloudflare Pages
 # SPA fallback para todas as rotas não encontradas
+# Forçar HTTPS - Redirecionar todo tráfego HTTP para HTTPS
+http://movagomz.com/* https://movagomz.com/:splat 301!
+http://www.movagomz.com/* https://movagomz.com/:splat 301!
+
+# Roteamento para SPA/Static Export
 /* /index.html 200
