@@ -38,12 +38,12 @@ export function Navbar() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-8">
+            <div className="hidden lg:flex items-center gap-6">
               {NAVIGATION.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="inline-block text-[rgb(var(--color-text-muted))] hover:text-white transition-colors font-medium py-2 px-1 -mx-1 rounded-lg hover:bg-white/5"
+                  className="text-[rgb(var(--color-text-muted))] hover:text-white transition-colors font-medium py-3 px-2 rounded-lg hover:bg-white/5 min-h-[48px] flex items-center"
                 >
                   {item.name}
                 </Link>
@@ -51,7 +51,7 @@ export function Navbar() {
             </div>
 
             {/* CTA Button */}
-            <div className="hidden lg:block">
+            <div className="hidden lg:block pl-4">
               <Button href="#download">Baixar App</Button>
             </div>
 
