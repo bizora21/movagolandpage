@@ -46,7 +46,7 @@ export function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-[rgb(var(--color-text-muted))] hover:text-white transition-colors font-medium py-2 px-2 rounded-lg hover:bg-white/5 min-h-[40px] flex items-center text-sm xl:text-base whitespace-nowrap"
+                  className="text-[rgb(var(--color-text-muted))] hover:text-white transition-colors font-medium py-3 px-4 rounded-lg hover:bg-white/5 min-h-[48px] flex items-center text-sm xl:text-base whitespace-nowrap"
                 >
                   {item.name}
                 </Link>
@@ -93,7 +93,7 @@ export function Navbar() {
                   key={item.name}
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[rgb(var(--color-text-muted))] hover:text-white transition-colors py-3 px-3 rounded-lg hover:bg-white/5 text-base"
+                  className="text-[rgb(var(--color-text-muted))] hover:text-white transition-colors py-4 px-4 rounded-lg hover:bg-white/5 min-h-[48px] flex items-center text-base"
                 >
                   {item.name}
                 </Link>
