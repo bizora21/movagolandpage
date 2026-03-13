@@ -7,6 +7,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string;
   fullWidth?: boolean;
   target?: string;
+  rel?: string;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -18,6 +19,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       href,
       fullWidth = false,
       target,
+      rel,
       children,
       ...props
     },
@@ -48,7 +50,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     if (href) {
       return (
-        <a href={href} target={target} className={classes}>
+        <a href={href} target={target} rel={rel} className={classes}>
           {children}
         </a>
       );
