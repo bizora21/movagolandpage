@@ -8,7 +8,7 @@ import { APP_STORES } from '@/lib/constants';
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[rgb(var(--color-bg))]">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[rgb(var(--color-bg))] pt-20 sm:pt-24 lg:pt-0">
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
