@@ -41,14 +41,14 @@ export function Hero() {
             para passageiros e motoristas.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 relative z-10">
             <Button 
               variant="primary" 
               size="lg" 
               href={APP_STORES.googlePlay}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto justify-center text-sm sm:text-base"
+              className="w-full sm:w-auto justify-center text-sm sm:text-base relative z-10"
             >
               <Play size={18} className="sm:w-5" />
               Google Play
@@ -59,7 +59,7 @@ export function Hero() {
               href="https://apps.apple.com/app/movago"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto justify-center text-sm sm:text-base"
+              className="w-full sm:w-auto justify-center text-sm sm:text-base relative z-10"
             >
               <Apple size={18} className="sm:w-5" />
               App Store
