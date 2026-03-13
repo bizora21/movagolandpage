@@ -1,4 +1,4 @@
-çl.# Robots.txt for MOVAGO
+# Robots.txt for MOVAGO
 # https://movagomz.com
 
 User-agent: *
