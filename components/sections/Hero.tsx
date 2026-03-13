@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Play, Apple } from 'lucide-react';
 import Image from 'next/image';
+import { APP_STORES } from '@/lib/constants';
 
 export function Hero() {
   return (
@@ -41,11 +42,25 @@ export function Hero() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-            <Button variant="primary" size="lg" href="https://play.google.com/store/apps/details?id=com.movago" className="w-full sm:w-auto justify-center text-sm sm:text-base">
+            <Button 
+              variant="primary" 
+              size="lg" 
+              href={APP_STORES.googlePlay}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto justify-center text-sm sm:text-base"
+            >
               <Play size={18} className="sm:w-5" />
               Google Play
             </Button>
-            <Button variant="outline" size="lg" href="https://apps.apple.com/app/movago" className="w-full sm:w-auto justify-center text-sm sm:text-base">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              href="https://apps.apple.com/app/movago"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto justify-center text-sm sm:text-base"
+            >
               <Apple size={18} className="sm:w-5" />
               App Store
             </Button>
