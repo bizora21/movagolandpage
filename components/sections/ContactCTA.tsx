@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/Button';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
-import { CONTACT_INFO } from '@/lib/constants';
+import { CONTACT_INFO, APP_STORES } from '@/lib/constants';
 
 export function ContactCTA() {
   return (
@@ -17,7 +17,13 @@ export function ContactCTA() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 lg:mb-16">
-          <Button size="lg" href="#download" className="w-full sm:w-auto justify-center">
+          <Button 
+            size="lg" 
+            href={APP_STORES.googlePlay}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto justify-center"
+          >
             Baixar a App
           </Button>
           <Button variant="outline" size="lg" href="/contacto" className="w-full sm:w-auto justify-center">
