@@ -26,19 +26,19 @@ export function Footer() {
             <div className="space-y-3 mb-6">
               <a 
                 href={`mailto:${CONTACT_INFO.email}`}
-                className="flex items-center gap-3 text-[rgb(var(--color-text-muted))] hover:text-white transition-colors"
+                className="flex items-center gap-3 text-[rgb(var(--color-text-muted))] hover:text-white transition-colors py-2 px-1 -mx-1 rounded-lg hover:bg-white/5"
               >
                 <Mail size={18} className="text-[rgb(var(--color-primary))]" />
                 <span className="text-sm">{CONTACT_INFO.email}</span>
               </a>
               <a 
                 href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`}
-                className="flex items-center gap-3 text-[rgb(var(--color-text-muted))] hover:text-white transition-colors"
+                className="flex items-center gap-3 text-[rgb(var(--color-text-muted))] hover:text-white transition-colors py-2 px-1 -mx-1 rounded-lg hover:bg-white/5"
               >
                 <Phone size={18} className="text-[rgb(var(--color-primary))]" />
                 <span className="text-sm">{CONTACT_INFO.phone}</span>
               </a>
-              <div className="flex items-center gap-3 text-[rgb(var(--color-text-muted))]">
+              <div className="flex items-center gap-3 text-[rgb(var(--color-text-muted))] py-2 px-1">
                 <MapPin size={18} className="text-[rgb(var(--color-primary))]" />
                 <span className="text-sm">Sede: {CONTACT_INFO.location}</span>
               </div>
@@ -77,7 +77,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-[rgb(var(--color-text-muted))] hover:text-white transition-colors"
+                    className="inline-block text-[rgb(var(--color-text-muted))] hover:text-white transition-colors py-2 px-1 -mx-1 rounded-lg hover:bg-white/5"
                   >
                     {link.name}
                   </Link>
@@ -94,7 +94,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-[rgb(var(--color-text-muted))] hover:text-white transition-colors"
+                    className="inline-block text-[rgb(var(--color-text-muted))] hover:text-white transition-colors py-2 px-1 -mx-1 rounded-lg hover:bg-white/5"
                   >
                     {link.name}
                   </Link>
@@ -111,7 +111,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-[rgb(var(--color-text-muted))] hover:text-white transition-colors"
+                    className="inline-block text-[rgb(var(--color-text-muted))] hover:text-white transition-colors py-2 px-1 -mx-1 rounded-lg hover:bg-white/5"
                   >
                     {link.name}
                   </Link>
@@ -131,7 +131,7 @@ export function Footer() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-[rgb(var(--color-text-muted))] hover:text-white transition-colors text-sm"
+                className="inline-block text-[rgb(var(--color-text-muted))] hover:text-white transition-colors text-sm py-2 px-1 -mx-1 rounded-lg hover:bg-white/5"
               >
                 {link.name}
               </Link>

@@ -43,7 +43,7 @@ export function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-[rgb(var(--color-text-muted))] hover:text-white transition-colors font-medium"
+                  className="inline-block text-[rgb(var(--color-text-muted))] hover:text-white transition-colors font-medium py-2 px-1 -mx-1 rounded-lg hover:bg-white/5"
                 >
                   {item.name}
                 </Link>
@@ -76,13 +76,13 @@ export function Navbar() {
             onClick={() => setIsMobileMenuOpen(false)}
           />
           <div className="absolute right-0 top-0 bottom-0 w-72 bg-[rgb(var(--color-surface))] p-6">
-            <div className="flex flex-col gap-6 mt-16">
+          <div className="flex flex-col gap-6 mt-16">
               {NAVIGATION.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-lg text-[rgb(var(--color-text-muted))] hover:text-white transition-colors"
+                  className="inline-block text-lg text-[rgb(var(--color-text-muted))] hover:text-white transition-colors py-3 px-2 -mx-2 rounded-lg hover:bg-white/5"
                 >
                   {item.name}
                 </Link>
