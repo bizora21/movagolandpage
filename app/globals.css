@@ -2,8 +2,8 @@
 
 :root {
   /* MOVAGO Professional Blue Design System */
-  --primary: #3B82F6;          /* Azul profissional - CTAs, destaques */
-  --primary-hover: #2563EB;    /* Hover dos botões - azul mais escuro */
+  --primary: #2563EB;          /* Azul profissional - CTAs, destaques (mais escuro para contraste) */
+  --primary-hover: #1D4ED8;    /* Hover dos botões - azul mais escuro */
   --bg-dark: #0A0F1E;          /* Background principal - azul muito escuro */
   --bg-surface: #111827;       /* Cards e secções */
   --bg-elevated: #1F2937;      /* Hover states, elementos elevados */
@@ -15,8 +15,8 @@
   --border: #1F2937;           /* Bordas subtis */
   
   /* Tailwind RGB format */
-  --color-primary: 59 130 246;
-  --color-primary-dark: 37 99 235;
+  --color-primary: 37 99 235;
+  --color-primary-dark: 29 78 216;
   --color-secondary: 30 41 59;
   --color-bg: 10 15 30;
   --color-surface: 17 24 39;
@@ -88,7 +88,7 @@ a {
 
 /* Gradient text - Azul profissional */
 .gradient-text {
-  background: linear-gradient(135deg, rgb(59 130 246) 0%, rgb(96 165 250) 100%);
+  background: linear-gradient(135deg, rgb(37 99 235) 0%, rgb(96 165 250) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
