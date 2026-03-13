@@ -24,20 +24,20 @@ export function Navbar() {
       <nav
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-          isScrolled ? 'glass py-2 sm:py-3' : 'bg-transparent py-3 sm:py-5'
+          isScrolled ? 'glass py-3 sm:py-4' : 'bg-transparent py-4 sm:py-6'
         )}
       >
-        <div className="container mx-auto px-3 sm:px-4">
-          <div className="flex items-center justify-between h-14 sm:h-16">
-            {/* Logo - Reduzido em mobile */}
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between h-16 sm:h-20">
+            {/* Logo - Mobile profissional */}
             <Link 
               href="/" 
-              className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0 z-50 relative"
+              className="flex items-center gap-2 sm:gap-3 flex-shrink-0 z-50 relative"
             >
-              <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 bg-[rgb(var(--color-primary))] rounded-xl flex items-center justify-center flex-shrink-0">
-                <span className="text-white font-bold text-sm sm:text-base md:text-lg">M</span>
+              <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-9 md:h-9 bg-[rgb(var(--color-primary))] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                <span className="text-white font-bold text-base sm:text-lg md:text-lg">M</span>
               </div>
-              <span className="text-white font-bold text-sm sm:text-base md:text-lg hidden sm:block">{SITE_NAME}</span>
+              <span className="text-white font-bold text-base sm:text-lg md:text-lg hidden sm:block">{SITE_NAME}</span>
             </Link>
 
             {/* Desktop Navigation - Oculto em mobile/tablet */}
@@ -66,14 +66,14 @@ export function Navbar() {
               </Button>
             </div>
 
-            {/* Mobile Menu Button - 44x44px minimum */}
+            {/* Mobile Menu Button - Profissional e destacado */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden text-white p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-white/10 rounded-lg transition-colors z-50 relative flex-shrink-0"
+              className="lg:hidden bg-[rgb(var(--color-primary))] hover:bg-[rgb(var(--color-primary-dark))] text-white p-3 min-w-[52px] min-h-[52px] flex items-center justify-center rounded-xl transition-all duration-200 z-50 relative flex-shrink-0 shadow-lg hover:shadow-xl"
               aria-label="Toggle menu"
               aria-expanded={isMobileMenuOpen}
             >
-              {isMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+              {isMobileMenuOpen ? <X size={20} strokeWidth={2.5} /> : <Menu size={20} strokeWidth={2.5} />}
             </button>
           </div>
         </div>
