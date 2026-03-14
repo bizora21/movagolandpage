@@ -8,7 +8,7 @@ import { APP_STORES } from '@/lib/constants';
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[rgb(var(--color-bg))] pt-28 sm:pt-32 lg:pt-0">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[rgb(var(--color-bg))] pt-64 sm:pt-72 md:pt-80 lg:pt-24">
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
@@ -25,10 +25,10 @@ export function Hero() {
       <div className="absolute top-20 left-10 w-72 h-72 bg-[rgb(var(--color-primary))]/3 rounded-full blur-3xl" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-[rgb(var(--color-accent))]/3 rounded-full blur-3xl" />
 
-      <div className="container mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-16 lg:py-32">
+      <div className="container mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-16 lg:py-32 relative z-10">
         {/* Text Content */}
         <div className="space-y-6 sm:space-y-8">
-          <Badge variant="default">🚀 Sistema Inteligente de Mobilidade</Badge>
+          <Badge variant="default" className="mb-4">🚀 Sistema Inteligente de Mobilidade</Badge>
           
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight text-white">
             A forma mais{' '}
