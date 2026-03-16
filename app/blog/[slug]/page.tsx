@@ -74,8 +74,8 @@ Pode partilhar o seu trajeto em tempo real com amigos e família para maior segu
 ## Precisa de Ajuda?
 
 A nossa equipa de suporte está disponível 24/7. Contacte-nos:
-- Email: ola@movago.co.mz
-- Telefone: +258 84 123 4567
+- Email: ola@movagomz.com
+- Telefone: +258 86 318 1415
 - In-app chat
 
 Boas viagens com a MOVAGO! 🚗
