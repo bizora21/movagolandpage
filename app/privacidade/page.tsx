@@ -150,7 +150,7 @@ export default function PrivacidadePage() {
                   <li>Retirar consentimento a qualquer momento</li>
                 </ul>
                 <p className="text-[rgb(var(--color-text-muted))] leading-relaxed mt-4">
-                  Para exercer estes direitos, contacte-nos em: privacidade@movago.co.mz
+                  Para exercer estes direitos, contacte-nos em: privacidade@movagomz.com
                 </p>
               </CardContent>
             </Card>
@@ -195,7 +195,7 @@ export default function PrivacidadePage() {
                   Para questões sobre privacidade ou exercer seus direitos, contacte:
                 </p>
                 <div className="mt-4 space-y-2 text-[rgb(var(--color-text-muted))]">
-                  <p>Email: <a href="mailto:privacidade@movago.co.mz" className="text-[rgb(var(--color-primary))] hover:underline">privacidade@movago.co.mz</a></p>
+                  <p>Email: <a href="mailto:privacidade@movagomz.com" className="text-[rgb(var(--color-primary))] hover:underline">privacidade@movagomz.com</a></p>
                   <p>Endereço: Av. Julius Nyerere, 1234, Maputo, Moçambique</p>
                   <p>Telefone: +258863181415</p>
                 </div>

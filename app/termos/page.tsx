@@ -228,7 +228,7 @@ export default function TermosPage() {
                   Para questões sobre estes termos, contacte-nos em:
                 </p>
                 <div className="mt-4 space-y-2 text-[rgb(var(--color-text-muted))]">
-                  <p>Email: <a href="mailto:legal@movago.co.mz" className="text-[rgb(var(--color-primary))] hover:underline">legal@movago.co.mz</a></p>
+                  <p>Email: <a href="mailto:legal@movagomz.com" className="text-[rgb(var(--color-primary))] hover:underline">legal@movagomz.com</a></p>
                   <p>Endereço: Av. Julius Nyerere, 1234, Maputo, Moçambique</p>
                   <p>Telefone: +258863181415</p>
                 </div>
