@@ -105,7 +105,27 @@ export default function TermosPage() {
 
             <Card variant="glass">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-white mb-4">6. Cancelamento e Reembolso</h2>
+                <h2 className="text-2xl font-bold text-white mb-4">6. Subscrições e Pagamentos</h2>
+                <p className="text-[rgb(var(--color-text-muted))] leading-relaxed mb-4">
+                  O MOVAGO oferece um período de trial gratuito de 30 dias para 
+                  motoristas. Após o período de trial, é necessária uma subscrição 
+                  mensal para continuar a utilizar os serviços da plataforma.
+                </p>
+                <p className="text-[rgb(var(--color-text-muted))] leading-relaxed mb-4">
+                  Os pagamentos são processados externamente através do M-Pesa. 
+                  O MOVAGO reserva-se o direito de alterar os preços de subscrição 
+                  mediante aviso prévio de 30 dias.
+                </p>
+                <p className="text-[rgb(var(--color-text-muted))] leading-relaxed">
+                  Não são emitidos reembolsos após confirmação do pagamento, 
+                  excepto em casos de falha técnica comprovada.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card variant="glass">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-white mb-4">7. Cancelamento e Reembolso</h2>
                 <p className="text-[rgb(var(--color-text-muted))] leading-relaxed mb-4">
                   <strong>Cancelamento pelo Passageiro:</strong>
                 </p>
@@ -126,7 +146,7 @@ export default function TermosPage() {
 
             <Card variant="glass">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-white mb-4">7. Conduta e Segurança</h2>
+                <h2 className="text-2xl font-bold text-white mb-4">8. Conduta e Segurança</h2>
                 <p className="text-[rgb(var(--color-text-muted))] leading-relaxed mb-4">
                   É proibido:
                 </p>
@@ -144,7 +164,7 @@ export default function TermosPage() {
 
             <Card variant="glass">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-white mb-4">8. Propriedade Intelectual</h2>
+                <h2 className="text-2xl font-bold text-white mb-4">9. Propriedade Intelectual</h2>
                 <p className="text-[rgb(var(--color-text-muted))] leading-relaxed">
                   A MOVAGO e todos os seus conteúdos, funcionalidades e design são propriedade
                   exclusiva da MOVAGO ou dos seus licenciadores. Não é permitido copiar, modificar,
@@ -155,7 +175,7 @@ export default function TermosPage() {
 
             <Card variant="glass">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-white mb-4">9. Limitação de Responsabilidade</h2>
+                <h2 className="text-2xl font-bold text-white mb-4">10. Limitação de Responsabilidade</h2>
                 <p className="text-[rgb(var(--color-text-muted))] leading-relaxed">
                   A MOVAGO não é responsável por: danos indirectos ou incidentais; perdas de lucros;
                   interrupções do serviço; atrasos ou cancelamentos; acidentes ou lesões; ou comportamento
@@ -167,7 +187,7 @@ export default function TermosPage() {
 
             <Card variant="glass">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-white mb-4">10. Suspensão e Encerramento</h2>
+                <h2 className="text-2xl font-bold text-white mb-4">11. Suspensão e Encerramento</h2>
                 <p className="text-[rgb(var(--color-text-muted))] leading-relaxed mb-4">
                   Reservamo-nos o direito de suspender ou encerrar contas que:
                 </p>
@@ -182,7 +202,7 @@ export default function TermosPage() {
 
             <Card variant="glass">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-white mb-4">11. Alterações aos Termos</h2>
+                <h2 className="text-2xl font-bold text-white mb-4">12. Alterações aos Termos</h2>
                 <p className="text-[rgb(var(--color-text-muted))] leading-relaxed">
                   Podemos modificar estes termos a qualquer momento. Os utilizadores serão notificados
                   sobre alterações significativas. O uso continuado da aplicação após alterações
@@ -193,7 +213,7 @@ export default function TermosPage() {
 
             <Card variant="glass">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-white mb-4">12. Lei Aplicável</h2>
+                <h2 className="text-2xl font-bold text-white mb-4">13. Lei Aplicável</h2>
                 <p className="text-[rgb(var(--color-text-muted))] leading-relaxed">
                   Estes termos são regidos pelas leis da República de Moçambique. Quaisquer litígios
                   serão resolvidos nos tribunais de Maputo, Moçambique.
@@ -203,14 +223,14 @@ export default function TermosPage() {
 
             <Card variant="glass">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-white mb-4">13. Contacto</h2>
+                <h2 className="text-2xl font-bold text-white mb-4">14. Contacto</h2>
                 <p className="text-[rgb(var(--color-text-muted))] leading-relaxed">
                   Para questões sobre estes termos, contacte-nos em:
                 </p>
                 <div className="mt-4 space-y-2 text-[rgb(var(--color-text-muted))]">
                   <p>Email: <a href="mailto:legal@movago.co.mz" className="text-[rgb(var(--color-primary))] hover:underline">legal@movago.co.mz</a></p>
                   <p>Endereço: Av. Julius Nyerere, 1234, Maputo, Moçambique</p>
-                  <p>Telefone: +258 84 123 4567</p>
+                  <p>Telefone: +258863181415</p>
                 </div>
               </CardContent>
             </Card>

@@ -93,7 +93,7 @@ export default function PrivacidadePage() {
                 </p>
                 <ul className="list-disc list-inside space-y-2 text-[rgb(var(--color-text-muted))]">
                   <li><strong>Motoristas:</strong> Nome, foto e avaliações para conclusão da viagem</li>
-                  <li><strong>Google Maps:</strong> Para fornecer serviços de navegação e mapas</li>
+                  <li><strong>Mapbox:</strong> Para fornecer serviços de navegação e mapas</li>
                   <li><strong>Autoridades:</strong> Quando legalmente requerido ou para proteger a segurança</li>
                 </ul>
                 <p className="text-[rgb(var(--color-text-muted))] leading-relaxed mt-4">
@@ -104,7 +104,29 @@ export default function PrivacidadePage() {
 
             <Card variant="glass">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-white mb-4">5. Segurança dos Dados</h2>
+                <h2 className="text-2xl font-bold text-white mb-4">5. Pagamentos</h2>
+                <p className="text-[rgb(var(--color-text-muted))] leading-relaxed mb-4">
+                  O MOVAGO não processa pagamentos directamente dentro da aplicação. 
+                  Todos os pagamentos são realizados através de serviços externos, 
+                  nomeadamente o M-Pesa da Vodacom Moçambique, num browser externo 
+                  fora da aplicação MOVAGO.
+                </p>
+                <p className="text-[rgb(var(--color-text-muted))] leading-relaxed mb-4">
+                  Ao efectuar um pagamento, o utilizador é redirecionado para uma 
+                  página segura onde completa a transacção directamente com o 
+                  prestador de serviços de pagamento. O MOVAGO não armazena dados 
+                  de cartões bancários nem credenciais de pagamento.
+                </p>
+                <p className="text-[rgb(var(--color-text-muted))] leading-relaxed">
+                  Os dados da transacção (referência, valor, data) são registados 
+                  para controlo de subscrições e suporte ao cliente.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card variant="glass">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-white mb-4">6. Segurança dos Dados</h2>
                 <p className="text-[rgb(var(--color-text-muted))] leading-relaxed">
                   Implementamos medidas de segurança técnicas e organizacionais para proteger os seus dados,
                   incluindo encriptação SSL, autenticação segura e acesso restrito. No entanto, nenhum sistema
@@ -115,7 +137,7 @@ export default function PrivacidadePage() {
 
             <Card variant="glass">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-white mb-4">6. Seus Direitos</h2>
+                <h2 className="text-2xl font-bold text-white mb-4">7. Seus Direitos</h2>
                 <p className="text-[rgb(var(--color-text-muted))] leading-relaxed mb-4">
                   Tem direito a:
                 </p>
@@ -135,7 +157,7 @@ export default function PrivacidadePage() {
 
             <Card variant="glass">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-white mb-4">7. Retenção de Dados</h2>
+                <h2 className="text-2xl font-bold text-white mb-4">8. Retenção de Dados</h2>
                 <p className="text-[rgb(var(--color-text-muted))] leading-relaxed">
                   Mantemos os seus dados apenas pelo tempo necessário para fornecer os serviços e cumprir
                   obrigações legais. Os dados de viagens são mantidos por 2 anos após a última viagem.
@@ -146,7 +168,7 @@ export default function PrivacidadePage() {
 
             <Card variant="glass">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-white mb-4">8. Crianças</h2>
+                <h2 className="text-2xl font-bold text-white mb-4">9. Crianças</h2>
                 <p className="text-[rgb(var(--color-text-muted))] leading-relaxed">
                   A MOVAGO não é destinada a menores de 18 anos. Não recolhemos intencionalmente
                   informações de crianças. Se descobrirmos que recolhemos dados de uma criança,
@@ -157,7 +179,7 @@ export default function PrivacidadePage() {
 
             <Card variant="glass">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-white mb-4">9. Alterações a Esta Política</h2>
+                <h2 className="text-2xl font-bold text-white mb-4">10. Alterações a Esta Política</h2>
                 <p className="text-[rgb(var(--color-text-muted))] leading-relaxed">
                   Podemos actualizar esta política periodicamente. Notificaremos os utilizadores sobre
                   alterações significativas via email ou notificação na app. O uso continuado da app
@@ -168,14 +190,14 @@ export default function PrivacidadePage() {
 
             <Card variant="glass">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-white mb-4">10. Contacto</h2>
+                <h2 className="text-2xl font-bold text-white mb-4">11. Contacto</h2>
                 <p className="text-[rgb(var(--color-text-muted))] leading-relaxed">
                   Para questões sobre privacidade ou exercer seus direitos, contacte:
                 </p>
                 <div className="mt-4 space-y-2 text-[rgb(var(--color-text-muted))]">
                   <p>Email: <a href="mailto:privacidade@movago.co.mz" className="text-[rgb(var(--color-primary))] hover:underline">privacidade@movago.co.mz</a></p>
                   <p>Endereço: Av. Julius Nyerere, 1234, Maputo, Moçambique</p>
-                  <p>Telefone: +258 84 123 4567</p>
+                  <p>Telefone: +258863181415</p>
                 </div>
               </CardContent>
             </Card>
