@@ -35,19 +35,19 @@ export function Navbar() {
     <>
       <nav
         className={cn(
-          'fixed top-0 left-0 right-0 z-[100] transition-all duration-300',
-          isScrolled ? 'glass py-2 sm:py-4' : 'bg-transparent py-2 sm:py-6'
+          'fixed top-0 left-0 right-0 z-[100] w-full transition-all duration-300',
+          isScrolled ? 'glass py-2' : 'bg-transparent py-5 sm:py-6'
         )}
       >
         <div className="container mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16 sm:h-20 md:h-20">
-            {/* Logo - Mobile profissional */}
+            {/* Logo - Mobile profissional com altura reduzida */}
             <Link 
               href="/" 
               className="flex items-center gap-2 sm:gap-3 flex-shrink-0 z-[110] relative"
               aria-label={`${SITE_NAME} - Página inicial`}
             >
-              <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-10 md:h-10 lg:w-11 lg:h-11 bg-[rgb(var(--color-primary))] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+              <div className="w-9 h-9 sm:w-11 sm:h-11 md:w-10 md:h-10 lg:w-11 lg:h-11 bg-[rgb(var(--color-primary))] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
                 <span className="text-white font-bold text-base sm:text-lg md:text-lg">M</span>
               </div>
               <span className="text-white font-bold text-lg sm:text-xl md:text-xl hidden sm:block">{SITE_NAME}</span>
@@ -93,17 +93,17 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Overlay escuro com rolagem */}
       {isMobileMenuOpen && (
         <div 
           id="mobile-menu"
-          className="fixed inset-0 z-[90] lg:hidden"
+          className="fixed inset-0 z-[110] lg:hidden bg-black/95"
           role="dialog"
           aria-modal="true"
           aria-label="Menu de navegação"
         >
           <div
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className="absolute inset-0"
             onClick={() => setIsMobileMenuOpen(false)}
             aria-hidden="true"
           />

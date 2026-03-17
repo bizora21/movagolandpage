@@ -8,7 +8,7 @@ import { APP_STORES } from '@/lib/constants';
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[rgb(var(--color-bg))] pt-24 sm:pt-32 lg:pt-20">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[rgb(var(--color-bg))] pt-32 sm:pt-40 pb-12">
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
@@ -30,7 +30,7 @@ export function Hero() {
         <div className="space-y-6 sm:space-y-8">
           <Badge variant="default" className="mb-4">🚀 Sistema Inteligente de Mobilidade</Badge>
           
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight sm:leading-tight text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight text-white">
             A forma mais{' '}
             <span className="gradient-text">inteligente</span>{' '}
             de se mover
