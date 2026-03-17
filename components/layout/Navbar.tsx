@@ -19,20 +19,32 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <>
       <nav
         className={cn(
-          'fixed top-0 left-0 right-0 z-40 transition-all duration-300',
-          isScrolled ? 'glass py-4 sm:py-4' : 'bg-transparent py-5 sm:py-6'
+          'fixed top-0 left-0 right-0 z-[100] transition-all duration-300',
+          isScrolled ? 'glass py-2 sm:py-4' : 'bg-transparent py-2 sm:py-6'
         )}
       >
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-20 sm:h-20 md:h-20">
+          <div className="flex items-center justify-between h-16 sm:h-20 md:h-20">
             {/* Logo - Mobile profissional */}
             <Link 
               href="/" 
-              className="flex items-center gap-2 sm:gap-3 flex-shrink-0 z-50 relative"
+              className="flex items-center gap-2 sm:gap-3 flex-shrink-0 z-[110] relative"
               aria-label={`${SITE_NAME} - Página inicial`}
             >
               <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-10 md:h-10 lg:w-11 lg:h-11 bg-[rgb(var(--color-primary))] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
@@ -70,7 +82,7 @@ export function Navbar() {
             {/* Mobile Menu Button - Profissional e destacado */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden bg-[rgb(var(--color-primary))] hover:bg-[rgb(var(--color-primary-dark))] text-white p-2.5 sm:p-3 min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px] flex items-center justify-center rounded-lg transition-all duration-200 z-50 relative flex-shrink-0 shadow-lg hover:shadow-xl"
+              className="lg:hidden bg-[rgb(var(--color-primary))] hover:bg-[rgb(var(--color-primary-dark))] text-white p-2.5 sm:p-3 min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px] flex items-center justify-center rounded-lg transition-all duration-200 z-[110] relative flex-shrink-0 shadow-lg hover:shadow-xl"
               aria-label={`${isMobileMenuOpen ? 'Fechar' : 'Abrir'} menu de navegação`}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
@@ -85,7 +97,7 @@ export function Navbar() {
       {isMobileMenuOpen && (
         <div 
           id="mobile-menu"
-          className="fixed inset-0 z-40 lg:hidden"
+          className="fixed inset-0 z-[90] lg:hidden"
           role="dialog"
           aria-modal="true"
           aria-label="Menu de navegação"
@@ -95,7 +107,7 @@ export function Navbar() {
             onClick={() => setIsMobileMenuOpen(false)}
             aria-hidden="true"
           />
-          <div className="absolute right-0 top-0 bottom-0 w-[280px] sm:w-72 bg-[rgb(var(--color-surface))] p-4 overflow-y-auto shadow-2xl">
+          <div className="absolute right-0 top-0 bottom-0 w-[280px] sm:w-72 bg-[rgb(var(--color-surface))] p-4 overflow-y-auto h-screen shadow-2xl">
             <div className="flex flex-col gap-4 mt-20">
               {NAVIGATION.map((item) => (
                 <Link
