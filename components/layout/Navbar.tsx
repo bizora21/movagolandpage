@@ -35,38 +35,38 @@ export function Navbar() {
     <>
       <nav
         className={cn(
-          'fixed top-0 left-0 right-0 z-[100] w-full transition-all duration-300',
-          isScrolled ? 'glass py-2' : 'bg-transparent py-5 sm:py-6'
+          'fixed top-0 left-0 right-0 z-[100] w-full transition-all duration-300 border-b border-transparent',
+          isScrolled ? 'bg-[#0A0F1E]/80 backdrop-blur-md border-[#1F2937]' : 'bg-transparent'
         )}
       >
         <div className="container mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16 sm:h-20 md:h-20">
-            {/* Logo - Mobile profissional com altura reduzida */}
+            {/* Logo - Com cor branca explícita */}
             <Link 
               href="/" 
               className="flex items-center gap-2 sm:gap-3 flex-shrink-0 z-[110] relative"
               aria-label={`${SITE_NAME} - Página inicial`}
             >
-              <div className="w-9 h-9 sm:w-11 sm:h-11 md:w-10 md:h-10 lg:w-11 lg:h-11 bg-[rgb(var(--color-primary))] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+              <div className="w-9 h-9 sm:w-11 sm:h-11 md:w-10 md:h-10 lg:w-11 lg:h-11 bg-[#2563EB] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
                 <span className="text-white font-bold text-base sm:text-lg md:text-lg">M</span>
               </div>
-              <span className="text-white font-bold text-lg sm:text-xl md:text-xl hidden sm:block">{SITE_NAME}</span>
+              <span className="text-[#F9FAFB] font-bold text-lg sm:text-xl md:text-xl hidden sm:block">{SITE_NAME}</span>
             </Link>
 
-            {/* Desktop Navigation - Oculto em mobile/tablet */}
+            {/* Desktop Navigation - Links com cor branca explícita */}
             <div className="hidden lg:flex items-center gap-3 xl:gap-5">
               {NAVIGATION.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-[rgb(var(--color-text-muted))] hover:text-white transition-colors font-medium py-3 px-4 rounded-lg hover:bg-white/5 min-h-[48px] flex items-center text-sm xl:text-base whitespace-nowrap"
+                  className="text-[#9CA3AF] hover:text-white transition-colors font-medium py-3 px-4 rounded-lg hover:bg-white/5 min-h-[48px] flex items-center text-sm xl:text-base whitespace-nowrap"
                 >
                   {item.name}
                 </Link>
               ))}
             </div>
 
-            {/* CTA Button - Link real do Google Play */}
+            {/* CTA Button */}
             <div className="hidden lg:flex items-center">
               <Button 
                 href={APP_STORES.googlePlay} 
@@ -79,15 +79,15 @@ export function Navbar() {
               </Button>
             </div>
 
-            {/* Mobile Menu Button - Profissional e destacado */}
+            {/* Mobile Menu Button - Com texto branco explícito */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden bg-[rgb(var(--color-primary))] hover:bg-[rgb(var(--color-primary-dark))] text-white p-2.5 sm:p-3 min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px] flex items-center justify-center rounded-lg transition-all duration-200 z-[110] relative flex-shrink-0 shadow-lg hover:shadow-xl"
+              className="lg:hidden bg-[#2563EB] hover:bg-[#1D4ED8] text-white p-2.5 sm:p-3 min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px] flex items-center justify-center rounded-lg transition-all duration-200 z-[110] relative flex-shrink-0 shadow-lg hover:shadow-xl"
               aria-label={`${isMobileMenuOpen ? 'Fechar' : 'Abrir'} menu de navegação`}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
             >
-              {isMobileMenuOpen ? <X size={20} strokeWidth={2.5} className="w-5 h-5" /> : <Menu size={20} strokeWidth={2.5} className="w-5 h-5" />}
+              {isMobileMenuOpen ? <X size={20} strokeWidth={2.5} className="w-5 h-5 text-white" /> : <Menu size={20} strokeWidth={2.5} className="w-5 h-5 text-white" />}
             </button>
           </div>
         </div>
@@ -107,14 +107,14 @@ export function Navbar() {
             onClick={() => setIsMobileMenuOpen(false)}
             aria-hidden="true"
           />
-          <div className="absolute right-0 top-0 bottom-0 w-[280px] sm:w-72 bg-[rgb(var(--color-surface))] p-4 overflow-y-auto h-screen shadow-2xl">
+          <div className="absolute right-0 top-0 bottom-0 w-[280px] sm:w-72 bg-[#111827] p-4 overflow-y-auto h-screen shadow-2xl">
             <div className="flex flex-col gap-4 mt-20">
               {NAVIGATION.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[rgb(var(--color-text-muted))] hover:text-white transition-colors py-4 px-4 rounded-lg hover:bg-white/5 min-h-[48px] flex items-center text-base"
+                  className="text-[#9CA3AF] hover:text-white transition-colors py-4 px-4 rounded-lg hover:bg-white/5 min-h-[48px] flex items-center text-base"
                 >
                   {item.name}
                 </Link>

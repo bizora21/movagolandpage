@@ -8,7 +8,7 @@ import { APP_STORES } from '@/lib/constants';
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[rgb(var(--color-bg))] pt-32 sm:pt-40 pb-12">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0A0F1E] pt-32 sm:pt-40 pb-12">
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
@@ -18,12 +18,12 @@ export function Hero() {
           className="object-cover opacity-20"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[rgb(var(--color-primary))]/10 via-transparent to-[rgb(var(--color-accent))]/5 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB]/10 via-transparent to-[#60A5FA]/5 pointer-events-none" />
       </div>
       
       {/* Subtle geometric patterns - no blur for performance */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-[rgb(var(--color-primary))]/3 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-[rgb(var(--color-accent))]/3 rounded-full blur-3xl" />
+      <div className="absolute top-20 left-10 w-72 h-72 bg-[#2563EB]/3 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#60A5FA]/3 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-16 lg:py-32 relative z-10">
         {/* Text Content */}
@@ -36,7 +36,7 @@ export function Hero() {
             de se mover
           </h1>
           
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[rgb(var(--color-text-muted))] max-w-xl leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-400 max-w-xl leading-relaxed">
             Transporte seguro, rápido e acessível. Tecnologia de ponta 
             para passageiros e motoristas.
           </p>
@@ -70,15 +70,15 @@ export function Hero() {
           <div className="grid grid-cols-3 gap-6 pt-4 max-w-md">
             <div className="text-center">
               <div className="text-2xl lg:text-3xl font-bold text-white">4.8</div>
-              <div className="text-xs sm:text-sm text-[rgb(var(--color-text-muted))]">Avaliação</div>
+              <div className="text-xs sm:text-sm text-slate-400">Avaliação</div>
             </div>
             <div className="text-center">
               <div className="text-2xl lg:text-3xl font-bold text-white">50k+</div>
-              <div className="text-xs sm:text-sm text-[rgb(var(--color-text-muted))]">Viagens</div>
+              <div className="text-xs sm:text-sm text-slate-400">Viagens</div>
             </div>
             <div className="text-center">
               <div className="text-2xl lg:text-3xl font-bold text-white">500+</div>
-              <div className="text-xs sm:text-sm text-[rgb(var(--color-text-muted))]">Motoristas</div>
+              <div className="text-xs sm:text-sm text-slate-400">Motoristas</div>
             </div>
           </div>
         </div>
@@ -99,26 +99,26 @@ export function Hero() {
             </div>
             
             {/* Static notification cards - no animations - Hidden on very small screens */}
-            <div className="hidden sm:block absolute -right-2 md:-right-4 lg:-right-8 top-12 md:top-16 lg:top-20 bg-[rgb(var(--color-surface))] rounded-xl p-2 md:p-3 shadow-lg border border-slate-700/50 max-w-[160px] md:max-w-[200px]">
+            <div className="hidden sm:block absolute -right-2 md:-right-4 lg:-right-8 top-12 md:top-16 lg:top-20 bg-[#111827] rounded-xl p-2 md:p-3 shadow-lg border border-slate-700/50 max-w-[160px] md:max-w-[200px]">
               <div className="flex items-center gap-1.5 md:gap-2">
                 <div className="w-6 h-6 md:w-8 md:h-8 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0">
                   <span className="text-green-500 text-xs md:text-sm">✓</span>
                 </div>
                 <div className="text-xs md:text-sm min-w-0">
                   <div className="text-white font-medium truncate text-xs md:text-sm">Viagem confirmada</div>
-                  <div className="text-[rgb(var(--color-text-muted))] text-[10px] md:text-xs">A chegar em 2 min</div>
+                  <div className="text-slate-400 text-[10px] md:text-xs">A chegar em 2 min</div>
                 </div>
               </div>
             </div>
 
-            <div className="hidden sm:block absolute -left-2 md:-left-4 lg:-left-8 bottom-20 md:bottom-24 lg:bottom-32 bg-[rgb(var(--color-surface))] rounded-xl p-2 md:p-3 shadow-lg border border-slate-700/50 max-w-[160px] md:max-w-[200px]">
+            <div className="hidden sm:block absolute -left-2 md:-left-4 lg:-left-8 bottom-20 md:bottom-24 lg:bottom-32 bg-[#111827] rounded-xl p-2 md:p-3 shadow-lg border border-slate-700/50 max-w-[160px] md:max-w-[200px]">
               <div className="flex items-center gap-1.5 md:gap-2">
-                <div className="w-6 h-6 md:w-8 md:h-8 bg-[rgb(var(--color-primary))]/20 rounded-full flex items-center justify-center text-[rgb(var(--color-primary))] flex-shrink-0">
+                <div className="w-6 h-6 md:w-8 md:h-8 bg-[#2563EB]/20 rounded-full flex items-center justify-center text-[#2563EB] flex-shrink-0">
                   <span className="text-xs md:text-sm">★</span>
                 </div>
                 <div className="text-xs md:text-sm min-w-0">
                   <div className="text-white font-medium truncate text-xs md:text-sm">Excelente!</div>
-                  <div className="text-[rgb(var(--color-text-muted))] text-[10px] md:text-xs">4.9 estrelas</div>
+                  <div className="text-slate-400 text-[10px] md:text-xs">4.9 estrelas</div>
                 </div>
               </div>
             </div>

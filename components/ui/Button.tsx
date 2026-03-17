@@ -25,13 +25,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    const baseStyles = 'inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#0F172A]';
+    const baseStyles = 'inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#0A0F1E]';
     
     const variants = {
-      primary: 'bg-[rgb(var(--color-primary))] text-white hover:bg-[rgb(var(--color-primary-dark))] focus:ring-[rgb(var(--color-primary))]',
-      secondary: 'bg-[rgb(var(--color-secondary))] text-white hover:bg-slate-700 focus:ring-slate-500',
-      outline: 'border-2 border-[rgb(var(--color-primary))] text-[rgb(var(--color-primary))] hover:bg-[rgb(var(--color-primary))] hover:text-white focus:ring-[rgb(var(--color-primary))]',
-      ghost: 'text-[rgb(var(--color-text-muted))] hover:text-white hover:bg-[rgb(var(--color-secondary))]',
+      primary: 'bg-[#2563EB] text-white hover:bg-[#1D4ED8] focus:ring-[#2563EB]',
+      secondary: 'bg-[#111827] text-white hover:bg-slate-700 focus:ring-slate-500',
+      outline: 'border-2 border-[#2563EB] text-[#2563EB] hover:bg-[#2563EB] hover:text-white focus:ring-[#2563EB]',
+      ghost: 'text-[#9CA3AF] hover:text-white hover:bg-[#111827]',
     };
     
     const sizes = {

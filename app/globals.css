@@ -1,19 +1,30 @@
 @import "tailwindcss";
 
 @theme {
-  /* MOVAGO Professional Blue Design System */
-  --color-primary: rgb(37 99 235);
-  --color-primary-dark: rgb(29 78 216);
-  --color-secondary: rgb(30 41 59);
-  --color-bg: rgb(10 15 30);
-  --color-surface: rgb(17 24 39);
-  --color-text: rgb(249 250 251);
-  --color-text-muted: rgb(156 163 175);
-  --color-accent: rgb(96 165 250);
-  
-  --radius: 10px;
-  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
-  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.15);
+  /* MOVAGO Dark Blue Professional Theme */
+  --color-background: #0A0F1E;
+  --color-foreground: #F9FAFB;
+  --color-primary: #2563EB;
+  --color-primary-dark: #1D4ED8;
+  --color-surface: #111827;
+  --color-border: #1F2937;
+}
+
+:root {
+  /* RGB format for Tailwind */
+  --color-bg: 10 15 30;
+  --color-text: 249 250 251;
+  --color-primary: 37 99 235;
+  --color-primary-dark: 29 78 216;
+  --color-secondary: 30 41 59;
+  --color-surface: 17 24 39;
+  --color-text-muted: 156 163 175;
+  --color-accent: 96 165 250;
+}
+
+body {
+  background-color: #0A0F1E !important;
+  color: #F9FAFB !important;
 }
 
 @layer base {
@@ -31,8 +42,6 @@
   }
 
   body {
-    background-color: rgb(var(--color-bg));
-    color: rgb(var(--color-text));
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -54,7 +63,7 @@
     padding-right: 1.25rem !important;
   }
 
-  /* Glass morphism effect with forced values */
+  /* Glass morphism effect with dark background */
   .glass {
     background: rgba(10, 15, 30, 0.8) !important;
     backdrop-filter: blur(12px);
