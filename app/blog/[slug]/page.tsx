@@ -86,9 +86,13 @@ Boas viagens com a MOVAGO! 🚗
 export function generateStaticParams() {
   // Retorne uma lista de slugs que devem ser gerados estaticamente
   return [
+    { slug: 'o-que-e-movago-passageiros' },
     { slug: 'como-usar-movago' },
-    { slug: 'dicas-motoristas' },
-    { slug: 'novidades-movago' },
+    { slug: 'motoristas-maputo' },
+    { slug: 'formas-pagamento' },
+    { slug: 'seguranca-viagens' },
+    { slug: 'expansao-matola' },
+    { slug: 'dicas-economizar' },
   ];
 }
 

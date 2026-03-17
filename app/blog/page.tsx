@@ -12,6 +12,14 @@ export const metadata: Metadata = {
 // Mock blog posts - in production, this would come from a CMS or MDX files
 const blogPosts = [
   {
+    slug: "o-que-e-movago-passageiros",
+    title: "O Que É MOVAGO e Por Que É Tão Importante Para Passageiros?",
+    excerpt: "Descubra como a MOVAGO transforma o transporte urbano em Moçambique com informações sobre rotas, horários e segurança.",
+    category: "Tutoriais",
+    date: "17 Mar 2026",
+    readTime: "8 min",
+  },
+  {
     slug: "como-usar-movago",
     title: "Como Usar a MOVAGO: Guia Completo para Iniciantes",
     excerpt: "Aprenda passo a passo como solicitar sua primeira viagem e chegar ao seu destino com segurança.",
