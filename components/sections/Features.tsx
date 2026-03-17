@@ -6,7 +6,8 @@ import {
   Clock, 
   Crosshair, 
   Users, 
-  MessageCircle 
+  MessageCircle,
+  AlertTriangle
 } from 'lucide-react';
 import { FEATURES } from '@/lib/constants';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
@@ -19,6 +20,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string; size?: n
   'location-crosshairs': Crosshair,
   'users': Users,
   'message-circle': MessageCircle,
+  'alert-triangle': AlertTriangle,
 };
 
 export function Features() {

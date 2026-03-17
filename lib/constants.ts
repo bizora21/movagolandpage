@@ -89,6 +89,11 @@ export const FEATURES = [
     title: 'Comunicação Direta',
     description: 'Comunique-se com os seus passageiros de forma rápida e ganhe tempo em cada viagem.',
   },
+  {
+    icon: 'alert-triangle',
+    title: 'SOS Integrado',
+    description: 'Envie alertas de emergência em tempo real com a sua localização precisa para garantir a sua segurança.',
+  },
 ] as const;
 
 export const FAQ_ITEMS = [
