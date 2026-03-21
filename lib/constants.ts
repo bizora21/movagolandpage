@@ -10,6 +10,9 @@ export const CONTACT_INFO = {
   whatsapp: '258863181415',
 } as const;
 
+// App QR Code (for app download)
+export const APP_QR_CODE = '/images/app-qr-code.png';
+
 // App Store Links
 export const APP_STORES = {
   googlePlay: 'https://play.google.com/store/apps/details?id=mz.movagomz.app',
