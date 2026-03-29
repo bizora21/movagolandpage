@@ -48,21 +48,50 @@ export async function getPublishedPosts(): Promise<AppwriteBlogPost[]> {
   }
 }
 
+// Função para normalizar slug (remover caracteres inválidos para nomes de arquivo)
+export function normalizeSlugForPath(slug: string): string {
+  return slug
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // Remove acentos
+    .replace(/:/g, '-') // Substitui dois pontos por hífen
+    .replace(/[^a-z0-9\-]/g, '') // Remove caracteres especiais exceto hífen
+    .replace(/-+/g, '-') // Remove hífens duplicados
+    .replace(/^-|-$/g, ''); // Remove hífens no início/fim
+}
+
 export async function getPostBySlug(
   slug: string
 ): Promise<AppwriteBlogPost | null> {
   try {
-    const response = await databases.listDocuments(
-      DB_ID,
-      BLOG_POSTS_COLLECTION,
-      [
-        Query.equal('slug', slug),
-        Query.equal('status', 'published'),
-        Query.limit(1),
-      ]
+    // Se o slug for undefined ou vazio, retornar null
+    if (!slug || slug === 'undefined') {
+      console.log('Slug inválido recebido:', slug);
+      return null;
+    }
+    
+    // Decodificar o slug da URL (trata caracteres codificados como %C3%A9)
+    const decodedSlug = decodeURIComponent(slug);
+    
+    console.log('Buscando artigo com slug:', slug, 'decodificado:', decodedSlug);
+    
+    // Buscar todos os posts publicados primeiro
+    const allPosts = await getPublishedPosts();
+    
+    // Tentar encontrar o post pelo slug original ou decodificado
+    let foundPost = allPosts.find(
+      post => post.slug === slug || post.slug === decodedSlug
     );
-    if (response.documents.length === 0) return null;
-    return response.documents[0] as unknown as AppwriteBlogPost;
+    
+    // Se ainda não encontrou, tentar comparar com slug normalizado
+    if (!foundPost) {
+      const normalizedSlug = normalizeSlugForPath(slug);
+      foundPost = allPosts.find(post => 
+        normalizeSlugForPath(post.slug) === normalizedSlug
+      );
+    }
+    
+    return foundPost || null;
   } catch (error) {
     console.error('Erro ao buscar artigo:', error);
     return null;

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getPublishedPosts } from '@/lib/appwrite';
+import { getPublishedPosts, normalizeSlugForPath } from '@/lib/appwrite';
 import { formatDate } from '@/lib/utils';
 
 export const metadata: Metadata = {
@@ -41,7 +41,7 @@ export default async function BlogPage() {
             {posts.map((post) => (
               <Link
                 key={post.$id}
-                href={`/blog/${post.slug}`}
+                href={`/blog/${normalizeSlugForPath(post.slug)}`}
                 className="group block"
               >
                 <article className="bg-[#111827] rounded-2xl overflow-hidden border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 h-full flex flex-col">

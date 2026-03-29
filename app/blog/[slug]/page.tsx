@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getPostBySlug, getPublishedPosts } from '@/lib/appwrite';
+import { getPostBySlug, getPublishedPosts, normalizeSlugForPath } from '@/lib/appwrite';
 import { formatDate } from '@/lib/utils';
 
 interface Props {
@@ -11,7 +11,8 @@ interface Props {
 
 export async function generateStaticParams() {
   const posts = await getPublishedPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+  // Usar slug normalizado para evitar problemas com caracteres especiais
+  return posts.map((post) => ({ slug: normalizeSlugForPath(post.slug) }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
