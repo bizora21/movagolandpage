@@ -55,6 +55,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Blog posts (in production, fetch from CMS/MDX)
   const blogPosts = [
     {
+      url: `${baseUrl}/blog/a-mente-sintetica-como-a-ia-generativa-esta-reescrevendo-as-regras-da-arte-e-do-design`,
+      lastModified: new Date('2026-03-29'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/blog/como-usar-movago`,
       lastModified: new Date('2026-03-15'),
       changeFrequency: 'monthly' as const,
