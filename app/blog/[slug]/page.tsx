@@ -1,246 +1,162 @@
-import { Metadata } from "next";
-import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import { Card, CardContent } from "@/components/ui/Card";
-import { Calendar, Clock, ArrowLeft, Share2 } from "lucide-react";
-import Link from "next/link";
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
+import { getPostBySlug, getPublishedPosts } from '@/lib/appwrite';
+import { formatDate } from '@/lib/utils';
 
-// Mock blog post data - in production, this would come from MDX files or a CMS
-const blogPost = {
-  title: "Como Usar a MOVAGO: Guia Completo para Iniciantes",
-  category: "Tutoriais",
-  date: "15 Mar 2026",
-  readTime: "5 min",
-  author: "Equipa MOVAGO",
-  content: `
-# Como Usar a MOVAGO: Guia Completo para Iniciantes
-
-Bem-vindo à MOVAGO! Este guia irá ajudá-lo a começar a usar a nossa aplicação de forma rápida e segura.
-
-## Passo 1: Baixe a App
-
-A primeira coisa que precisa fazer é baixar a aplicação. A MOVAGO está disponível gratuitamente na Google Play e App Store.
-
-- **Android**: [Google Play Store](https://play.google.com/store/apps/details?id=com.movago)
-- **iOS**: [Apple App Store](https://apps.apple.com/app/movago)
-
-## Passo 2: Crie a Sua Conta
-
-Após instalar a app, abra-a e siga estes passos simples:
-
-1. Introduza o seu número de telefone moçambicano
-2. Receba o código de verificação por SMS
-3. Crie o seu perfil adicionando o seu nome e foto (opcional)
-
-Este processo leva menos de 2 minutos!
-
-## Passo 3: Solicite a Sua Primeira Viagem
-
-Agora está pronto para solicitar a sua primeira viagem:
-
-1. **Defina o destino**: Toque no campo de destino e introduza o endereço ou seleccione no mapa
-2. **Veja o preço**: O preço estimado será exibido imediatamente
-3. **Confirme a viagem**: Seleccione o tipo de veículo e toque em "Solicitar"
-
-## Passo 4: Acompanhe o Motorista
-
-Após confirmar:
-
-- Verá as informações do motorista (nome, foto, classificação)
-- Pode acompanhar a aproximação em tempo real no mapa
-- Receberá notificações quando o motorista estiver próximo
-
-## Passo 5: Pague com M-Pesa
-
-Ao chegar ao destino:
-
-1. O preço final será exibido
-2. Seleccione "Pagar com M-Pesa"
-3. Introduza o seu PIN M-Pesa para confirmar
-4. Receberá confirmação do pagamento
-
-Também pode pagar em dinheiro, dependendo da preferência do motorista.
-
-## Dicas Úteis
-
-### Agende Viagens com Antecedência
-Precisa de ir para o aeroporto às 6h da manhã? Pode agendar a viagem com até 7 dias de antecedência!
-
-### Adicione Favoritos
-Guarde os seus destinos mais frequentes como "Casa", "Trabalho", etc. para solicitar viagens ainda mais rápido.
-
-### Partilhe a Viagem
-Pode partilhar o seu trajeto em tempo real com amigos e família para maior segurança.
-
-## Precisa de Ajuda?
-
-A nossa equipa de suporte está disponível 24/7. Contacte-nos:
-- Email: ola@movagomz.com
-- Telefone: +258 86 318 1415
-- In-app chat
-
-Boas viagens com a MOVAGO! 🚗
-  `,
-};
-
-// Função necessária para static export - gera os slugs disponíveis
-export function generateStaticParams() {
-  // Retorne uma lista de slugs que devem ser gerados estaticamente
-  return [
-    { slug: 'o-que-e-movago-passageiros' },
-    { slug: 'como-usar-movago' },
-    { slug: 'motoristas-maputo' },
-    { slug: 'formas-pagamento' },
-    { slug: 'seguranca-viagens' },
-    { slug: 'expansao-matola' },
-    { slug: 'dicas-economizar' },
-  ];
+interface Props {
+  params: { slug: string };
 }
 
-// Necessário para export estático com rotas dinâmicas
-export const dynamic = 'force-static';
+export async function generateStaticParams() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({ slug: post.slug }));
+}
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const post = await getPostBySlug(params.slug);
+  if (!post) return { title: 'Artigo não encontrado | MOVAGO' };
   return {
-    title: `${blogPost.title} — MOVAGO`,
-    description: blogPost.content.substring(0, 160).replace(/[#*]/g, '').trim(),
+    title: `${post.title} | MOVAGO Blog`,
+    description: post.metaDescription || post.excerpt || '',
+    keywords: post.metaKeywords || '',
     openGraph: {
-      title: blogPost.title,
-      description: blogPost.content.substring(0, 160).replace(/[#*]/g, '').trim(),
-      type: "article",
-      publishedTime: blogPost.date,
+      title: post.title,
+      description: post.excerpt || '',
+      images: post.featuredImage ? [post.featuredImage] : [],
     },
   };
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+export const revalidate = 60;
+
+export default async function BlogPostPage({ params }: Props) {
+  const post = await getPostBySlug(params.slug);
+  if (!post) notFound();
+
   return (
-    <div className="pt-24">
-      <SectionWrapper>
-        <div className="max-w-4xl mx-auto">
-          {/* Back Button */}
-          <Link href="/blog" className="inline-flex items-center gap-2 text-[rgb(var(--color-primary))] mb-8 hover:underline">
-            <ArrowLeft size={20} />
-            Voltar ao Blog
+    <main className="min-h-screen bg-[#0A0F1E] pt-24 pb-20">
+      <div className="container mx-auto px-4 max-w-4xl">
+        {/* Breadcrumb */}
+        <nav className="flex items-center gap-2 text-sm text-slate-500 mb-8">
+          <Link href="/" className="hover:text-white transition-colors">
+            Início
           </Link>
+          <span>/</span>
+          <Link href="/blog" className="hover:text-white transition-colors">
+            Blog
+          </Link>
+          <span>/</span>
+          <span className="text-slate-300 truncate max-w-[200px]">
+            {post.title}
+          </span>
+        </nav>
 
-          {/* Article Header */}
-          <div className="mb-8">
-            <div className="inline-block px-3 py-1 bg-[rgb(var(--color-primary))]/20 rounded-full text-[rgb(var(--color-primary))] text-sm font-medium mb-4">
-              {blogPost.category}
-            </div>
-            <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-              {blogPost.title}
-            </h1>
-            <div className="flex flex-wrap items-center gap-6 text-[rgb(var(--color-text-muted))]">
-              <div className="flex items-center gap-2">
-                <Calendar size={18} />
-                <span>{blogPost.date}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock size={18} />
-                <span>{blogPost.readTime}</span>
-              </div>
-              <span>{blogPost.author}</span>
-            </div>
-          </div>
-
-          {/* Article Content */}
-          <Card variant="glass">
-            <CardContent className="p-8 lg:p-12">
-              <article className="prose prose-invert prose-lg max-w-none">
-                {blogPost.content.split('\n').map((paragraph, index) => {
-                  // Headers
-                  if (paragraph.startsWith('## ')) {
-                    return (
-                      <h2 key={index} className="text-2xl font-bold text-white mt-8 mb-4">
-                        {paragraph.replace('## ', '')}
-                      </h2>
-                    );
-                  }
-                  if (paragraph.startsWith('### ')) {
-                    return (
-                      <h3 key={index} className="text-xl font-bold text-white mt-6 mb-3">
-                        {paragraph.replace('### ', '')}
-                      </h3>
-                    );
-                  }
-                  if (paragraph.startsWith('# ')) {
-                    return (
-                      <h1 key={index} className="text-3xl font-bold text-white mt-8 mb-4">
-                        {paragraph.replace('# ', '')}
-                      </h1>
-                    );
-                  }
-
-                  // Lists
-                  if (paragraph.match(/^\d+\./)) {
-                    return (
-                      <li key={index} className="text-[rgb(var(--color-text-muted))] ml-6 mb-2">
-                        {paragraph.replace(/^\d+\.\s*/, '')}
-                      </li>
-                    );
-                  }
-                  if (paragraph.startsWith('- ')) {
-                    return (
-                      <li key={index} className="text-[rgb(var(--color-text-muted))] ml-6 mb-2 list-disc">
-                        {paragraph.replace('- ', '')}
-                      </li>
-                    );
-                  }
-
-                  // Empty lines
-                  if (!paragraph.trim()) {
-                    return <br key={index} />;
-                  }
-
-                  // Regular paragraphs
-                  return (
-                    <p key={index} className="text-[rgb(var(--color-text-muted))] leading-relaxed mb-4">
-                      {paragraph
-                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                        .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" className="text-[rgb(var(--color-primary))] hover:underline" target="_blank" rel="noopener noreferrer">$1</a>')
-                        .split(/<strong>|<em>|<a /g)
-                        .map((part, i, arr) => {
-                          if (i === 0) return part;
-                          const [tag, content] = part.split('>');
-                          if (tag === 'strong') return `<strong class="text-white">${content}`;
-                          if (tag === 'em') return `<em class="text-white">${content}`;
-                          if (tag === 'a ') return `<a ${content}`;
-                          return part;
-                        })
-                        .join('')
-                        .replace(/<\/strong>/g, '</strong>')
-                        .replace(/<\/em>/g, '</em>')
-                        .replace(/<\/a>/g, '</a>')
-                      }
-                    </p>
-                  );
-                })}
-              </article>
-            </CardContent>
-          </Card>
-
-          {/* Share and Related */}
-          <div className="mt-12 flex flex-col sm:flex-row gap-6 justify-between items-center">
-            <div className="flex items-center gap-3">
-              <Share2 className="text-[rgb(var(--color-text-muted))]" size={20} />
-              <span className="text-[rgb(var(--color-text-muted))]">Partilhar artigo:</span>
-              <div className="flex gap-2">
-                <button className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center text-white hover:bg-[rgb(var(--color-primary))] transition-colors">
-                  📱
-                </button>
-                <button className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center text-white hover:bg-[rgb(var(--color-primary))] transition-colors">
-                  📧
-                </button>
-                <button className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center text-white hover:bg-[rgb(var(--color-primary))] transition-colors">
-                  🔗
-                </button>
-              </div>
-            </div>
-          </div>
+        {/* Categoria */}
+        <div className="mb-4">
+          <span className="bg-blue-600 text-white text-sm font-semibold px-3 py-1 rounded-full">
+            {post.category}
+          </span>
         </div>
-      </SectionWrapper>
-    </div>
+
+        {/* Título */}
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+          {post.title}
+        </h1>
+
+        {/* Meta */}
+        <div className="flex flex-wrap items-center gap-4 text-slate-400 text-sm mb-8 pb-8 border-b border-slate-700/50">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
+              {post.author.charAt(0).toUpperCase()}
+            </div>
+            <span className="text-white font-medium">{post.author}</span>
+          </div>
+          <span>·</span>
+          <span>
+            {post.publishedAt
+              ? formatDate(post.publishedAt)
+              : formatDate(post.createdAt)}
+          </span>
+          <span>·</span>
+          <span>{post.readTime} min de leitura</span>
+          {post.tags.length > 0 && (
+            <>
+              <span>·</span>
+              <div className="flex flex-wrap gap-2">
+                {post.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="bg-slate-800 text-slate-300 text-xs px-2 py-1 rounded"
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* Imagem de destaque */}
+        {post.featuredImage && (
+          <div className="relative w-full h-64 sm:h-96 rounded-2xl overflow-hidden mb-10">
+            <Image
+              src={post.featuredImage}
+              alt={post.title}
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        )}
+
+        {/* Excerpt */}
+        {post.excerpt && (
+          <p className="text-xl text-slate-300 leading-relaxed mb-8 italic border-l-4 border-blue-500 pl-6">
+            {post.excerpt}
+          </p>
+        )}
+
+        {/* Conteúdo */}
+        <div className="prose prose-invert prose-lg max-w-none
+          prose-headings:text-white
+          prose-p:text-slate-300 prose-p:leading-relaxed
+          prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
+          prose-strong:text-white
+          prose-code:text-blue-300 prose-code:bg-slate-800 prose-code:px-1 prose-code:rounded
+          prose-pre:bg-slate-800 prose-pre:border prose-pre:border-slate-700
+          prose-blockquote:border-blue-500 prose-blockquote:text-slate-300
+          prose-ul:text-slate-300 prose-ol:text-slate-300
+          prose-li:text-slate-300
+          prose-hr:border-slate-700
+          prose-img:rounded-xl">
+          {/* Renderiza o conteúdo markdown como texto por agora */}
+          {post.content.split('\n').map((line, i) => {
+            if (line.startsWith('# '))
+              return <h1 key={i} className="text-3xl font-bold text-white mt-8 mb-4">{line.replace('# ', '')}</h1>;
+            if (line.startsWith('## '))
+              return <h2 key={i} className="text-2xl font-bold text-white mt-6 mb-3">{line.replace('## ', '')}</h2>;
+            if (line.startsWith('### '))
+              return <h3 key={i} className="text-xl font-bold text-white mt-4 mb-2">{line.replace('### ', '')}</h3>;
+            if (line.startsWith('- '))
+              return <li key={i} className="text-slate-300 ml-4">{line.replace('- ', '')}</li>;
+            if (line === '')
+              return <br key={i} />;
+            return <p key={i} className="text-slate-300 leading-relaxed mb-4">{line}</p>;
+          })}
+        </div>
+
+        {/* Voltar ao blog */}
+        <div className="mt-16 pt-8 border-t border-slate-700/50">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors font-medium"
+          >
+            ← Voltar ao Blog
+          </Link>
+        </div>
+      </div>
+    </main>
   );
 }

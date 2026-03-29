@@ -1,151 +1,109 @@
-import { Metadata } from "next";
-import Link from "next/link";
-import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import { Card, CardContent } from "@/components/ui/Card";
-import { Calendar, Clock, ArrowRight } from "lucide-react";
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import Image from 'next/image';
+import { getPublishedPosts } from '@/lib/appwrite';
+import { formatDate } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: "Blog — MOVAGO",
-  description: "Notícias, dicas e atualizações sobre a MOVAGO e o mundo do transporte urbano em Moçambique.",
+  title: 'Blog | MOVAGO',
+  description:
+    'Notícias, dicas e actualizações sobre transporte urbano em Moçambique.',
 };
 
-// Mock blog posts - in production, this would come from a CMS or MDX files
-const blogPosts = [
-  {
-    slug: "o-que-e-movago-passageiros",
-    title: "O Que É MOVAGO e Por Que É Tão Importante Para Passageiros?",
-    excerpt: "Descubra como a MOVAGO transforma o transporte urbano em Moçambique com informações sobre rotas, horários e segurança.",
-    category: "Tutoriais",
-    date: "17 Mar 2026",
-    readTime: "8 min",
-  },
-  {
-    slug: "como-usar-movago",
-    title: "Como Usar a MOVAGO: Guia Completo para Iniciantes",
-    excerpt: "Aprenda passo a passo como solicitar sua primeira viagem e chegar ao seu destino com segurança.",
-    category: "Tutoriais",
-    date: "15 Mar 2026",
-    readTime: "5 min",
-  },
-  {
-    slug: "motoristas-maputo",
-    title: "MOVAGO Chega a Maputo: Conheça os Primeiros Motoristas",
-    excerpt: "Conheça algumas histórias dos nossos primeiros motoristas que estão a revolucionar o transporte urbano.",
-    category: "Comunidade",
-    date: "10 Mar 2026",
-    readTime: "4 min",
-  },
-  {
-    slug: "formas-pagamento",
-    title: "Formas de Pagamento na MOVAGO",
-    excerpt: "Descubra como é fácil pagar suas viagens directamente ao motorista.",
-    category: "Tutoriais",
-    date: "05 Mar 2026",
-    readTime: "3 min",
-  },
-  {
-    slug: "seguranca-viagens",
-    title: "Segurança em Primeiro Lugar: Recursos da MOVAGO",
-    excerpt: "Conheça todos os recursos de segurança que implementamos para proteger passageiros e motoristas.",
-    category: "Segurança",
-    date: "01 Mar 2026",
-    readTime: "6 min",
-  },
-  {
-    slug: "expansao-matola",
-    title: "MOVAGO Expande para a Matola",
-    excerpt: "Anunciamos com orgulho a nossa expansão para a cidade da Matola. Agora é mais fácil mover-se na região.",
-    category: "Notícias",
-    date: "25 Fev 2026",
-    readTime: "3 min",
-  },
-  {
-    slug: "dicas-economizar",
-    title: "5 Dicas para Economizar nas Suas Viagens",
-    excerpt: "Aprenda estratégias simples para reduzir os custos de transporte sem comprometer a qualidade.",
-    category: "Dicas",
-    date: "20 Fev 2026",
-    readTime: "4 min",
-  },
-];
+export const revalidate = 60; // revalida a cada 60 segundos
 
-const categories = ["Todas", "Tutoriais", "Comunidade", "Segurança", "Notícias", "Dicas"];
+export default async function BlogPage() {
+  const posts = await getPublishedPosts();
 
-export default function BlogPage() {
   return (
-    <div className="pt-24">
-      <SectionWrapper>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6">
-              Blog <span className="gradient-text">MOVAGO</span>
-            </h1>
-            <p className="text-xl text-[rgb(var(--color-text-muted))] max-w-2xl mx-auto">
-              Notícias, dicas e atualizações sobre transporte urbano em Moçambique
+    <main className="min-h-screen bg-[#0A0F1E] pt-24 pb-20">
+      <div className="container mx-auto px-4">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+            Blog MOVAGO
+          </h1>
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            Notícias, dicas e actualizações sobre mobilidade urbana
+            em Moçambique.
+          </p>
+        </div>
+
+        {/* Posts */}
+        {posts.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="text-slate-400 text-lg">
+              Nenhum artigo publicado ainda. Volte em breve!
             </p>
           </div>
-
-          {/* Categories */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {categories.map((category) => (
-              <button
-                key={category}
-                className={`px-6 py-2 rounded-full font-medium transition-colors ${
-                  category === "Todas"
-                    ? "bg-[rgb(var(--color-primary))] text-white"
-                    : "bg-[rgb(var(--color-surface))] text-[rgb(var(--color-text-muted))] hover:text-white"
-                }`}
+        ) : (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.map((post) => (
+              <Link
+                key={post.$id}
+                href={`/blog/${post.slug}`}
+                className="group block"
               >
-                {category}
-              </button>
-            ))}
-          </div>
-
-          {/* Blog Posts Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`}>
-                <Card variant="glass" className="h-full hover:border-[rgb(var(--color-primary))]/50 transition-all hover:transform hover:scale-105">
-                  <CardContent className="p-6">
-                    {/* Category Badge */}
-                    <div className="inline-block px-3 py-1 bg-[rgb(var(--color-primary))]/20 rounded-full text-[rgb(var(--color-primary))] text-sm font-medium mb-4">
-                      {post.category}
+                <article className="bg-[#111827] rounded-2xl overflow-hidden border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 h-full flex flex-col">
+                  {/* Imagem */}
+                  <div className="relative h-48 bg-slate-800 flex-shrink-0">
+                    {post.featuredImage ? (
+                      <Image
+                        src={post.featuredImage}
+                        alt={post.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <span className="text-4xl">📰</span>
+                      </div>
+                    )}
+                    {/* Categoria */}
+                    <div className="absolute top-3 left-3">
+                      <span className="bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                        {post.category}
+                      </span>
                     </div>
+                  </div>
 
-                    {/* Title */}
-                    <h3 className="text-xl font-bold text-white mb-3 line-clamp-2">
+                  {/* Conteúdo */}
+                  <div className="p-6 flex flex-col flex-grow">
+                    <h2 className="text-white font-bold text-xl mb-3 group-hover:text-blue-400 transition-colors line-clamp-2">
                       {post.title}
-                    </h3>
-
-                    {/* Excerpt */}
-                    <p className="text-[rgb(var(--color-text-muted))] mb-4 line-clamp-3">
-                      {post.excerpt}
-                    </p>
-
+                    </h2>
+                    {post.excerpt && (
+                      <p className="text-slate-400 text-sm leading-relaxed mb-4 line-clamp-3 flex-grow">
+                        {post.excerpt}
+                      </p>
+                    )}
                     {/* Meta */}
-                    <div className="flex items-center gap-4 text-sm text-[rgb(var(--color-text-muted))] mb-4">
-                      <div className="flex items-center gap-1">
-                        <Calendar size={16} />
-                        <span>{post.date}</span>
+                    <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-700/50">
+                      <div className="flex items-center gap-2">
+                        <div className="w-7 h-7 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                          {post.author.charAt(0).toUpperCase()}
+                        </div>
+                        <span className="text-slate-400 text-xs">
+                          {post.author}
+                        </span>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <Clock size={16} />
-                        <span>{post.readTime}</span>
+                      <div className="flex items-center gap-3 text-slate-500 text-xs">
+                        <span>
+                          {post.publishedAt
+                            ? formatDate(post.publishedAt)
+                            : formatDate(post.createdAt)}
+                        </span>
+                        <span>·</span>
+                        <span>{post.readTime} min</span>
                       </div>
                     </div>
-
-                    {/* Read More */}
-                    <div className="flex items-center gap-2 text-[rgb(var(--color-primary))] font-medium">
-                      Ler mais
-                      <ArrowRight size={16} />
-                    </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </article>
               </Link>
             ))}
           </div>
-        </div>
-      </SectionWrapper>
-    </div>
+        )}
+      </div>
+    </main>
   );
 }
