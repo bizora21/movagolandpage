@@ -1,13 +1,13 @@
 import { Client, Databases, Query } from 'node-appwrite';
 
 const client = new Client()
-  .setEndpoint('https://nyc.cloud.appwrite.io/v1')
-  .setProject('6921bac2003624668e3b');
+  .setEndpoint('https://cloud.appwrite.io/v1')
+  .setProject('67d6b7ac0005459540e2');
 
 export const databases = new Databases(client);
 
-export const DB_ID = '695697ce000769bc5746';
-export const BLOG_POSTS_COLLECTION = 'blog_posts';
+export const DB_ID = '67d6b7ac0012e4938122';
+export const BLOG_POSTS_COLLECTION = '67d6b7ac0014b0f0c0e5';
 
 export interface AppwriteBlogPost {
   $id: string;
