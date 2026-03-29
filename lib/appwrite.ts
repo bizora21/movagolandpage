@@ -66,34 +66,62 @@ export async function getPostBySlug(
   try {
     // Se o slug for undefined ou vazio, retornar null
     if (!slug || slug === 'undefined') {
-      console.log('Slug inválido recebido:', slug);
+      console.log('❌ Slug inválido recebido:', slug);
       return null;
     }
     
     // Decodificar o slug da URL (trata caracteres codificados como %C3%A9)
     const decodedSlug = decodeURIComponent(slug);
     
-    console.log('Buscando artigo com slug:', slug, 'decodificado:', decodedSlug);
+    console.log('🔍 Buscando artigo:');
+    console.log('   Slug recebido:', slug);
+    console.log('   Slug decodificado:', decodedSlug);
+    console.log('   Slug normalizado:', normalizeSlugForPath(slug));
     
     // Buscar todos os posts publicados primeiro
     const allPosts = await getPublishedPosts();
+    console.log('   Total de posts encontrados:', allPosts.length);
     
     // Tentar encontrar o post pelo slug original ou decodificado
     let foundPost = allPosts.find(
       post => post.slug === slug || post.slug === decodedSlug
     );
     
-    // Se ainda não encontrou, tentar comparar com slug normalizado
-    if (!foundPost) {
-      const normalizedSlug = normalizeSlugForPath(slug);
-      foundPost = allPosts.find(post => 
-        normalizeSlugForPath(post.slug) === normalizedSlug
-      );
+    if (foundPost) {
+      console.log('✅ Artigo encontrado por correspondência direta!');
+      console.log('   Título:', foundPost.title);
+      return foundPost;
     }
     
-    return foundPost || null;
+    console.log('⚠️ Não encontrado por correspondência direta, tentando normalização...');
+    
+    // Se ainda não encontrou, tentar comparar com slug normalizado
+    const normalizedSlug = normalizeSlugForPath(slug);
+    console.log('   Procurando por slug normalizado:', normalizedSlug);
+    
+    allPosts.forEach(post => {
+      const normalizedPostSlug = normalizeSlugForPath(post.slug);
+      console.log(`   - Comparando: ${normalizedPostSlug} === ${normalizedSlug}`, 
+                  normalizedPostSlug === normalizedSlug ? '✅' : '❌');
+      if (normalizedPostSlug === normalizedSlug) {
+        console.log('   🎯 CORRESPONDÊNCIA ENCONTRADA!');
+        console.log('   Título:', post.title);
+      }
+    });
+    
+    foundPost = allPosts.find(post => 
+      normalizeSlugForPath(post.slug) === normalizedSlug
+    );
+    
+    if (foundPost) {
+      console.log('✅ Artigo encontrado por normalização!');
+      return foundPost;
+    }
+    
+    console.log('❌ Artigo não encontrado após todas as tentativas');
+    return null;
   } catch (error) {
-    console.error('Erro ao buscar artigo:', error);
+    console.error('❌ Erro ao buscar artigo:', error);
     return null;
   }
 }

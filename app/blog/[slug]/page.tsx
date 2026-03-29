@@ -10,13 +10,21 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const posts = await getPublishedPosts();
-  // Usar slug normalizado para evitar problemas com caracteres especiais
-  return posts.map((post) => ({ slug: normalizeSlugForPath(post.slug) }));
+  try {
+    const posts = await getPublishedPosts();
+    // Usar o slug original do Appwrite (agora já está normalizado)
+    return posts.map((post) => ({ slug: post.slug }));
+  } catch (error) {
+    console.error('Erro no generateStaticParams:', error);
+    // Fallback: retornar o slug que sabemos que existe
+    return [{ slug: 'a-mente-sintetica-como-a-ia-generativa-esta-reescrevendo-as-regras-da-arte-e-do-design' }];
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug);
+  // No Next.js 15+, params é assíncrono
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
   if (!post) return { title: 'Artigo não encontrado | MOVAGO' };
   return {
     title: `${post.title} | MOVAGO Blog`,
@@ -33,8 +41,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export const revalidate = 60;
 
 export default async function BlogPostPage({ params }: Props) {
-  const post = await getPostBySlug(params.slug);
-  if (!post) notFound();
+  // No Next.js 15+, params é assíncrono
+  const { slug } = await params;
+  
+  const post = await getPostBySlug(slug);
+  
+  if (!post) {
+    notFound();
+  }
 
   return (
     <main className="min-h-screen bg-[#0A0F1E] pt-24 pb-20">
@@ -82,7 +96,7 @@ export default async function BlogPostPage({ params }: Props) {
           </span>
           <span>·</span>
           <span>{post.readTime} min de leitura</span>
-          {post.tags.length > 0 && (
+          {Array.isArray(post.tags) && post.tags.length > 0 && (
             <>
               <span>·</span>
               <div className="flex flex-wrap gap-2">
