@@ -15,16 +15,19 @@ export async function generateStaticParams() {
     
     if (!posts || posts.length === 0) {
       console.warn('⚠️ Nenhum post encontrado, usando fallback');
-      // Fallback: retornar o slug que sabemos que existe
+      // Fallback: retornar o slug normalizado que sabemos que existe
       return [{ slug: 'a-mente-sintetica-como-a-ia-generativa-esta-reescrevendo-as-regras-da-arte-e-do-design' }];
     }
     
-    // Usar o slug original do Appwrite (agora já está normalizado)
-    return posts.map((post) => ({ slug: post.slug }));
+    // IMPORTANTE: Normalizar os slugs para remover caracteres inválidos (como :)
+    // Isso é necessário para o static export funcionar corretamente
+    return posts.map((post) => ({ 
+      slug: normalizeSlugForPath(post.slug) 
+    }));
   } catch (error) {
     console.error('❌ Erro no generateStaticParams:', error);
     console.error('   Usando fallback para garantir que o build não falhe');
-    // Fallback: retornar o slug que sabemos que existe
+    // Fallback: retornar o slug normalizado que sabemos que existe
     return [{ slug: 'a-mente-sintetica-como-a-ia-generativa-esta-reescrevendo-as-regras-da-arte-e-do-design' }];
   }
 }
