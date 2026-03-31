@@ -10,8 +10,6 @@ export const metadata: Metadata = {
     'NotÃ­cias, dicas e actualizaÃ§Ãµes sobre transporte urbano em MoÃ§ambique.',
 };
 
-export const dynamic = 'force-dynamic'; // revalida a cada 60 segundos
-
 export default async function BlogPage() {
   const posts = await getPublishedPosts();
 
