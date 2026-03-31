@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getPublishedPosts, normalizeSlugForPath } from '@/lib/appwrite';
@@ -7,10 +7,10 @@ import { formatDate } from '@/lib/utils';
 export const metadata: Metadata = {
   title: 'Blog | MOVAGO',
   description:
-    'Notícias, dicas e actualizações sobre transporte urbano em Moçambique.',
+    'NotÃ­cias, dicas e actualizaÃ§Ãµes sobre transporte urbano em MoÃ§ambique.',
 };
 
-export const revalidate = 60; // revalida a cada 60 segundos
+export const dynamic = 'force-dynamic'; // revalida a cada 60 segundos
 
 export default async function BlogPage() {
   const posts = await getPublishedPosts();
@@ -24,8 +24,8 @@ export default async function BlogPage() {
             Blog MOVAGO
           </h1>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            Notícias, dicas e actualizações sobre mobilidade urbana
-            em Moçambique.
+            NotÃ­cias, dicas e actualizaÃ§Ãµes sobre mobilidade urbana
+            em MoÃ§ambique.
           </p>
         </div>
 
@@ -56,7 +56,7 @@ export default async function BlogPage() {
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
-                        <span className="text-4xl">📰</span>
+                        <span className="text-4xl">ðŸ“°</span>
                       </div>
                     )}
                     {/* Categoria */}
@@ -67,7 +67,7 @@ export default async function BlogPage() {
                     </div>
                   </div>
 
-                  {/* Conteúdo */}
+                  {/* ConteÃºdo */}
                   <div className="p-6 flex flex-col flex-grow">
                     <h2 className="text-white font-bold text-xl mb-3 group-hover:text-blue-400 transition-colors line-clamp-2">
                       {post.title}
@@ -93,7 +93,7 @@ export default async function BlogPage() {
                             ? formatDate(post.publishedAt)
                             : formatDate(post.createdAt)}
                         </span>
-                        <span>·</span>
+                        <span>Â·</span>
                         <span>{post.readTime} min</span>
                       </div>
                     </div>
