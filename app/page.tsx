@@ -2,6 +2,7 @@ import { Hero } from "@/components/sections/Hero";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Features } from "@/components/sections/Features";
 import { AppDownload } from "@/components/sections/AppDownload";
+import { LatestArticle } from "@/components/sections/LatestArticle";
 import { ContactCTA } from "@/components/sections/ContactCTA";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       <HowItWorks />
       <Features />
       <AppDownload />
+      <LatestArticle />
       <ContactCTA />
     </>
   );
