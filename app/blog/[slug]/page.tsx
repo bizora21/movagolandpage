@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getPostBySlug, getPublishedPosts, normalizeSlugForPath } from '@/lib/appwrite';
 import { formatDate } from '@/lib/utils';
+import { processBlogContent } from '@/lib/blog-content';
 
 interface Props {
   params: { slug: string };
@@ -145,33 +146,23 @@ export default async function BlogPostPage({ params }: Props) {
         )}
 
         {/* Conteúdo */}
-        <div className="prose prose-invert prose-lg max-w-none
-          prose-headings:text-white
-          prose-p:text-slate-300 prose-p:leading-relaxed
-          prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
-          prose-strong:text-white
-          prose-code:text-blue-300 prose-code:bg-slate-800 prose-code:px-1 prose-code:rounded
-          prose-pre:bg-slate-800 prose-pre:border prose-pre:border-slate-700
-          prose-blockquote:border-blue-500 prose-blockquote:text-slate-300
-          prose-ul:text-slate-300 prose-ol:text-slate-300
-          prose-li:text-slate-300
-          prose-hr:border-slate-700
-          prose-img:rounded-xl">
-          {/* Renderiza o conteúdo markdown como texto por agora */}
-          {post.content.split('\n').map((line, i) => {
-            if (line.startsWith('# '))
-              return <h1 key={i} className="text-3xl font-bold text-white mt-8 mb-4">{line.replace('# ', '')}</h1>;
-            if (line.startsWith('## '))
-              return <h2 key={i} className="text-2xl font-bold text-white mt-6 mb-3">{line.replace('## ', '')}</h2>;
-            if (line.startsWith('### '))
-              return <h3 key={i} className="text-xl font-bold text-white mt-4 mb-2">{line.replace('### ', '')}</h3>;
-            if (line.startsWith('- '))
-              return <li key={i} className="text-slate-300 ml-4">{line.replace('- ', '')}</li>;
-            if (line === '')
-              return <br key={i} />;
-            return <p key={i} className="text-slate-300 leading-relaxed mb-4">{line}</p>;
-          })}
-        </div>
+        <div
+          className="prose prose-invert prose-lg max-w-none
+            prose-headings:text-white
+            prose-p:text-slate-300 prose-p:leading-relaxed
+            prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
+            prose-strong:text-white
+            prose-code:text-blue-300 prose-code:bg-slate-800 prose-code:px-1 prose-code:rounded
+            prose-pre:bg-slate-800 prose-pre:border prose-pre:border-slate-700
+            prose-blockquote:border-blue-500 prose-blockquote:text-slate-300
+            prose-ul:text-slate-300 prose-ol:text-slate-300
+            prose-li:text-slate-300
+            prose-hr:border-slate-700
+            prose-img:rounded-xl"
+          dangerouslySetInnerHTML={{
+            __html: processBlogContent(post.content).html
+          }}
+        />
 
         {/* Voltar ao blog */}
         <div className="mt-16 pt-8 border-t border-slate-700/50">
