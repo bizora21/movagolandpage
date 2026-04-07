@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { getPostBySlug, getPublishedPosts, normalizeSlugForPath } from '@/lib/appwrite';
 import { formatDate } from '@/lib/utils';
 import { processBlogContent } from '@/lib/blog-content';
+import { sanitizeBlogHtml } from '@/lib/html-sanitizer';
+import './blog.css';
 
 interface Props {
   params: { slug: string };
@@ -147,20 +149,9 @@ export default async function BlogPostPage({ params }: Props) {
 
         {/* Conteúdo */}
         <div
-          className="prose prose-invert prose-lg max-w-none
-            prose-headings:text-white
-            prose-p:text-slate-300 prose-p:leading-relaxed
-            prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
-            prose-strong:text-white
-            prose-code:text-blue-300 prose-code:bg-slate-800 prose-code:px-1 prose-code:rounded
-            prose-pre:bg-slate-800 prose-pre:border prose-pre:border-slate-700
-            prose-blockquote:border-blue-500 prose-blockquote:text-slate-300
-            prose-ul:text-slate-300 prose-ol:text-slate-300
-            prose-li:text-slate-300
-            prose-hr:border-slate-700
-            prose-img:rounded-xl"
+          className="article-content max-w-none"
           dangerouslySetInnerHTML={{
-            __html: processBlogContent(post.content).html
+            __html: sanitizeBlogHtml(processBlogContent(post.content).html)
           }}
         />
 
