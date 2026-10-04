@@ -36,6 +36,7 @@ export const metadata: Metadata = {
     'software para courier e entregas',
     'rastreio de encomendas e-commerce',
     'rastreio de carga',
+    'rastreamento GPS de carga',
     'sistema para pequenas transportadoras',
     'prova de entrega digital',
     'MOVAGO Logística',
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
 };
 
 const OPERATIONAL_POINTS = LOGISTICS_FEATURES.filter((f) =>
-  ['route', 'user-check', 'camera', 'alert', 'wifi-off', 'message'].includes(f.icon)
+  ['route', 'map-pin', 'user-check', 'camera', 'alert', 'wifi-off'].includes(f.icon)
 );
 
 export default function TransportadorasPage() {

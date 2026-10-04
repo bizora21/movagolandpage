@@ -40,6 +40,7 @@ export type IconName =
   | 'alert'
   | 'wifi-off'
   | 'shield'
+  | 'map-pin'
   | 'package';
 
 export interface LogisticsFeature {
@@ -60,6 +61,12 @@ export const LOGISTICS_FEATURES: LogisticsFeature[] = [
     title: 'Percurso completo, com várias paragens',
     description:
       'Cada estação por onde a encomenda passa regista a saída e a próxima paragem. Fica sempre claro onde está e por onde já passou.',
+  },
+  {
+    icon: 'map-pin',
+    title: 'Localização por GPS',
+    description:
+      'Acompanhe a localização da carga em movimento com GPS, para saber onde está a encomenda entre uma estação e a seguinte.',
   },
   {
     icon: 'user-check',
@@ -232,6 +239,11 @@ export const LOGISTICS_FAQ: FaqEntry[] = [
     question: 'E se uma estação não tiver internet?',
     answer:
       'O registo fica guardado no dispositivo e sincroniza automaticamente quando houver ligação. Em estações com rede fraca recomenda-se a aplicação Android, que também permite enviar mais tarde as fotografias tiradas sem rede.',
+  },
+  {
+    question: 'O sistema tem localização por GPS?',
+    answer:
+      'Sim. Além do registo de cada estação por onde a encomenda passa, o sistema permite acompanhar a localização da carga em movimento por GPS.',
   },
   {
     question: 'Uma encomenda pode passar por várias estações?',

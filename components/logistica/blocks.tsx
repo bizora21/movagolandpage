@@ -9,6 +9,7 @@ import {
   AlertTriangle,
   WifiOff,
   ShieldCheck,
+  MapPin,
   Package,
   ChevronRight,
   type LucideIcon,
@@ -26,6 +27,7 @@ const ICONS: Record<IconName, LucideIcon> = {
   alert: AlertTriangle,
   'wifi-off': WifiOff,
   shield: ShieldCheck,
+  'map-pin': MapPin,
   package: Package,
 };
 

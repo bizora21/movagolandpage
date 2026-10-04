@@ -5,6 +5,7 @@ import { DEMO_MAILTO } from '@/lib/logistica';
 const HIGHLIGHTS = [
   'Código de rastreio único para cada encomenda',
   'Percurso com várias paragens e responsável por cada troço',
+  'Localização da carga por GPS',
   'Prova de entrega com foto e assinatura',
   'Avisos aos clientes por WhatsApp e SMS',
   'Funciona mesmo sem internet',

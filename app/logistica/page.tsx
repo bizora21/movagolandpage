@@ -27,7 +27,7 @@ const PATH = '/logistica/';
 export const metadata: Metadata = {
   title: 'Logística e Rastreio de Encomendas em Moçambique',
   description:
-    'Sistema SaaS de logística e rastreio de encomendas para transportadoras, courier, e-commerce e carga rodoviária, ferroviária, marítima e aérea em Moçambique: código de rastreio, percurso e prova de entrega.',
+    'Sistema SaaS de logística e rastreio de encomendas para transportadoras, courier, e-commerce e carga rodoviária, ferroviária, marítima e aérea em Moçambique: código de rastreio, GPS, percurso e prova de entrega.',
   keywords: [
     'logística Moçambique',
     'rastreio de encomendas Moçambique',
@@ -37,6 +37,7 @@ export const metadata: Metadata = {
     'rastreamento de carga',
     'SaaS logística',
     'prova de entrega digital',
+    'rastreamento GPS de carga',
     'transporte de carga Moçambique',
     'logística Maputo',
     'software para e-commerce Moçambique',
