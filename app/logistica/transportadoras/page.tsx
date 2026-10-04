@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     'software para courier e entregas',
     'rastreio de encomendas e-commerce',
     'rastreio de carga',
-    'rastreamento GPS de carga',
+    'localização GPS de encomendas',
     'sistema para pequenas transportadoras',
     'prova de entrega digital',
     'MOVAGO Logística',

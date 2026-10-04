@@ -64,9 +64,9 @@ export const LOGISTICS_FEATURES: LogisticsFeature[] = [
   },
   {
     icon: 'map-pin',
-    title: 'Localização por GPS',
+    title: 'Localização GPS opcional',
     description:
-      'Acompanhe a localização da carga em movimento com GPS, para saber onde está a encomenda entre uma estação e a seguinte.',
+      'Quem preenche a encomenda pode, se quiser, registar a localização por GPS, para ter também a posição de onde a encomenda foi registada.',
   },
   {
     icon: 'user-check',
@@ -243,7 +243,7 @@ export const LOGISTICS_FAQ: FaqEntry[] = [
   {
     question: 'O sistema tem localização por GPS?',
     answer:
-      'Sim. Além do registo de cada estação por onde a encomenda passa, o sistema permite acompanhar a localização da carga em movimento por GPS.',
+      'Sim, como opção. Quem preenche a encomenda pode escolher registar a localização por GPS. Não é obrigatório: o rastreio funciona sempre pelo código e pelo registo de cada estação por onde a encomenda passa.',
   },
   {
     question: 'Uma encomenda pode passar por várias estações?',
