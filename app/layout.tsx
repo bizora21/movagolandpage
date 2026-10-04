@@ -8,12 +8,16 @@ import { SITE_URL } from "@/lib/constants";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'MOVAGO — App de Transporte Urbano Inteligente em Moçambique',
+    default: 'MOVAGO — Transporte Urbano e Logística de Encomendas em Moçambique',
     template: '%s | MOVAGO',
   },
-  description: 'Descubra a MOVAGO, a plataforma de transporte inteligente em Moçambique. Viagens rápidas, seguras e acessíveis em Maputo e todo o país. Baixe o app agora!',
+  description: 'MOVAGO: app de transporte urbano (chapas, táxi e moto-táxi) em Maputo, Matola e Beira, e sistema SaaS de logística e rastreio de encomendas para transportadoras em Moçambique.',
   keywords: [
     'MOVAGO',
+    'logística Moçambique',
+    'rastreio de encomendas',
+    'software para transportadoras',
+    'SaaS logística',
     'transporte urbano',
     'transporte inteligente',
     'app de transporte',
@@ -37,16 +41,16 @@ export const metadata: Metadata = {
   authors: [{ name: 'MOVAGO', url: SITE_URL }],
   creator: 'MOVAGO',
   publisher: 'MOVAGO',
-  category: 'Transporte e Mobilidade',
-  classification: 'Technology & Transportation',
+  category: 'Transporte, Mobilidade e Logística',
+  classification: 'Technology, Transportation & Logistics',
   openGraph: {
     type: 'website',
     locale: 'pt_MZ',
     alternateLocale: ['pt_PT', 'pt_BR'],
     url: SITE_URL,
-    siteName: 'MOVAGO - Transporte Inteligente em Moçambique',
-    title: 'MOVAGO — App de Transporte Urbano Inteligente',
-    description: 'Plataforma de transporte inteligente em Moçambique. Viagens rápidas, seguras e acessíveis em Maputo. Baixe o app agora!',
+    siteName: 'MOVAGO - Transporte e Logística em Moçambique',
+    title: 'MOVAGO — Transporte Urbano e Logística de Encomendas',
+    description: 'App de transporte urbano e sistema SaaS de rastreio de encomendas para transportadoras e empresas de logística em Moçambique.',
     images: [{
       url: '/images/og-image.png',
       width: 1200,
@@ -59,8 +63,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@movago',
     creator: '@movago',
-    title: 'MOVAGO — Transporte Inteligente em Moçambique',
-    description: 'Plataforma de transporte inteligente em Moçambique. Viagens rápidas, seguras e acessíveis. Baixe o app!',
+    title: 'MOVAGO — Transporte e Logística em Moçambique',
+    description: 'App de transporte urbano e sistema SaaS de rastreio de encomendas para transportadoras em Moçambique.',
     images: ['/images/og-image.png'],
   },
   icons: {
@@ -83,13 +87,6 @@ export const metadata: Metadata = {
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
-    },
-  },
-  alternates: {
-    canonical: SITE_URL,
-    languages: {
-      'pt-MZ': SITE_URL,
-      'pt-PT': SITE_URL,
     },
   },
   verification: {

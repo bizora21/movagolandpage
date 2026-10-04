@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Play, Apple } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { APP_STORES } from '@/lib/constants';
 
 export function Hero() {
@@ -66,20 +67,16 @@ export function Hero() {
             </Button>
           </div>
 
-          {/* Trust indicators */}
-          <div className="grid grid-cols-3 gap-6 pt-4 max-w-md">
-            <div className="text-center">
-              <div className="text-2xl lg:text-3xl font-bold text-white">4.8</div>
-              <div className="text-xs sm:text-sm text-slate-400">Avaliação</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl lg:text-3xl font-bold text-white">50k+</div>
-              <div className="text-xs sm:text-sm text-slate-400">Viagens</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl lg:text-3xl font-bold text-white">500+</div>
-              <div className="text-xs sm:text-sm text-slate-400">Motoristas</div>
-            </div>
+          {/* Áreas de negócio */}
+          <div className="grid grid-cols-2 gap-4 pt-4 max-w-md">
+            <Link href="/transporte" className="block rounded-xl border border-slate-700/60 bg-white/5 p-4 hover:bg-white/10 transition-colors">
+              <div className="text-sm font-semibold text-white">Transporte</div>
+              <div className="text-xs text-slate-400 mt-1">Chapas, táxi e moto-táxi</div>
+            </Link>
+            <Link href="/logistica" className="block rounded-xl border border-slate-700/60 bg-white/5 p-4 hover:bg-white/10 transition-colors">
+              <div className="text-sm font-semibold text-white">Logística</div>
+              <div className="text-xs text-slate-400 mt-1">Rastreio de encomendas</div>
+            </Link>
           </div>
         </div>
 
@@ -111,17 +108,6 @@ export function Hero() {
               </div>
             </div>
 
-            <div className="hidden sm:block absolute -left-2 md:-left-4 lg:-left-8 bottom-20 md:bottom-24 lg:bottom-32 bg-[#111827] rounded-xl p-2 md:p-3 shadow-lg border border-slate-700/50 max-w-[160px] md:max-w-[200px]">
-              <div className="flex items-center gap-1.5 md:gap-2">
-                <div className="w-6 h-6 md:w-8 md:h-8 bg-[#2563EB]/20 rounded-full flex items-center justify-center text-[#2563EB] flex-shrink-0">
-                  <span className="text-xs md:text-sm">★</span>
-                </div>
-                <div className="text-xs md:text-sm min-w-0">
-                  <div className="text-white font-medium truncate text-xs md:text-sm">Excelente!</div>
-                  <div className="text-slate-400 text-[10px] md:text-xs">4.9 estrelas</div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

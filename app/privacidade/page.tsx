@@ -3,7 +3,8 @@ import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { Card, CardContent } from "@/components/ui/Card";
 
 export const metadata: Metadata = {
-  title: "Política de Privacidade — MOVAGO",
+  alternates: { canonical: '/privacidade/' },
+  title: "Política de Privacidade",
   description: "Política de privacidade da MOVAGO. Saiba como recolhemos, usamos e protegemos os seus dados pessoais.",
 };
 

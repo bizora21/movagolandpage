@@ -1,120 +1,50 @@
 import { MetadataRoute } from 'next';
+import { getPublishedPosts, normalizeSlugForPath } from '@/lib/appwrite';
 
 // Configuração necessária para static export
 export const dynamic = 'force-static';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+type Entry = MetadataRoute.Sitemap[number];
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // O site usa trailingSlash: true, por isso todas as URLs terminam em "/"
   const baseUrl = 'https://movagomz.com';
 
-  // Static pages
-  const staticPages = [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/transporte`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/motoristas`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/taxi`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/passageiros`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/sobre`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/contacto`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/faq`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/privacidade`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly' as const,
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/termos`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly' as const,
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
+  const page = (
+    path: string,
+    changeFrequency: Entry['changeFrequency'],
+    priority: number
+  ): Entry => ({ url: `${baseUrl}${path}`, changeFrequency, priority });
+
+  const staticPages: MetadataRoute.Sitemap = [
+    page('/', 'weekly', 1),
+    // Logística de encomendas (SaaS)
+    page('/logistica/', 'weekly', 0.95),
+    page('/logistica/transportadoras/', 'monthly', 0.9),
+    page('/logistica/rastreio-de-encomendas/', 'monthly', 0.9),
+    // Transporte urbano
+    page('/transporte/', 'weekly', 0.9),
+    page('/motoristas/', 'weekly', 0.9),
+    page('/taxi/', 'weekly', 0.9),
+    page('/passageiros/', 'weekly', 0.9),
+    // Institucional
+    page('/sobre/', 'monthly', 0.8),
+    page('/faq/', 'monthly', 0.8),
+    page('/contacto/', 'monthly', 0.7),
+    page('/blog/', 'weekly', 0.8),
+    page('/privacidade/', 'yearly', 0.5),
+    page('/termos/', 'yearly', 0.5),
   ];
 
-  // Blog posts (in production, fetch from CMS/MDX)
-  const blogPosts = [
-    {
-      url: `${baseUrl}/blog/a-mente-sintetica-como-a-ia-generativa-esta-reescrevendo-as-regras-da-arte-e-do-design`,
-      lastModified: new Date('2026-03-29'),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/como-usar-movago`,
-      lastModified: new Date('2026-03-15'),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/formas-pagamento`,
-      lastModified: new Date('2026-03-05'),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/seguranca-viagens`,
-      lastModified: new Date('2026-03-01'),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/expansao-matola`,
-      lastModified: new Date('2026-02-25'),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/dicas-economizar`,
-      lastModified: new Date('2026-02-20'),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-  ];
+  // Artigos reais do blog (Appwrite), em vez de uma lista fixa que podia
+  // incluir URLs inexistentes
+  const posts = await getPublishedPosts();
+  const blogPosts: MetadataRoute.Sitemap = posts.map((post) => ({
+    url: `${baseUrl}/blog/${normalizeSlugForPath(post.slug)}/`,
+    lastModified: new Date(post.updatedAt || post.publishedAt || Date.now()),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
 
   return [...staticPages, ...blogPosts];
 }

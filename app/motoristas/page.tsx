@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { JobPostingSchema } from "@/components/seo/JsonLd";
+import { DriverPartnerSchema } from "@/components/seo/JsonLd";
 import { APP_STORES, SITE_URL, CONTACT_INFO } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Motoristas Parceiros MOVAGO | Ganhe Dinheiro com seu Veículo",
-  description: "Torne-se motorista parceiro MOVAGO e ganhe dinheiro oferecendo corridas em Moçambique. Receba pagamentos via M-Pesa, horários flexíveis e renda extra de 15.000 a 80.000 MZN/mês. Sem taxas de adesão.",
+  description: "Torne-se motorista parceiro MOVAGO e ganhe dinheiro oferecendo corridas em Moçambique. Receba pagamentos via M-Pesa, escolha os seus horários e cadastre-se sem taxas de adesão.",
   keywords: [
     "motorista parceiro",
     "ganhar dinheiro dirigindo",
@@ -23,19 +23,19 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Motoristas Parceiros MOVAGO | Ganhe Dinheiro Dirigindo em Moçambique",
-    description: "Junte-se à MOVAGO como motorista parceiro. Horários flexíveis, pagamentos via M-Pesa e renda de até 80.000 MZN/mês.",
-    url: `${SITE_URL}/motoristas`,
+    description: "Junte-se à MOVAGO como motorista parceiro. Horários flexíveis, pagamentos via M-Pesa e cadastro sem taxas de adesão.",
+    url: `${SITE_URL}/motoristas/`,
     type: "website",
   },
   alternates: {
-    canonical: `${SITE_URL}/motoristas`,
+    canonical: `${SITE_URL}/motoristas/`,
   },
 };
 
 export default function MotoristasPage() {
   return (
     <>
-      <JobPostingSchema />
+      <DriverPartnerSchema />
       
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
         {/* Hero Section */}
@@ -51,7 +51,7 @@ export default function MotoristasPage() {
                 <span className="text-yellow-300">Veículo</span>
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-blue-50 leading-relaxed">
-                Torne-se <strong>motorista parceiro MOVAGO</strong> e receba <strong>15.000 a 80.000 MZN/mês</strong>. 
+                Torne-se <strong>motorista parceiro MOVAGO</strong> e ganhe dinheiro com o seu veículo.
                 Horários flexíveis, pagamentos via <strong>M-Pesa</strong> e sem taxas de adesão.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -77,9 +77,8 @@ export default function MotoristasPage() {
 
           {/* Stats Banner */}
           <div className="container mx-auto px-4 mt-16">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-3 gap-6 max-w-3xl mx-auto">
               {[
-                { value: "15.000-80.000", label: "MZN/mês" },
                 { value: "Horários", label: "Flexíveis" },
                 { value: "M-Pesa", label: "Pagamentos" },
                 { value: "0 MZN", label: "Taxa de Adesão" }
@@ -124,8 +123,8 @@ export default function MotoristasPage() {
               {[
                 {
                   icon: "💰",
-                  title: "Renda Mensal de 15.000 a 80.000 MZN",
-                  desc: "Ganhe conforme sua disponibilidade. Motoristas dedicados podem chegar a 80.000 MZN/mês."
+                  title: "Renda Extra com o seu Veículo",
+                  desc: "Ganhe conforme a sua disponibilidade e a procura na sua cidade."
                 },
                 {
                   icon: "🕐",
@@ -149,8 +148,8 @@ export default function MotoristasPage() {
                 },
                 {
                   icon: "🛡️",
-                  title: "Suporte 24/7",
-                  desc: "Equipe dedicada pronta para ajudar com qualquer dúvida ou problema a qualquer hora."
+                  title: "Suporte para Parceiros",
+                  desc: "Equipa pronta para ajudar com dúvidas sobre o cadastro e o uso da app."
                 }
               ].map((benefit, idx) => (
                 <div key={idx} className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-shadow">
@@ -270,107 +269,6 @@ export default function MotoristasPage() {
           </div>
         </section>
 
-        {/* Tabela de Ganhos */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                  Quanto Você Pode Ganhar
-                </h2>
-                <p className="text-xl text-gray-600">
-                  Estimativa baseada em 6 dias de trabalho por semana
-                </p>
-              </div>
-
-              <div className="overflow-x-auto">
-                <table className="w-full bg-white rounded-2xl shadow-xl overflow-hidden">
-                  <thead className="bg-blue-600 text-white">
-                    <tr>
-                      <th className="px-6 py-4 text-left">Horas/Dia</th>
-                      <th className="px-6 py-4 text-left">Ganho Mensal Estimado</th>
-                      <th className="px-6 py-4 text-left">Perfil</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200">
-                    <tr className="hover:bg-gray-50">
-                      <td className="px-6 py-4 font-semibold">4-6 horas</td>
-                      <td className="px-6 py-4 text-green-600 font-bold">15.000 - 25.000 MZN</td>
-                      <td className="px-6 py-4 text-gray-600">Renda extra</td>
-                    </tr>
-                    <tr className="hover:bg-gray-50">
-                      <td className="px-6 py-4 font-semibold">6-8 horas</td>
-                      <td className="px-6 py-4 text-green-600 font-bold">25.000 - 45.000 MZN</td>
-                      <td className="px-6 py-4 text-gray-600">Meio período</td>
-                    </tr>
-                    <tr className="hover:bg-gray-50">
-                      <td className="px-6 py-4 font-semibold">8-12 horas</td>
-                      <td className="px-6 py-4 text-green-600 font-bold">45.000 - 80.000 MZN</td>
-                      <td className="px-6 py-4 text-gray-600">Tempo integral</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <p className="text-center text-sm text-gray-500 mt-6">
-                * Valores estimados e podem variar conforme demanda, cidade e disponibilidade
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Testemunhos */}
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                O que Dizem Nossos Motoristas
-              </h2>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {[
-                {
-                  name: "Carlos M.",
-                  city: "Maputo",
-                  text: "Trabalhava 8 horas por dia num escritório e ganhava 20.000 MZN. Agora como motorista MOVAGO faço 55.000 MZN no meu próprio ritmo.",
-                  rating: 5
-                },
-                {
-                  name: "Ana K.",
-                  city: "Matola",
-                  text: "Sou mãe e preciso de flexibilidade. Com a MOVAGO trabalho quando os filhos estão na escola e ainda ganho uma renda extra de 18.000 MZN.",
-                  rating: 5
-                },
-                {
-                  name: "João B.",
-                  city: "Beira",
-                  text: "O melhor é receber via M-Pesa. Não preciso ir ao banco, o dinheiro cai direto na minha conta. Recomendo!",
-                  rating: 5
-                }
-              ].map((testimonial, idx) => (
-                <div key={idx} className="bg-white rounded-2xl shadow-xl p-8">
-                  <div className="flex items-center gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <span key={i} className="text-yellow-400 text-xl">★</span>
-                    ))}
-                  </div>
-                  <p className="text-gray-700 mb-6 italic">"{testimonial.text}"</p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-xl">
-                      {testimonial.name[0]}
-                    </div>
-                    <div>
-                      <div className="font-bold text-gray-900">{testimonial.name}</div>
-                      <div className="text-sm text-gray-500">{testimonial.city}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* CTA Cadastro */}
         <section className="py-20 bg-gradient-to-br from-orange-500 to-orange-600 text-white">
           <div className="container mx-auto px-4">
@@ -379,7 +277,7 @@ export default function MotoristasPage() {
                 Comece a Ganhar Dinheiro Hoje
               </h2>
               <p className="text-xl text-orange-50 mb-8">
-                Cadastro gratuito, sem compromisso. Junte-se a mais de 500 motoristas parceiros em Moçambique.
+                Cadastro gratuito, sem compromisso. Junte-se aos motoristas parceiros da MOVAGO em Moçambique.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <a

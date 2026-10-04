@@ -10,6 +10,9 @@ export const CONTACT_INFO = {
   whatsapp: '258863181415',
 } as const;
 
+// Portal público de rastreio de encomendas (projecto separado, subdomínio próprio)
+export const RASTREIO_URL = 'https://rastreio.movagomz.com';
+
 // App QR Code (for app download)
 export const APP_QR_CODE = '/images/app-qr-code.png';
 
@@ -20,17 +23,24 @@ export const APP_STORES = {
 } as const;
 
 export const NAVIGATION = [
+  { name: 'Transporte', href: '/transporte' },
+  { name: 'Logística', href: '/logistica' },
   { name: 'Sobre', href: '/sobre' },
-  { name: 'Como Funciona', href: '#how-it-works' },
   { name: 'Blog', href: '/blog' },
   { name: 'Contacto', href: '/contacto' },
 ] as const;
 
 export const FOOTER_LINKS = {
-  produto: [
-    { name: 'Como Funciona', href: '#how-it-works' },
-    { name: 'Funcionalidades', href: '#features' },
-    { name: 'Baixar App', href: '#download' },
+  transporte: [
+    { name: 'Transporte Urbano', href: '/transporte' },
+    { name: 'App de Táxi', href: '/taxi' },
+    { name: 'Para Passageiros', href: '/passageiros' },
+    { name: 'Seja Motorista', href: '/motoristas' },
+  ],
+  logistica: [
+    { name: 'Logística de Encomendas', href: '/logistica' },
+    { name: 'Para Transportadoras', href: '/logistica/transportadoras' },
+    { name: 'Rastreio de Encomendas', href: '/logistica/rastreio-de-encomendas' },
   ],
   empresa: [
     { name: 'Sobre Nós', href: '/sobre' },
@@ -51,14 +61,7 @@ export const SOCIAL_LINKS = [
   { name: 'Instagram', href: 'https://instagram.com/movago.mz', icon: 'instagram' },
   { name: 'Facebook', href: 'https://facebook.com/movago.mz', icon: 'facebook' },
   { name: 'LinkedIn', href: 'https://linkedin.com/company/movago', icon: 'linkedin' },
-  { name: 'WhatsApp', href: 'https://wa.me/258841234567', icon: 'message-circle' },
-] as const;
-
-export const STATS = [
-  { value: '50000+', label: 'Viagens Realizadas' },
-  { value: '500+', label: 'Motoristas Activos' },
-  { value: '3', label: 'Cidades' },
-  { value: '4.8', label: 'Avaliação Média' },
+  { name: 'WhatsApp', href: `https://wa.me/${CONTACT_INFO.whatsapp}`, icon: 'message-circle' },
 ] as const;
 
 export const FEATURES = [

@@ -4,7 +4,8 @@ import { Card, CardContent } from "@/components/ui/Card";
 import { Target, Eye, Users } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Sobre Nós — MOVAGO",
+  alternates: { canonical: '/sobre/' },
+  title: "Sobre Nós",
   description: "Conheça a MOVAGO, o sistema inteligente de mobilidade urbana que está a revolucionar o transporte público.",
 };
 

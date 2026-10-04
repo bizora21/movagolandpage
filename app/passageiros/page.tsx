@@ -23,11 +23,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "App para Passageiros MOVAGO | Viaje com Segurança em Moçambique",
     description: "Encontre chapa, táxi e moto-táxi em um só app. Rastreie em tempo real, pague via M-Pesa e viaje com segurança.",
-    url: `${SITE_URL}/passageiros`,
+    url: `${SITE_URL}/passageiros/`,
     type: "website",
   },
   alternates: {
-    canonical: `${SITE_URL}/passageiros`,
+    canonical: `${SITE_URL}/passageiros/`,
   },
 };
 
@@ -71,12 +71,11 @@ export default function PassageirosPage() {
 
           {/* Stats */}
           <div className="container mx-auto px-4 mt-16">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-3 gap-6 max-w-3xl mx-auto">
               {[
-                { value: "50.000+", label: "Viagens/mês" },
-                { value: "500+", label: "Motoristas" },
-                { value: "4.8★", label: "Avaliação" },
-                { value: "100%", label: "Rastreamento" }
+                { value: "3", label: "Tipos de transporte" },
+                { value: "SOS", label: "Botão de emergência" },
+                { value: "M-Pesa", label: "Pagamento" }
               ].map((stat, idx) => (
                 <div key={idx} className="text-center bg-white/10 backdrop-blur-sm rounded-xl p-4">
                   <div className="text-2xl md:text-3xl font-bold text-yellow-300">{stat.value}</div>
@@ -139,7 +138,7 @@ export default function PassageirosPage() {
                   icon: "🌙",
                   title: "Noturnos",
                   desc: "Transporte seguro a qualquer hora da noite",
-                  benefits: ["24/7 disponível", "SOS integrado", "Segurança"]
+                  benefits: ["Viagens à noite", "SOS integrado", "Segurança"]
                 }
               ].map((profile, idx) => (
                 <div key={idx} className="bg-white rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-shadow">
@@ -168,7 +167,7 @@ export default function PassageirosPage() {
                 Benefícios Exclusivos para Passageiros
               </h2>
               <p className="text-xl text-gray-600">
-                Por que milhares de passageiros escolhem a MOVAGO
+                Por que escolher a MOVAGO para as suas viagens
               </p>
             </div>
 
@@ -437,7 +436,7 @@ export default function PassageirosPage() {
 
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {[
-                { city: "Maputo", desc: "Capital e região metropolitana", features: ["Maior cobertura", "24/7 disponível"] },
+                { city: "Maputo", desc: "Capital e região metropolitana", features: ["Capital do país", "Rotas otimizadas"] },
                 { city: "Matola", desc: "Região industrial e subúrbios", features: ["Conexão com Maputo", "Rotas otimizadas"] },
                 { city: "Beira", desc: "Segunda maior cidade", features: ["Em expansão", "Mais cidades em breve"] }
               ].map((item, idx) => (
@@ -450,58 +449,6 @@ export default function PassageirosPage() {
                       <li key={fIdx} className="text-xs text-purple-200">• {feature}</li>
                     ))}
                   </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Testemunhos */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                O que Dizem Nossos Passageiros
-              </h2>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {[
-                {
-                  name: "Marta S.",
-                  city: "Maputo",
-                  text: "Uso todos os dias para ir ao trabalho. O rastreamento em tempo real me dá muita segurança, especialmente à noite.",
-                  rating: 5
-                },
-                {
-                  name: "Pedro M.",
-                  city: "Matola",
-                  text: "Economizo muito usando as chapas através do app. Sei exatamente quando vai chegar e qual rota tomar.",
-                  rating: 5
-                },
-                {
-                  name: "Isabel K.",
-                  city: "Beira",
-                  text: "Adoro poder pagar via M-Pesa. Não preciso andar com dinheiro e o preço é sempre transparente.",
-                  rating: 5
-                }
-              ].map((testimonial, idx) => (
-                <div key={idx} className="bg-gradient-to-br from-purple-50 to-white rounded-2xl shadow-xl p-8 border border-purple-100">
-                  <div className="flex items-center gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <span key={i} className="text-yellow-400 text-xl">★</span>
-                    ))}
-                  </div>
-                  <p className="text-gray-700 mb-6 italic">"{testimonial.text}"</p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold text-xl">
-                      {testimonial.name[0]}
-                    </div>
-                    <div>
-                      <div className="font-bold text-gray-900">{testimonial.name}</div>
-                      <div className="text-sm text-gray-500">{testimonial.city}</div>
-                    </div>
-                  </div>
                 </div>
               ))}
             </div>

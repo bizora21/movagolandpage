@@ -1,13 +1,14 @@
-﻿import type { Metadata } from 'next';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getPublishedPosts, normalizeSlugForPath } from '@/lib/appwrite';
 import { formatDate } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: 'Blog | MOVAGO',
+  alternates: { canonical: '/blog/' },
+  title: 'Blog',
   description:
-    'NotÃ­cias, dicas e actualizaÃ§Ãµes sobre transporte urbano em MoÃ§ambique.',
+    'Notícias, dicas e actualizações sobre transporte urbano em Moçambique.',
 };
 
 export default async function BlogPage() {
@@ -22,8 +23,8 @@ export default async function BlogPage() {
             Blog MOVAGO
           </h1>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            NotÃ­cias, dicas e actualizaÃ§Ãµes sobre mobilidade urbana
-            em MoÃ§ambique.
+            Notícias, dicas e actualizações sobre mobilidade urbana
+            em Moçambique.
           </p>
         </div>
 
@@ -65,7 +66,7 @@ export default async function BlogPage() {
                     </div>
                   </div>
 
-                  {/* ConteÃºdo */}
+                  {/* Conteúdo */}
                   <div className="p-6 flex flex-col flex-grow">
                     <h2 className="text-white font-bold text-xl mb-3 group-hover:text-blue-400 transition-colors line-clamp-2">
                       {post.title}
@@ -91,7 +92,7 @@ export default async function BlogPage() {
                             ? formatDate(post.publishedAt)
                             : formatDate(post.createdAt)}
                         </span>
-                        <span>Â·</span>
+                        <span>·</span>
                         <span>{post.readTime} min</span>
                       </div>
                     </div>

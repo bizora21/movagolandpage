@@ -1,11 +1,16 @@
 import { Metadata } from "next";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import { FAQ_ITEMS } from "@/lib/constants";
+import { FAQ_ITEMS, SITE_URL } from "@/lib/constants";
+import { LOGISTICS_FAQ } from "@/lib/logistica";
+import { FaqSchema } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Perguntas Frequentes — MOVAGO",
-  description: "Encontre respostas para as dúvidas mais comuns sobre a MOVAGO. Como funciona, pagamentos, segurança e muito mais.",
+  title: "Perguntas Frequentes",
+  description: "Encontre respostas para as dúvidas mais comuns sobre a MOVAGO: transporte urbano, motoristas, segurança e o sistema de logística e rastreio de encomendas.",
+  alternates: { canonical: `${SITE_URL}/faq/` },
 };
+
+const ALL_FAQ = [...FAQ_ITEMS, ...LOGISTICS_FAQ];
 
 export default function FAQPage() {
   const categories = [
@@ -17,6 +22,7 @@ export default function FAQPage() {
 
   return (
     <div className="pt-24">
+      <FaqSchema items={ALL_FAQ} />
       <SectionWrapper>
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6">
@@ -63,6 +69,28 @@ export default function FAQPage() {
               </div>
             );
           })}
+
+          <div>
+            <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <span className="w-2 h-8 bg-[rgb(var(--color-primary))] rounded-full"></span>
+              Logística e rastreio de encomendas
+            </h2>
+            <div className="space-y-4">
+              {LOGISTICS_FAQ.map((item) => (
+                <details key={item.question} className="group glass rounded-xl overflow-hidden">
+                  <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-white/5 transition-colors">
+                    <h3 className="text-lg font-semibold text-white pr-4">{item.question}</h3>
+                    <span className="flex-shrink-0 w-8 h-8 bg-[rgb(var(--color-primary))]/20 rounded-lg flex items-center justify-center text-[rgb(var(--color-primary))] group-open:rotate-180 transition-transform">
+                      ▼
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-6">
+                    <p className="text-[rgb(var(--color-text-muted))] leading-relaxed">{item.answer}</p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Still have questions CTA */}
@@ -72,7 +100,7 @@ export default function FAQPage() {
               Ainda tem dúvidas?
             </h3>
             <p className="text-[rgb(var(--color-text-muted))] mb-6">
-              A nossa equipa está disponível 24/7 para ajudar.
+              Escreva-nos e a nossa equipa responde assim que possível.
             </p>
             <a
               href="/contacto"

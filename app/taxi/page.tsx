@@ -24,11 +24,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "App de Táxi MOVAGO | Chame Táxi em Maputo e Moçambique",
     description: "Substituto moderno para chapas e táxis tradicionais. Chame motoristas verificados com preços transparentes.",
-    url: `${SITE_URL}/taxi`,
+    url: `${SITE_URL}/taxi/`,
     type: "website",
   },
   alternates: {
-    canonical: `${SITE_URL}/taxi`,
+    canonical: `${SITE_URL}/taxi/`,
   },
 };
 
@@ -72,11 +72,10 @@ export default function TaxiPage() {
 
           {/* Stats */}
           <div className="container mx-auto px-4 mt-16">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-3 gap-6 max-w-3xl mx-auto">
               {[
-                { value: "500+", label: "Motoristas" },
-                { value: "4.8★", label: "Avaliação" },
-                { value: "24/7", label: "Disponível" },
+                { value: "Verificados", label: "Motoristas" },
+                { value: "Transparente", label: "Preço" },
                 { value: "M-Pesa", label: "Pagamento" }
               ].map((stat, idx) => (
                 <div key={idx} className="text-center bg-white/10 backdrop-blur-sm rounded-xl p-4">
@@ -112,7 +111,7 @@ export default function TaxiPage() {
                 Táxi Tradicional vs MOVAGO
               </h2>
               <p className="text-xl text-gray-600">
-                Veja por que milhares de pessoas já mudaram para o app MOVAGO
+                Veja as diferenças entre o táxi tradicional e o app MOVAGO
               </p>
             </div>
 

@@ -4,7 +4,7 @@ import { TransportServiceSchema } from "@/components/seo/JsonLd";
 import { APP_STORES, SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Transporte em Maputo e Moçambique | MOVAGO",
+  title: "Transporte em Maputo e Moçambique",
   description: "Encontre transporte seguro, rápido e acessível em Maputo, Matola, Beira e todo Moçambique. Chapas, táxis e moto-táxis em um só app. Rastreie em tempo real e viaje com segurança.",
   keywords: [
     "transporte em Maputo",
@@ -25,11 +25,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Transporte Inteligente em Maputo e Moçambique | MOVAGO",
     description: "Encontre chapas, táxis e moto-táxis em um só app. Rastreie em tempo real e viaje com segurança por toda Moçambique.",
-    url: `${SITE_URL}/transporte`,
+    url: `${SITE_URL}/transporte/`,
     type: "website",
   },
   alternates: {
-    canonical: `${SITE_URL}/transporte`,
+    canonical: `${SITE_URL}/transporte/`,
   },
 };
 
@@ -73,12 +73,11 @@ export default function TransportePage() {
           
           {/* Stats */}
           <div className="container mx-auto px-4 mt-16">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-3 gap-6 max-w-3xl mx-auto">
               {[
-                { value: "50.000+", label: "Viagens/mês" },
-                { value: "500+", label: "Motoristas" },
                 { value: "3", label: "Cidades" },
-                { value: "4.8★", label: "Avaliação" }
+                { value: "3", label: "Tipos de transporte" },
+                { value: "M-Pesa", label: "Pagamento" }
               ].map((stat, idx) => (
                 <div key={idx} className="text-center bg-white/10 backdrop-blur-sm rounded-xl p-4">
                   <div className="text-2xl md:text-3xl font-bold text-yellow-300">{stat.value}</div>

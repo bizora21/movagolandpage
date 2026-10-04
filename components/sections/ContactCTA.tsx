@@ -13,7 +13,7 @@ export function ContactCTA() {
           Pronto para Começar?
         </h2>
         <p className="text-lg sm:text-xl text-[rgb(var(--color-text-muted))] mb-8 lg:mb-12">
-          Junte-se a milhares de utilizadores que já confiam na MOVAGO para os seus trajetos diários.
+          Use a MOVAGO nos seus trajetos diários ou leve a gestão das suas encomendas para o próximo nível.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 lg:mb-16">

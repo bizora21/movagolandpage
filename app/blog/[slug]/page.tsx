@@ -41,8 +41,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPostBySlug(slug);
   if (!post) return { title: 'Artigo não encontrado | MOVAGO' };
   return {
-    title: `${post.title} | MOVAGO Blog`,
+    title: post.title,
     description: post.metaDescription || post.excerpt || '',
+    alternates: { canonical: `/blog/${normalizeSlugForPath(slug)}/` },
     keywords: post.metaKeywords || '',
     openGraph: {
       title: post.title,

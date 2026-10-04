@@ -3,7 +3,8 @@ import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { Card, CardContent } from "@/components/ui/Card";
 
 export const metadata: Metadata = {
-  title: "Termos de Uso — MOVAGO",
+  alternates: { canonical: '/termos/' },
+  title: "Termos de Uso",
   description: "Termos de uso da MOVAGO. Condições de utilização da plataforma de transporte urbano.",
 };
 

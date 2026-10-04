@@ -9,7 +9,7 @@ export function Footer() {
   return (
     <footer className="bg-[rgb(var(--color-secondary))] border-t border-slate-700/50">
       <div className="container mx-auto px-4 sm:px-6 py-12 md:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 md:gap-10">
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2 mb-4">
@@ -71,9 +71,26 @@ export function Footer() {
 
           {/* Product Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Produto</h3>
+            <h3 className="text-white font-semibold mb-4">Transporte</h3>
             <ul className="space-y-3">
-              {FOOTER_LINKS.produto.map((link) => (
+              {FOOTER_LINKS.transporte.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="inline-block text-[rgb(var(--color-text-muted))] hover:text-white transition-colors py-3 px-3 -mx-3 rounded-lg hover:bg-white/5 min-h-[48px]"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Logistics Links */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Logística</h3>
+            <ul className="space-y-3">
+              {FOOTER_LINKS.logistica.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}

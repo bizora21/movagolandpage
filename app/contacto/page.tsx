@@ -1,11 +1,10 @@
 'use client';
 
-import { Metadata } from "next";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CONTACT_INFO } from "@/lib/constants";
 
 export default function ContactoPage() {
@@ -18,26 +17,28 @@ export default function ContactoPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  // Permite que os CTAs do site abram o formulário com o assunto já preenchido (?assunto=...)
+  useEffect(() => {
+    const assunto = new URLSearchParams(window.location.search).get('assunto');
+    if (assunto) {
+      setFormData((prev) => ({ ...prev, subject: assunto }));
+    }
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-      
-      if (response.ok) {
-        setSubmitted(true);
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-    } finally {
-      setIsSubmitting(false);
-    }
+    // O site é estático (sem servidor): abrimos o email do utilizador com a mensagem pronta
+    const body = `${formData.message}
+
+—
+Nome: ${formData.name}
+Email: ${formData.email}`;
+    window.location.href = `mailto:${CONTACT_INFO.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(body)}`;
+    setSubmitted(true);
+    setFormData({ name: '', email: '', subject: '', message: '' });
+    setIsSubmitting(false);
   };
 
   return (
@@ -112,9 +113,14 @@ export default function ContactoPage() {
                   <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Send className="text-green-400" size={32} />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Mensagem Enviada!</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Quase lá!</h3>
                   <p className="text-[rgb(var(--color-text-muted))]">
-                    Obrigado pelo contacto. Responderemos em breve.
+                    Abrimos o seu programa de email com a mensagem pronta. Basta enviá-la.
+                    Se nada abriu, escreva-nos para{' '}
+                    <a href={`mailto:${CONTACT_INFO.email}`} className="text-[rgb(var(--color-primary))] hover:underline">
+                      {CONTACT_INFO.email}
+                    </a>
+                    .
                   </p>
                   <Button
                     variant="outline"
@@ -122,7 +128,7 @@ export default function ContactoPage() {
                     className="mt-6"
                     onClick={() => setSubmitted(false)}
                   >
-                    Enviar Nova Mensagem
+                    Escrever Nova Mensagem
                   </Button>
                 </div>
               ) : (
@@ -193,7 +199,7 @@ export default function ContactoPage() {
                     fullWidth
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? 'A Enviar...' : 'Enviar Mensagem'}
+                    {isSubmitting ? 'A abrir o email...' : 'Enviar por email'}
                   </Button>
                 </form>
               )}
