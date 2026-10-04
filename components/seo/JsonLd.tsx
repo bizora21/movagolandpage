@@ -51,7 +51,9 @@ export function OrganizationSchema() {
           "Mobilidade urbana",
           "Logística de encomendas",
           "Rastreio de encomendas",
-          "Software para transportadoras"
+          "Software para transportadoras",
+          "Transporte rodoviário, ferroviário, marítimo e aéreo de carga",
+          "Entregas e e-commerce"
         ]
       }}
     />
@@ -245,7 +247,7 @@ export function LogisticsServiceSchema({ path = '/logistica', name, description 
         "areaServed": { "@type": "Country", "name": "Mozambique" },
         "audience": {
           "@type": "BusinessAudience",
-          "audienceType": "Empresas de logística, transportadoras e operadores de carga"
+          "audienceType": "Empresas de logística, transportadoras, courier, lojas online e operadores de carga rodoviária, ferroviária, marítima e aérea"
         }
       }}
     />

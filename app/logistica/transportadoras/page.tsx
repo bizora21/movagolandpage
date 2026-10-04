@@ -24,7 +24,7 @@ const PATH = '/logistica/transportadoras/';
 export const metadata: Metadata = {
   title: 'Software para Transportadoras e Empresas de Carga',
   description:
-    'Software de gestão e rastreio de encomendas para transportadoras, operadores rodoviários e ferroviários em Moçambique. Controlo por troço, prova de entrega e funcionamento sem internet.',
+    'Software de gestão e rastreio de encomendas para transportadoras, courier, e-commerce e operadores rodoviários, ferroviários, marítimos e aéreos em Moçambique. Controlo por troço e prova de entrega.',
   keywords: [
     'software para transportadoras',
     'sistema de gestão de transportadoras',
@@ -32,6 +32,9 @@ export const metadata: Metadata = {
     'gestão de carga',
     'transporte rodoviário de carga',
     'transporte ferroviário carga',
+    'logística marítima',
+    'software para courier e entregas',
+    'rastreio de encomendas e-commerce',
     'rastreio de carga',
     'sistema para pequenas transportadoras',
     'prova de entrega digital',
@@ -128,8 +131,8 @@ export default function TransportadorasPage() {
             <SectionHeading
               id="tipos"
               eyebrow="Tipos de operação"
-              title="Rodoviário, ferroviário, distribuição e mais"
-              subtitle="Qualquer operação em que a carga passa de estação em estação pode usar o mesmo modelo."
+              title="Rodoviário, ferroviário, marítimo, aéreo, e-commerce e courier"
+              subtitle="Qualquer operação em que a carga passa de ponto em ponto pode usar o mesmo modelo."
             />
             <CardGrid items={LOGISTICS_AUDIENCES} />
           </div>

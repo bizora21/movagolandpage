@@ -27,7 +27,7 @@ const PATH = '/logistica/';
 export const metadata: Metadata = {
   title: 'Logística e Rastreio de Encomendas em Moçambique',
   description:
-    'Sistema SaaS de logística e rastreio de encomendas para transportadoras e empresas de carga em Moçambique: código de rastreio, percurso, prova de entrega e avisos por WhatsApp e SMS.',
+    'Sistema SaaS de logística e rastreio de encomendas para transportadoras, courier, e-commerce e carga rodoviária, ferroviária, marítima e aérea em Moçambique: código de rastreio, percurso e prova de entrega.',
   keywords: [
     'logística Moçambique',
     'rastreio de encomendas Moçambique',
@@ -39,6 +39,11 @@ export const metadata: Metadata = {
     'prova de entrega digital',
     'transporte de carga Moçambique',
     'logística Maputo',
+    'software para e-commerce Moçambique',
+    'rastreio de entregas courier',
+    'logística ferroviária',
+    'logística marítima Moçambique',
+    'transporte rodoviário de carga',
     'MOVAGO Logística',
   ],
   alternates: { canonical: `${SITE_URL}${PATH}` },
@@ -78,9 +83,9 @@ export default function LogisticaPage() {
                 <span className="gradient-text">transportadoras e empresas de logística</span>
               </h1>
               <p className="text-lg sm:text-xl text-slate-400 leading-relaxed mb-10">
-                Um sistema SaaS que acompanha cada encomenda desde que entra numa estação até ser entregue,
+                Um sistema SaaS que acompanha cada encomenda desde que entra num ponto de receção até ser entregue,
                 com código de rastreio, percurso completo, responsável por cada troço e prova de entrega.
-                Feito para a realidade de Moçambique, inclusive onde a internet falha.
+                Para transporte rodoviário, ferroviário, marítimo e aéreo, e-commerce e courier, inclusive onde a internet falha.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-start">
                 <div className="flex flex-col items-center gap-2 sm:max-w-xs mx-auto sm:mx-0">
@@ -163,13 +168,13 @@ export default function LogisticaPage() {
             <SectionHeading
               id="para-quem"
               eyebrow="Para quem"
-              title="Feito para quem transporta e entrega"
-              subtitle="De pequenas transportadoras a operadores rodoviários e ferroviários."
+              title="Tipos de logística que o sistema acompanha"
+              subtitle="Rodoviário, ferroviário, marítimo, aéreo, e-commerce, courier e mais: qualquer operação em que a carga passa de ponto em ponto."
             />
             <CardGrid items={LOGISTICS_AUDIENCES} />
             <p className="text-center mt-8">
               <a href="/logistica/transportadoras" className="text-[rgb(var(--color-accent))] font-semibold hover:underline">
-                Ver como o sistema ajuda transportadoras →
+                Ver como o sistema ajuda transportadoras e operadores de carga →
               </a>
             </p>
           </div>

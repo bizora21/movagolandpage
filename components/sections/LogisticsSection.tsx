@@ -23,8 +23,8 @@ export function LogisticsSection() {
           </h2>
           <p className="text-lg text-slate-400 leading-relaxed">
             Além do transporte urbano, a MOVAGO oferece um sistema SaaS que acompanha cada encomenda desde a
-            receção até à entrega, para pequenas transportadoras, operadores rodoviários, ferroviários e
-            empresas de distribuição.
+            receção até à entrega, para transportadoras, carga rodoviária, ferroviária, marítima e aérea,
+            e-commerce, courier e distribuição.
           </p>
         </div>
 

@@ -135,24 +135,34 @@ export const LOGISTICS_STEPS = [
 
 export const LOGISTICS_AUDIENCES = [
   {
-    title: 'Empresas de logística e distribuição',
-    description:
-      'Controlo ponta a ponta de cada encomenda, entre estações, armazéns e pontos de entrega.',
-  },
-  {
-    title: 'Pequenas transportadoras',
-    description:
-      'Uma forma simples de organizar a operação e dar ao cliente um código para acompanhar a carga, sem sistemas pesados.',
-  },
-  {
     title: 'Transporte rodoviário de carga',
     description:
-      'Registo de cada troço, do transportador responsável e das paragens ao longo da rota.',
+      'Camiões e carrinhas com carga completa ou fracionada: registo de cada troço, do transportador responsável e das paragens ao longo da rota.',
   },
   {
     title: 'Transporte ferroviário',
     description:
-      'Acompanhamento de mercadorias e encomendas entre estações, com chegada e entrega registadas.',
+      'Mercadorias e encomendas entre estações, com chegada, levantamento e entrega registados.',
+  },
+  {
+    title: 'Transporte marítimo e fluvial',
+    description:
+      'Carga entre portos, cais e embarcações: cada passagem fica registada, com responsável e prova de entrega no destino.',
+  },
+  {
+    title: 'Carga aérea',
+    description:
+      'Encomendas e carga que seguem de avião e ainda passam por terra: o percurso completo fica num só código.',
+  },
+  {
+    title: 'E-commerce e lojas online',
+    description:
+      'Lojas que enviam encomendas aos clientes: um código de rastreio por pedido, aviso de chegada e prova de entrega, para menos dúvidas e menos reclamações.',
+  },
+  {
+    title: 'Courier e entregas urbanas',
+    description:
+      'Distribuição local de última milha, de moto, carrinha ou a pé: cada entrega com responsável registado e confirmação de quem recebeu.',
   },
   {
     title: 'Transporte interurbano e interprovincial',
@@ -160,9 +170,14 @@ export const LOGISTICS_AUDIENCES = [
       'Operadores que levam encomendas entre cidades e precisam de provar receção, trânsito e entrega.',
   },
   {
-    title: 'Outros operadores de carga',
+    title: 'Distribuição, armazéns e grossistas',
     description:
-      'Qualquer operação em que uma encomenda passa por várias mãos e o cliente quer saber onde ela está.',
+      'Centros de distribuição e pontos de recolha que recebem, despacham e entregam mercadoria a retalhistas e clientes.',
+  },
+  {
+    title: 'Carga especial',
+    description:
+      'Contentores, granel, produtos agrícolas, carga refrigerada e outras mercadorias que exigem registo cuidado de cada passagem.',
   },
 ] as const;
 
@@ -201,7 +216,7 @@ export const LOGISTICS_FAQ: FaqEntry[] = [
   {
     question: 'Para que tipo de empresas serve?',
     answer:
-      'Para empresas de logística e distribuição, pequenas transportadoras, operadores de transporte rodoviário e ferroviário de carga, transporte interurbano e outros operadores em que a encomenda passa por várias estações ou transportadores.',
+      'Para qualquer operação em que uma encomenda ou carga passa por vários pontos e responsáveis: empresas de logística e distribuição, pequenas transportadoras, transporte rodoviário, ferroviário, marítimo e aéreo de carga, courier e entregas urbanas, lojas online (e-commerce), transporte interurbano e armazéns.',
   },
   {
     question: 'O cliente precisa de criar conta para rastrear a encomenda?',
@@ -222,6 +237,11 @@ export const LOGISTICS_FAQ: FaqEntry[] = [
     question: 'Uma encomenda pode passar por várias estações?',
     answer:
       'Sim. Cada estação por onde passa regista a saída, indicando a próxima paragem e o transportador responsável por esse troço. Assim sabe-se sempre onde está a encomenda e quem a tem.',
+  },
+  {
+    question: 'Serve para lojas online e entregas urbanas?',
+    answer:
+      'Sim. Uma loja online ou um serviço de courier pode dar a cada pedido um código de rastreio, avisar o cliente por WhatsApp ou SMS e registar a prova de entrega.',
   },
   {
     question: 'Como pedir uma demonstração?',
@@ -279,9 +299,9 @@ export const TRANSPORTERS_FAQ: FaqEntry[] = [
       'Em cada saída escreve-se o nome do transportador, que fica como responsável pela encomenda até à estação seguinte.',
   },
   {
-    question: 'O sistema serve para carga ferroviária e rodoviária?',
+    question: 'O sistema serve para que tipos de carga e de transporte?',
     answer:
-      'Sim. O modelo é o mesmo para qualquer operação em que a carga passa de estação em estação: receção, saída, chegada e entrega.',
+      'Para vários: rodoviário, ferroviário, marítimo e fluvial, aéreo, courier e entregas urbanas, e-commerce, distribuição e carga especial. O modelo é o mesmo para qualquer operação em que a carga passa de ponto em ponto: receção, saída, chegada e entrega.',
   },
   {
     question: 'Como começo?',
