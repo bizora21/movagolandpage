@@ -10,6 +10,7 @@
     "pages:build": "next build"
   },
   "dependencies": {
+    "@formspree/react": "^3.0.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.0.0",
     "lucide-react": "^0.500.0",

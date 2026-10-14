@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { RASTREIO_URL } from '@/lib/constants';
-import { DEMO_MAILTO } from '@/lib/logistica';
 
 const HIGHLIGHTS = [
   'Código de rastreio único para cada encomenda',
@@ -56,13 +55,13 @@ export function LogisticsSection() {
             </div>
             <div>
               <a
-                href={DEMO_MAILTO}
+                href="/logistica/#pedir-demonstracao"
                 className="inline-flex w-full items-center justify-center rounded-xl border-2 border-[#2563EB] px-6 py-4 text-lg font-semibold text-[#60A5FA] hover:bg-[#2563EB] hover:text-white transition-colors min-h-[48px]"
               >
                 Pedir demonstração
               </a>
               <p className="text-sm text-slate-400 mt-2">
-                Abre o seu email com a mensagem pronta para a equipa MOVAGO.
+                Leva-o ao formulário de pedido, que leva menos de 1 minuto a preencher.
               </p>
             </div>
             <div>

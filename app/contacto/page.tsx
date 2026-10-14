@@ -5,7 +5,8 @@ import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useState, useEffect } from "react";
-import { CONTACT_INFO } from "@/lib/constants";
+import { useForm, ValidationError } from "@formspree/react";
+import { CONTACT_INFO, FORMSPREE_FORM_ID } from "@/lib/constants";
 
 export default function ContactoPage() {
   const [formData, setFormData] = useState({
@@ -14,31 +15,29 @@ export default function ContactoPage() {
     subject: '',
     message: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [state, submitToFormspree, resetForm] = useForm(FORMSPREE_FORM_ID);
+  const isSubmitting = state.submitting;
+  const submitted = state.succeeded;
 
   // Permite que os CTAs do site abram o formulário com o assunto já preenchido (?assunto=...)
   useEffect(() => {
     const assunto = new URLSearchParams(window.location.search).get('assunto');
     if (assunto) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- o valor vem do URL e só existe no navegador
       setFormData((prev) => ({ ...prev, subject: assunto }));
     }
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    
-    // O site é estático (sem servidor): abrimos o email do utilizador com a mensagem pronta
-    const body = `${formData.message}
-
-—
-Nome: ${formData.name}
-Email: ${formData.email}`;
-    window.location.href = `mailto:${CONTACT_INFO.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setIsSubmitting(false);
+    await submitToFormspree({
+      name: formData.name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+      _subject: `Contacto no site: ${formData.subject}`,
+      origem: 'contacto',
+    });
   };
 
   return (
@@ -113,20 +112,18 @@ Email: ${formData.email}`;
                   <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Send className="text-green-400" size={32} />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Quase lá!</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Mensagem Enviada!</h3>
                   <p className="text-[rgb(var(--color-text-muted))]">
-                    Abrimos o seu programa de email com a mensagem pronta. Basta enviá-la.
-                    Se nada abriu, escreva-nos para{' '}
-                    <a href={`mailto:${CONTACT_INFO.email}`} className="text-[rgb(var(--color-primary))] hover:underline">
-                      {CONTACT_INFO.email}
-                    </a>
-                    .
+                    Obrigado pelo contacto. Responderemos em breve.
                   </p>
                   <Button
                     variant="outline"
                     size="md"
                     className="mt-6"
-                    onClick={() => setSubmitted(false)}
+                    onClick={() => {
+                      resetForm();
+                      setFormData({ name: '', email: '', subject: '', message: '' });
+                    }}
                   >
                     Escrever Nova Mensagem
                   </Button>
@@ -161,6 +158,7 @@ Email: ${formData.email}`;
                       className="w-full px-4 py-3 bg-[rgb(var(--color-bg))] border border-slate-700 rounded-xl text-white placeholder:text-[rgb(var(--color-text-muted))] focus:outline-none focus:border-[rgb(var(--color-primary))] transition-colors"
                       placeholder="seu@email.com"
                     />
+                    <ValidationError field="email" errors={state.errors} className="mt-1 text-sm text-red-400" />
                   </div>
 
                   <div>
@@ -193,13 +191,19 @@ Email: ${formData.email}`;
                     />
                   </div>
 
+                  {state.errors && (
+                    <p role="alert" className="text-sm text-red-400">
+                      Não foi possível enviar a mensagem. Tente novamente ou escreva-nos para{' '}
+                      <a href={`mailto:${CONTACT_INFO.email}`} className="underline">{CONTACT_INFO.email}</a>.
+                    </p>
+                  )}
                   <Button
                     type="submit"
                     size="lg"
                     fullWidth
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? 'A abrir o email...' : 'Enviar por email'}
+                    {isSubmitting ? 'A Enviar...' : 'Enviar Mensagem'}
                   </Button>
                 </form>
               )}

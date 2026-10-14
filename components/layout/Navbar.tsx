@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { NAVIGATION, SITE_NAME, APP_STORES } from '@/lib/constants';
 import { Button } from '@/components/ui/Button';
@@ -10,6 +11,11 @@ import { cn } from '@/lib/utils';
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // Nas páginas de logística o CTA principal é o pedido de demonstração, não o download da app
+  const isLogistics = usePathname()?.startsWith('/logistica') ?? false;
+  const cta = isLogistics
+    ? { label: 'Pedir demonstração', mobileLabel: 'Pedir demonstração', href: '/logistica/#pedir-demonstracao', external: false }
+    : { label: 'Baixar', mobileLabel: 'Baixar App', href: APP_STORES.googlePlay, external: true };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,14 +74,13 @@ export function Navbar() {
 
             {/* CTA Button */}
             <div className="hidden lg:flex items-center">
-              <Button 
-                href={APP_STORES.googlePlay} 
-                target="_blank"
-                rel="noopener noreferrer"
+              <Button
+                href={cta.href}
+                {...(cta.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 size="sm"
                 className="text-xs sm:text-sm"
               >
-                Baixar
+                {cta.label}
               </Button>
             </div>
 
@@ -119,14 +124,13 @@ export function Navbar() {
                   {item.name}
                 </Link>
               ))}
-              <Button 
-                href={APP_STORES.googlePlay}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Button
+                href={cta.href}
+                {...(cta.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 fullWidth
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Baixar App
+                {cta.mobileLabel}
               </Button>
             </div>
           </div>

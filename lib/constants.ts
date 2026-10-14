@@ -144,3 +144,6 @@ export const FAQ_ITEMS = [
     category: 'general' as const,
   },
 ];
+
+// Formulários (Formspree) — endpoint https://formspree.io/f/meaepqrj
+export const FORMSPREE_FORM_ID = 'meaepqrj';

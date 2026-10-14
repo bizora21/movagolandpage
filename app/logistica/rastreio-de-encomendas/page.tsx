@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { SITE_URL, RASTREIO_URL } from '@/lib/constants';
-import { TRACKING_FAQ, DEMO_MAILTO } from '@/lib/logistica';
+import { TRACKING_FAQ } from '@/lib/logistica';
 import { LogisticsServiceSchema } from '@/components/seo/JsonLd';
 import {
   Breadcrumbs,
@@ -167,13 +167,13 @@ export default function RastreioPage() {
               title="Tem uma empresa que entrega encomendas?"
               description="Ofereça aos seus clientes um código de rastreio e uma prova de entrega. Peça uma demonstração do sistema."
               primary={{
-                label: 'Pedir demonstração por email',
-                href: DEMO_MAILTO,
-                hint: 'Abre o seu email com a mensagem pronta para a equipa MOVAGO.',
+                label: 'Pedir demonstração',
+                href: '/logistica/#pedir-demonstracao',
+                hint: 'Leva-o ao formulário na página de logística. Leva menos de 1 minuto a preencher.',
               }}
               secondary={{
                 label: 'Conhecer o sistema',
-                href: '/logistica',
+                href: '/logistica/',
                 hint: 'Veja as funcionalidades e como funciona para empresas.',
               }}
             />

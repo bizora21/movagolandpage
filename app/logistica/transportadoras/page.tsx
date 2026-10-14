@@ -15,9 +15,10 @@ import {
   FeatureGrid,
   CardGrid,
   FaqSection,
-  CtaBanner,
   RelatedLinks,
 } from '@/components/logistica/blocks';
+import { DemoForm } from '@/components/logistica/DemoForm';
+import { StickyCta } from '@/components/logistica/StickyCta';
 
 const PATH = '/logistica/transportadoras/';
 
@@ -85,21 +86,17 @@ export default function TransportadorasPage() {
                 Saiba sempre onde está cada encomenda e quem a tem. Registe receção, saída, paragens, chegada e
                 entrega, com prova, mesmo em estações com internet fraca.
               </p>
-              <CtaBanner
-                title="Quer ver como se adapta à sua transportadora?"
-                description="Diga-nos o tipo de carga e as rotas que opera. Preparamos uma demonstração à medida."
-                primary={{
-                  label: 'Pedir demonstração por email',
-                  href: DEMO_MAILTO,
-                  hint: 'Abre o seu email com a mensagem pronta para a equipa MOVAGO.',
-                }}
-                secondary={{
-                  label: 'Falar por WhatsApp',
-                  href: DEMO_WHATSAPP,
-                  hint: 'Abre o WhatsApp com uma mensagem inicial.',
-                  external: true,
-                }}
-              />
+              <div className="flex flex-col items-center gap-2 max-w-md mx-auto">
+                <a
+                  href="#pedir-demonstracao"
+                  className="inline-flex items-center justify-center rounded-xl bg-[#2563EB] px-8 py-4 text-lg font-semibold text-white hover:bg-[#1D4ED8] transition-colors min-h-[52px]"
+                >
+                  Pedir demonstração
+                </a>
+                <p className="text-sm text-slate-400">
+                  Leva-o ao formulário no fim da página. Diga-nos o tipo de carga e as rotas que opera.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -147,20 +144,37 @@ export default function TransportadorasPage() {
 
         <section className="py-16 lg:py-24 bg-[rgb(var(--color-secondary))]/40">
           <div className="container mx-auto px-4">
-            <CtaBanner
-              title="Dê ao seu cliente um código e uma prova de entrega"
-              description="Comece por uma conversa: contamos como funciona e vemos juntos se faz sentido para a sua operação."
-              primary={{
-                label: 'Pedir demonstração por email',
-                href: DEMO_MAILTO,
-                hint: 'Abre o seu email com a mensagem pronta.',
-              }}
-              secondary={{
-                label: 'Abrir página de contacto',
-                href: '/contacto?assunto=Logística',
-                hint: 'Preencha o formulário de contacto com o assunto já indicado.',
-              }}
-            />
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start max-w-6xl mx-auto">
+              <div>
+                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+                  Dê ao seu cliente um código e uma prova de entrega
+                </h2>
+                <p className="text-lg text-slate-300 leading-relaxed mb-8">
+                  Comece por uma conversa: contamos como funciona e vemos juntos se faz sentido para a sua
+                  operação.
+                </p>
+                <div className="rounded-2xl border border-slate-700/50 bg-[rgb(var(--color-surface))] p-5">
+                  <p className="text-sm font-semibold text-white mb-3">Prefere falar diretamente?</p>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <a
+                      href={DEMO_WHATSAPP}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex flex-1 items-center justify-center rounded-xl border border-slate-600 px-4 py-3 text-sm font-semibold text-slate-100 hover:bg-white/5 transition-colors min-h-[48px]"
+                    >
+                      Falar por WhatsApp
+                    </a>
+                    <a
+                      href={DEMO_MAILTO}
+                      className="inline-flex flex-1 items-center justify-center rounded-xl border border-slate-600 px-4 py-3 text-sm font-semibold text-slate-100 hover:bg-white/5 transition-colors min-h-[48px]"
+                    >
+                      Enviar email
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <DemoForm id="pedir-demonstracao" source="logistica-transportadoras" />
+            </div>
           </div>
         </section>
 
@@ -188,6 +202,8 @@ export default function TransportadorasPage() {
           </div>
         </section>
       </div>
+
+      <StickyCta targetId="pedir-demonstracao" watchIds={['pedir-demonstracao']} />
     </>
   );
 }
