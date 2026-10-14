@@ -5,7 +5,7 @@ import { APP_STORES, SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Transporte em Maputo e Moçambique",
-  description: "Encontre transporte seguro, rápido e acessível em Maputo, Matola, Beira e todo Moçambique. Chapas, táxis e moto-táxis em um só app. Rastreie em tempo real e viaje com segurança.",
+  description: "Transporte seguro e acessível em Maputo, Matola e Beira: chapas, táxis e moto-táxis num só app. Rastreie em tempo real e pague via M-Pesa.",
   keywords: [
     "transporte em Maputo",
     "transporte em Moçambique",
@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     title: "Transporte Inteligente em Maputo e Moçambique | MOVAGO",
     description: "Encontre chapas, táxis e moto-táxis em um só app. Rastreie em tempo real e viaje com segurança por toda Moçambique.",
     url: `${SITE_URL}/transporte/`,
+    images: [{ url: '/images/og-image.png', width: 1200, height: 630, alt: 'MOVAGO — Transporte Inteligente em Moçambique' }],
     type: "website",
   },
   alternates: {

@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     title: "App para Passageiros MOVAGO | Viaje com Segurança em Moçambique",
     description: "Encontre chapa, táxi e moto-táxi em um só app. Rastreie em tempo real, pague via M-Pesa e viaje com segurança.",
     url: `${SITE_URL}/passageiros/`,
+    images: [{ url: '/images/og-image.png', width: 1200, height: 630, alt: 'MOVAGO — Transporte Inteligente em Moçambique' }],
     type: "website",
   },
   alternates: {

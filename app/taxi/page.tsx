@@ -5,7 +5,7 @@ import { APP_STORES, SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "App de Táxi MOVAGO | Chame Táxi e Chapas em Maputo e Moçambique",
-  description: "Chame táxi, chapa e moto-táxi com o app MOVAGO em Maputo, Matola, Beira e todo Moçambique. Preços transparentes, motoristas verificados e pagamento via M-Pesa.",
+  description: "Chame táxi, chapa e moto-táxi com o app MOVAGO em Maputo, Matola e Beira. Preços transparentes, motoristas verificados e M-Pesa.",
   keywords: [
     "táxi app",
     "app de táxi",
@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     title: "App de Táxi MOVAGO | Chame Táxi em Maputo e Moçambique",
     description: "Substituto moderno para chapas e táxis tradicionais. Chame motoristas verificados com preços transparentes.",
     url: `${SITE_URL}/taxi/`,
+    images: [{ url: '/images/og-image.png', width: 1200, height: 630, alt: 'MOVAGO — Transporte Inteligente em Moçambique' }],
     type: "website",
   },
   alternates: {

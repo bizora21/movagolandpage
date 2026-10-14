@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     default: 'MOVAGO — Transporte Urbano e Logística de Encomendas em Moçambique',
     template: '%s | MOVAGO',
   },
-  description: 'MOVAGO: app de transporte urbano (chapas, táxi e moto-táxi) em Maputo, Matola e Beira, e sistema SaaS de logística e rastreio de encomendas para transportadoras em Moçambique.',
+  description: 'App de transporte urbano em Maputo, Matola e Beira (chapas, táxi, moto-táxi) e sistema SaaS de logística e rastreio de encomendas em Moçambique.',
   keywords: [
     'MOVAGO',
     'logística Moçambique',

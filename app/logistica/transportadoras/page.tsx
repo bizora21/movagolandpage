@@ -25,7 +25,7 @@ const PATH = '/logistica/transportadoras/';
 export const metadata: Metadata = {
   title: 'Software para Transportadoras e Empresas de Carga',
   description:
-    'Software de gestão e rastreio de encomendas para transportadoras, courier, e-commerce e operadores rodoviários, ferroviários, marítimos e aéreos em Moçambique. Controlo por troço e prova de entrega.',
+    'Software de rastreio de encomendas para transportadoras e operadores de carga rodoviária, ferroviária, marítima e aérea em Moçambique.',
   keywords: [
     'software para transportadoras',
     'sistema de gestão de transportadoras',

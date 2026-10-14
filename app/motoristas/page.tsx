@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     title: "Motoristas Parceiros MOVAGO | Ganhe Dinheiro Dirigindo em Moçambique",
     description: "Junte-se à MOVAGO como motorista parceiro. Horários flexíveis, pagamentos via M-Pesa e cadastro sem taxas de adesão.",
     url: `${SITE_URL}/motoristas/`,
+    images: [{ url: '/images/og-image.png', width: 1200, height: 630, alt: 'MOVAGO — Transporte Inteligente em Moçambique' }],
     type: "website",
   },
   alternates: {
