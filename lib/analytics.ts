@@ -14,7 +14,7 @@ export const GA4_PLACEHOLDER = 'GA4_ID';
 // O ID do Pixel é público (aparece no código de qualquer site). A variável de ambiente, se existir, tem prioridade.
 export const META_PIXEL_ID: string =
   process.env.NEXT_PUBLIC_META_PIXEL_ID || '1445971060337303';
-export const GA4_ID: string = process.env.NEXT_PUBLIC_GA4_ID || GA4_PLACEHOLDER;
+export const GA4_ID: string = process.env.NEXT_PUBLIC_GA4_ID || 'G-6DCNYVGVG1';
 
 export const META_PIXEL_ENABLED = /^\d{8,20}$/.test(META_PIXEL_ID);
 export const GA4_ENABLED = /^G-[A-Z0-9]{6,}$/.test(GA4_ID);
