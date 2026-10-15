@@ -12,6 +12,21 @@ export function whatsappHref(text: string): string {
   return `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent(text)}`;
 }
 
+/**
+ * Valida um telemóvel moçambicano (82-87 + 7 dígitos, com ou sem +258/00258) e devolve-o
+ * no formato "+258 8X XXX XXXX". Devolve null se o número não for válido.
+ */
+export function normalizeMozPhone(value: string): string | null {
+  const compact = value.replace(/[\s().-]/g, '');
+  const match = /^(?:\+|00)?(?:258)?(8[2-7]\d{7})$/.exec(compact);
+  if (!match) return null;
+  const n = match[1];
+  return `+258 ${n.slice(0, 2)} ${n.slice(2, 5)} ${n.slice(5)}`;
+}
+
+/** Oferta de lançamento mostrada no topo da página e do formulário. */
+export const PILOT_OFFER = 'Piloto gratuito de 30 dias para as primeiras 5 transportadoras';
+
 export const DEMO_MAILTO = mailtoHref(
   'Pedido de demonstração - Logística MOVAGO',
   'Olá, gostaria de conhecer o sistema de logística e rastreio de encomendas da MOVAGO.\n\nEmpresa:\nTipo de carga/transporte:\nCidades/estações onde operamos:\nContacto:'

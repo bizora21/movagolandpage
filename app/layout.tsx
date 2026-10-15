@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { ChromeGate } from "@/components/layout/ChromeGate";
+import { Analytics } from "@/components/analytics/Analytics";
+import { CookieBanner } from "@/components/analytics/CookieBanner";
 import { OrganizationSchema, MobileAppSchema, WebSiteSchema } from "@/components/seo/JsonLd";
 import { SITE_URL } from "@/lib/constants";
 
@@ -12,32 +15,6 @@ export const metadata: Metadata = {
     template: '%s | MOVAGO',
   },
   description: 'App de transporte urbano em Maputo, Matola e Beira (chapas, táxi, moto-táxi) e sistema SaaS de logística e rastreio de encomendas em Moçambique.',
-  keywords: [
-    'MOVAGO',
-    'logística Moçambique',
-    'rastreio de encomendas',
-    'software para transportadoras',
-    'SaaS logística',
-    'transporte urbano',
-    'transporte inteligente',
-    'app de transporte',
-    'mobilidade urbana',
-    'ride hailing',
-    'transporte em Maputo',
-    'transporte em Moçambique',
-    'taxi app',
-    'aplicação de transporte',
-    'motorista particular',
-    'viagens compartilhadas',
-    'carona',
-    'mobilidade sustentável',
-    'tecnologia de transporte',
-    'transporte seguro',
-    'transporte rápido',
-    'transporte acessível',
-    'chauffeur',
-    'motorista de app'
-  ],
   authors: [{ name: 'MOVAGO', url: SITE_URL }],
   creator: 'MOVAGO',
   publisher: 'MOVAGO',
@@ -89,9 +66,10 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'search-console-verification-code',
-  },
+  // TODO (SEO): colar aqui o código REAL do Google Search Console, no formato:
+  //   verification: { google: 'CODIGO_DO_SEARCH_CONSOLE' },
+  // (Search Console > Definições > Verificação de propriedade > Etiqueta HTML).
+  // Se a propriedade já estiver verificada por DNS, não é necessário.
 };
 
 export default function RootLayout({
@@ -101,23 +79,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-MZ" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+      {/* Fontes: o site usa a pilha de fontes do sistema (font-sans). Inter/Sora eram pedidas ao Google Fonts mas nunca aplicadas por CSS, e o pedido bloqueava a renderização. */}
       <body className="font-sans antialiased">
         <OrganizationSchema />
         <MobileAppSchema />
         <WebSiteSchema />
-        <Navbar />
+        <ChromeGate>
+          <Navbar />
+        </ChromeGate>
         <main className="min-h-screen">
           {children}
         </main>
-        <Footer />
+        <ChromeGate>
+          <Footer />
+        </ChromeGate>
+        <Analytics />
+        <CookieBanner />
       </body>
     </html>
   );

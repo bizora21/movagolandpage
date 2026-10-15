@@ -189,9 +189,33 @@ export default function PrivacidadePage() {
               </CardContent>
             </Card>
 
+            <Card variant="glass" id="cookies">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-white mb-4">11. Cookies e Medição do Site</h2>
+                <p className="text-[rgb(var(--color-text-muted))] leading-relaxed mb-4">
+                  No site movagomz.com, e só se o aceitar no aviso de cookies, utilizamos ferramentas de medição
+                  de terceiros para perceber como o site é utilizado e avaliar o desempenho dos nossos anúncios:
+                </p>
+                <ul className="list-disc list-inside space-y-2 text-[rgb(var(--color-text-muted))]">
+                  <li><strong>Google Analytics (Google):</strong> estatísticas de visitas e de utilização das páginas</li>
+                  <li><strong>Meta Pixel (Meta):</strong> medição de conversões e desempenho de anúncios no Facebook e Instagram</li>
+                </ul>
+                <p className="text-[rgb(var(--color-text-muted))] leading-relaxed mt-4">
+                  Estas ferramentas podem guardar cookies no seu dispositivo e receber dados como o endereço IP,
+                  o tipo de dispositivo e as páginas visitadas. Se recusar, não são carregadas. Pode alterar a sua
+                  escolha a qualquer momento em &quot;Preferências de cookies&quot;, no rodapé do site.
+                </p>
+                <p className="text-[rgb(var(--color-text-muted))] leading-relaxed mt-4">
+                  Quando preenche um formulário de pedido de demonstração, guardamos os dados que indicar (nome,
+                  empresa, telemóvel, email e mensagem) e a campanha de origem do pedido (por exemplo, o anúncio
+                  em que clicou), apenas para responder ao seu pedido e perceber que campanhas funcionam.
+                </p>
+              </CardContent>
+            </Card>
+
             <Card variant="glass">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-white mb-4">11. Contacto</h2>
+                <h2 className="text-2xl font-bold text-white mb-4">12. Contacto</h2>
                 <p className="text-[rgb(var(--color-text-muted))] leading-relaxed">
                   Para questões sobre privacidade ou exercer seus direitos, contacte:
                 </p>

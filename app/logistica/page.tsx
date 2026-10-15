@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Check, X } from 'lucide-react';
+import { Check, Gift, X } from 'lucide-react';
 import { SITE_URL, RASTREIO_URL, CONTACT_INFO } from '@/lib/constants';
 import {
   LOGISTICS_FEATURES,
@@ -7,7 +7,7 @@ import {
   LOGISTICS_AUDIENCES,
   SAAS_BENEFITS,
   LOGISTICS_FAQ,
-  PARTNER_MAILTO,
+  PILOT_OFFER,
   mailtoHref,
   whatsappHref,
 } from '@/lib/logistica';
@@ -23,7 +23,7 @@ import {
   RelatedLinks,
 } from '@/components/logistica/blocks';
 import { DemoForm } from '@/components/logistica/DemoForm';
-import { StickyCta } from '@/components/logistica/StickyCta';
+import { StickyBar } from '@/components/logistica/StickyBar';
 
 const PATH = '/logistica/';
 
@@ -31,25 +31,6 @@ export const metadata: Metadata = {
   title: 'Logística e Rastreio de Encomendas em Moçambique',
   description:
     'Sistema SaaS de logística e rastreio de encomendas para transportadoras, courier e e-commerce em Moçambique. Código de rastreio e prova de entrega.',
-  keywords: [
-    'logística Moçambique',
-    'rastreio de encomendas Moçambique',
-    'software de logística',
-    'software para transportadoras',
-    'sistema de gestão de encomendas',
-    'rastreamento de carga',
-    'SaaS logística',
-    'prova de entrega digital',
-    'localização GPS de encomendas',
-    'transporte de carga Moçambique',
-    'logística Maputo',
-    'software para e-commerce Moçambique',
-    'rastreio de entregas courier',
-    'logística ferroviária',
-    'logística marítima Moçambique',
-    'transporte rodoviário de carga',
-    'MOVAGO Logística',
-  ],
   alternates: { canonical: `${SITE_URL}${PATH}` },
   openGraph: {
     title: 'Logística e Rastreio de Encomendas em Moçambique | MOVAGO',
@@ -59,6 +40,13 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'pt_MZ',
     images: [{ url: '/images/og-image.png', width: 1200, height: 630, alt: 'MOVAGO Logística - rastreio de encomendas' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Logística e Rastreio de Encomendas em Moçambique | MOVAGO',
+    description:
+      'Saiba onde está cada encomenda e prove cada entrega. Sistema SaaS de rastreio para transportadoras, courier e e-commerce.',
+    images: ['/images/og-image.png'],
   },
 };
 
@@ -90,7 +78,7 @@ export default function LogisticaPage() {
       <LogisticsServiceSchema path={PATH} />
       <LogisticsSoftwareSchema />
 
-      <div className="bg-[#0A0F1E] pt-24 sm:pt-28">
+      <div className="bg-[#0A0F1E] pt-24 sm:pt-28 pb-24 lg:pb-0">
         {/* Hero com formulário visível (landing page para tráfego pago) */}
         <section className="pb-16 lg:pb-24">
           <div className="container mx-auto px-4">
@@ -110,9 +98,14 @@ export default function LogisticaPage() {
                   Saiba onde está cada encomenda.{' '}
                   <span className="gradient-text">Prove cada entrega.</span>
                 </h1>
-                <p className="text-lg sm:text-xl text-slate-300 leading-relaxed mb-8">
+                <p className="text-lg sm:text-xl text-slate-300 leading-relaxed mb-6">
                   Sistema online de rastreio para transportadoras, courier, lojas online e operadores de carga
                   rodoviária, ferroviária, marítima e aérea em Moçambique.
+                </p>
+
+                <p className="mb-8 inline-flex items-center gap-2 rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-2.5 text-sm font-semibold text-green-300 sm:text-base">
+                  <Gift size={20} className="flex-shrink-0" aria-hidden="true" />
+                  {PILOT_OFFER}
                 </p>
 
                 <ul className="space-y-3 mb-8">
@@ -267,6 +260,36 @@ export default function LogisticaPage() {
           </div>
         </section>
 
+        {/* Em fase de pilotos: prova/confiança sem dados inventados */}
+        <section className="py-16 lg:py-20" aria-labelledby="pilotos">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-3xl rounded-3xl border border-[rgb(var(--color-primary))]/30 bg-gradient-to-br from-[rgb(var(--color-primary))]/15 to-[rgb(var(--color-accent))]/5 p-8 text-center lg:p-12">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-[rgb(var(--color-accent))]">
+                Em fase de pilotos
+              </p>
+              <h2 id="pilotos" className="mb-4 text-2xl font-bold text-white lg:text-4xl">
+                Seja uma das primeiras empresas a testar
+              </h2>
+              <p className="mb-6 leading-relaxed text-slate-300">
+                A logística MOVAGO está em fase de pilotos. Estamos a abrir as primeiras vagas para empresas que
+                queiram testar o sistema na sua operação, gratuitamente durante 30 dias.
+              </p>
+              {/*
+                TODO (prova social): quando existirem pilotos e clientes reais, colocar aqui
+                os logótipos das empresas e depoimentos verdadeiros (com autorização).
+                Não publicar números, logótipos ou citações que não sejam reais.
+              */}
+              <a
+                href="#pedir-demonstracao-final"
+                className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-[#2563EB] px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
+              >
+                Quero testar o piloto
+              </a>
+              <p className="mt-3 text-sm text-slate-400">Leva-o ao formulário. Leva menos de 1 minuto a preencher.</p>
+            </div>
+          </div>
+        </section>
+
         {/* Clientes com código */}
         <section className="py-12 lg:py-16 bg-[rgb(var(--color-secondary))]/40" aria-labelledby="clientes">
           <div className="container mx-auto px-4">
@@ -335,6 +358,8 @@ export default function LogisticaPage() {
                       href={whatsappHref('Olá! Gostaria de conhecer o sistema de logística e rastreio de encomendas da MOVAGO.')}
                       target="_blank"
                       rel="noopener noreferrer"
+                      data-track="whatsapp"
+                      data-location="form-section"
                       className="inline-flex flex-1 items-center justify-center rounded-xl border border-slate-600 px-4 py-3 text-sm font-semibold text-slate-100 hover:bg-white/5 transition-colors min-h-[48px]"
                     >
                       Falar por WhatsApp
@@ -353,29 +378,6 @@ export default function LogisticaPage() {
               </div>
 
               <DemoForm id="pedir-demonstracao-final" source="logistica-final" />
-            </div>
-          </div>
-        </section>
-
-        {/* Investidores e parceiros */}
-        <section className="py-12 lg:py-16" aria-labelledby="parceiros">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 id="parceiros" className="text-2xl lg:text-3xl font-bold text-white mb-3">
-                Investidores e parceiros
-              </h2>
-              <p className="text-slate-400 leading-relaxed mb-6">
-                A MOVAGO está a construir uma plataforma SaaS de logística e transporte para Moçambique. Se tem
-                interesse em soluções de software que tornam a logística mais eficiente e transparente, vamos
-                conversar.
-              </p>
-              <a
-                href={PARTNER_MAILTO}
-                className="inline-flex items-center justify-center rounded-xl border border-slate-600 px-6 py-3 text-base font-semibold text-slate-100 hover:bg-white/5 transition-colors min-h-[48px]"
-              >
-                Falar sobre parceria ou investimento
-              </a>
-              <p className="text-sm text-slate-400 mt-3">Abre o seu email com o assunto já preenchido.</p>
             </div>
           </div>
         </section>
@@ -406,7 +408,7 @@ export default function LogisticaPage() {
         </section>
       </div>
 
-      <StickyCta />
+      <StickyBar />
     </>
   );
 }

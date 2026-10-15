@@ -26,22 +26,6 @@ export const metadata: Metadata = {
   title: 'Software para Transportadoras e Empresas de Carga',
   description:
     'Software de rastreio de encomendas para transportadoras e operadores de carga rodoviária, ferroviária, marítima e aérea em Moçambique.',
-  keywords: [
-    'software para transportadoras',
-    'sistema de gestão de transportadoras',
-    'software de logística Moçambique',
-    'gestão de carga',
-    'transporte rodoviário de carga',
-    'transporte ferroviário carga',
-    'logística marítima',
-    'software para courier e entregas',
-    'rastreio de encomendas e-commerce',
-    'rastreio de carga',
-    'localização GPS de encomendas',
-    'sistema para pequenas transportadoras',
-    'prova de entrega digital',
-    'MOVAGO Logística',
-  ],
   alternates: { canonical: `${SITE_URL}${PATH}` },
   openGraph: {
     title: 'Software para Transportadoras e Empresas de Carga | MOVAGO',
@@ -51,6 +35,12 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'pt_MZ',
     images: [{ url: '/images/og-image.png', width: 1200, height: 630, alt: 'MOVAGO Logística para transportadoras' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Software para Transportadoras e Empresas de Carga | MOVAGO',
+    description: 'Controlo de encomendas e carga por troço, com responsável registado e prova de entrega.',
+    images: ['/images/og-image.png'],
   },
 };
 
@@ -160,6 +150,8 @@ export default function TransportadorasPage() {
                       href={DEMO_WHATSAPP}
                       target="_blank"
                       rel="noopener noreferrer"
+                      data-track="whatsapp"
+                      data-location="transportadoras"
                       className="inline-flex flex-1 items-center justify-center rounded-xl border border-slate-600 px-4 py-3 text-sm font-semibold text-slate-100 hover:bg-white/5 transition-colors min-h-[48px]"
                     >
                       Falar por WhatsApp

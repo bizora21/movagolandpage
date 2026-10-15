@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Mail, Phone, MapPin, Instagram, Facebook, Linkedin, MessageCircle } from 'lucide-react';
 import { FOOTER_LINKS, SOCIAL_LINKS, SITE_NAME, SITE_TAGLINE, CONTACT_INFO } from '@/lib/constants';
 import { cn } from '@/lib/utils';
+import { CookieSettingsButton } from '@/components/analytics/CookieBanner';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -153,6 +154,7 @@ export function Footer() {
                 {link.name}
               </Link>
             ))}
+            <CookieSettingsButton className="inline-block text-[rgb(var(--color-text-muted))] hover:text-white transition-colors text-sm py-3 px-3 -mx-3 rounded-lg hover:bg-white/5 min-h-[48px]" />
           </div>
         </div>
       </div>

@@ -44,6 +44,7 @@ export const FOOTER_LINKS = {
   ],
   empresa: [
     { name: 'Sobre Nós', href: '/sobre' },
+    { name: 'Investidores e Parceiros', href: '/sobre/#investidores' },
     { name: 'Blog', href: '/blog' },
   ],
   legal: [

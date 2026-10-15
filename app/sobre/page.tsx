@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Target, Eye, Users } from "lucide-react";
+import { PARTNER_MAILTO } from "@/lib/logistica";
 
 export const metadata: Metadata = {
   alternates: { canonical: '/sobre/' },
@@ -80,6 +81,24 @@ export default function SobrePage() {
                 e acompanhar a localização em tempo real.
               </p>
             </div>
+          </div>
+        </div>
+
+        <div id="investidores" className="max-w-4xl mx-auto mt-12 scroll-mt-28">
+          <div className="glass rounded-2xl p-12 text-center">
+            <h2 className="text-3xl font-bold text-white mb-4">Investidores e parceiros</h2>
+            <p className="text-[rgb(var(--color-text-muted))] leading-relaxed mb-6">
+              A MOVAGO está a construir uma plataforma SaaS de logística e transporte para Moçambique. Se tem
+              interesse em soluções de software que tornam a logística mais eficiente e transparente, ou em
+              parcerias com o nosso projecto, vamos conversar.
+            </p>
+            <a
+              href={PARTNER_MAILTO}
+              className="inline-flex items-center justify-center rounded-xl border-2 border-[#2563EB] px-8 py-3 text-lg font-semibold text-[#60A5FA] hover:bg-[#2563EB] hover:text-white transition-colors min-h-[48px]"
+            >
+              Falar sobre parceria ou investimento
+            </a>
+            <p className="text-sm text-slate-400 mt-3">Abre o seu email, dirigido à equipa MOVAGO, com o assunto já preenchido.</p>
           </div>
         </div>
       </SectionWrapper>

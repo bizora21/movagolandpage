@@ -18,15 +18,6 @@ export const metadata: Metadata = {
   title: 'Rastreio de Encomendas em Moçambique',
   description:
     'Como rastrear a sua encomenda em Moçambique com a MOVAGO: escreva o código do talão, sem criar conta, e veja o estado e o percurso até à entrega.',
-  keywords: [
-    'rastreio de encomendas Moçambique',
-    'rastrear encomenda',
-    'onde está a minha encomenda',
-    'código de rastreio',
-    'acompanhar encomenda',
-    'rastreamento de encomendas Maputo',
-    'MOVAGO rastreio',
-  ],
   alternates: { canonical: `${SITE_URL}${PATH}` },
   openGraph: {
     title: 'Rastreio de Encomendas em Moçambique | MOVAGO',
@@ -35,6 +26,12 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'pt_MZ',
     images: [{ url: '/images/og-image.png', width: 1200, height: 630, alt: 'Rastreio de encomendas MOVAGO' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Rastreio de Encomendas em Moçambique | MOVAGO',
+    description: 'Escreva o código do talão e acompanhe o estado e o percurso da sua encomenda, sem criar conta.',
+    images: ['/images/og-image.png'],
   },
 };
 
