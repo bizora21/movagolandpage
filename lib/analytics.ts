@@ -1,20 +1,15 @@
 // ---------------------------------------------------------------------------
 // TRACKING — Meta Pixel + Google Analytics 4
 //
-// TODO (preencher): troque os dois placeholders abaixo pelos IDs reais, OU defina
-// as variáveis de ambiente no Cloudflare Pages (Settings > Environment variables):
-//   NEXT_PUBLIC_META_PIXEL_ID   (só números, ex.: 123456789012345)
-//   NEXT_PUBLIC_GA4_ID          (formato G-XXXXXXXXXX)
-// Enquanto estiverem com o placeholder, NENHUM script de medição é carregado.
+// Os IDs ficam AQUI, no código (são públicos: aparecem no código de qualquer site).
+// Para trocar um ID, edite as duas constantes abaixo e faça push.
+// As variáveis de ambiente do Cloudflare NÃO são usadas, para evitar que um valor
+// antigo guardado lá se sobreponha ao do código.
+// Se um ID ficar vazio ou inválido, esse script de medição não é carregado.
 // ---------------------------------------------------------------------------
 
-export const META_PIXEL_PLACEHOLDER = 'META_PIXEL_ID';
-export const GA4_PLACEHOLDER = 'GA4_ID';
-
-// O ID do Pixel é público (aparece no código de qualquer site). A variável de ambiente, se existir, tem prioridade.
-export const META_PIXEL_ID: string =
-  process.env.NEXT_PUBLIC_META_PIXEL_ID || '4477488165901959';
-export const GA4_ID: string = process.env.NEXT_PUBLIC_GA4_ID || 'G-6DCNYVGVG1';
+export const META_PIXEL_ID = '4477488165901959';
+export const GA4_ID = 'G-6DCNYVGVG1';
 
 export const META_PIXEL_ENABLED = /^\d{8,20}$/.test(META_PIXEL_ID);
 export const GA4_ENABLED = /^G-[A-Z0-9]{6,}$/.test(GA4_ID);
