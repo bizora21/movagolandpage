@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CheckCircle2, MessageCircle } from 'lucide-react';
 import { SITE_URL, RASTREIO_URL } from '@/lib/constants';
-import { whatsappHref } from '@/lib/logistica';
+import { DEMO_URL, whatsappHref } from '@/lib/logistica';
 import { LeadEvent } from '@/components/logistica/LeadEvent';
 
 export const metadata: Metadata = {
@@ -46,6 +46,20 @@ export default function ObrigadoPage() {
                 </li>
               ))}
             </ol>
+          </div>
+
+          <div className="mb-8 flex flex-col items-center gap-2 rounded-2xl border border-[rgb(var(--color-primary))]/40 bg-[rgb(var(--color-primary))]/10 p-6">
+            <p className="font-semibold text-white">Enquanto aguarda, veja o sistema a funcionar</p>
+            <a
+              href={DEMO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-location="obrigado-demo"
+              className="inline-flex min-h-[56px] w-full items-center justify-center rounded-xl bg-[#2563EB] px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-[#1D4ED8] sm:w-auto"
+            >
+              Ver a demonstração agora →
+            </a>
+            <p className="text-sm text-slate-400">Abre a demonstração interativa noutro separador.</p>
           </div>
 
           <div className="flex flex-col items-center gap-2">

@@ -25,7 +25,10 @@ export function normalizeMozPhone(value: string): string | null {
 }
 
 /** Oferta de lançamento mostrada no topo da página e do formulário. */
-export const PILOT_OFFER = 'Piloto gratuito de 30 dias para as primeiras 5 transportadoras';
+export const PILOT_OFFER = 'Piloto gratuito de 7 dias para as primeiras 5 transportadoras';
+
+/** Demonstração interativa do sistema. */
+export const DEMO_URL = 'https://demo.movagomz.com';
 
 export const DEMO_MAILTO = mailtoHref(
   'Pedido de demonstração - Logística MOVAGO',

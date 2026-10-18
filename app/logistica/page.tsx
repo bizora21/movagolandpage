@@ -23,6 +23,7 @@ import {
   RelatedLinks,
 } from '@/components/logistica/blocks';
 import { DemoForm } from '@/components/logistica/DemoForm';
+import { DemoLaunchButton } from '@/components/logistica/DemoLauncher';
 import { StickyBar } from '@/components/logistica/StickyBar';
 
 const PATH = '/logistica/';
@@ -116,6 +117,22 @@ export default function LogisticaPage() {
                     </li>
                   ))}
                 </ul>
+
+                <div className="mb-6 flex flex-col gap-3 sm:flex-row">
+                  <a
+                    href="#pedir-demonstracao"
+                    data-location="hero-botao"
+                    className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-[#2563EB] px-8 py-3 text-lg font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
+                  >
+                    Pedir demonstração
+                  </a>
+                  <DemoLaunchButton
+                    origem="hero"
+                    className="inline-flex min-h-[52px] items-center justify-center rounded-xl border-2 border-[#2563EB] px-8 py-3 text-lg font-semibold text-[#60A5FA] transition-colors hover:bg-[#2563EB] hover:text-white"
+                  >
+                    Ver demonstração
+                  </DemoLaunchButton>
+                </div>
 
                 <p className="text-sm text-slate-400">
                   Já tem um código de rastreio?{' '}
@@ -211,6 +228,19 @@ export default function LogisticaPage() {
                   href: '#pedir-demonstracao-final',
                   hint: 'Leva-o ao formulário. Leva menos de 1 minuto a preencher.',
                 }}
+                extra={
+                  <div className="mx-auto flex flex-col items-center gap-2 sm:mx-0 sm:max-w-xs">
+                    <DemoLaunchButton
+                      origem="secao"
+                      className="inline-flex min-h-[48px] items-center justify-center rounded-xl border-2 border-[#2563EB] px-8 py-4 text-lg font-semibold text-[#60A5FA] transition-colors hover:bg-[#2563EB] hover:text-white"
+                    >
+                      Experimente a demonstração agora →
+                    </DemoLaunchButton>
+                    <p className="text-sm text-slate-400">
+                      Deixe o seu nome e WhatsApp e abrimos a demonstração interativa.
+                    </p>
+                  </div>
+                }
               />
             </div>
           </div>
@@ -272,7 +302,7 @@ export default function LogisticaPage() {
               </h2>
               <p className="mb-6 leading-relaxed text-slate-300">
                 A logística MOVAGO está em fase de pilotos. Estamos a abrir as primeiras vagas para empresas que
-                queiram testar o sistema na sua operação, gratuitamente durante 30 dias.
+                queiram testar o sistema na sua operação, gratuitamente durante 7 dias.
               </p>
               {/*
                 TODO (prova social): quando existirem pilotos e clientes reais, colocar aqui

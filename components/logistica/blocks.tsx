@@ -197,11 +197,14 @@ export function CtaBanner({
   description,
   primary,
   secondary,
+  extra,
 }: {
   title: string;
   description: string;
   primary: CtaAction;
   secondary?: CtaAction;
+  /** Conteúdo adicional (ex.: um botão que abre um modal) ao lado das ações. */
+  extra?: React.ReactNode;
 }) {
   const actions = [primary, secondary].filter(Boolean) as CtaAction[];
   return (
@@ -225,6 +228,7 @@ export function CtaBanner({
             <p className="text-sm text-slate-400">{action.hint}</p>
           </div>
         ))}
+        {extra}
       </div>
     </div>
   );

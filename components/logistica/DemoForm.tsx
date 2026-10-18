@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useForm, ValidationError } from '@formspree/react';
 import { CheckCircle2, Gift, Loader2, ShieldCheck } from 'lucide-react';
 import { FORMSPREE_FORM_ID, CONTACT_INFO } from '@/lib/constants';
-import { LOGISTICS_AUDIENCES, PILOT_OFFER, normalizeMozPhone, whatsappHref } from '@/lib/logistica';
+import { DEMO_URL, LOGISTICS_AUDIENCES, PILOT_OFFER, normalizeMozPhone, whatsappHref } from '@/lib/logistica';
 import { PENDING_LEAD_KEY, UTM_PARAMS, readCampaignParams } from '@/lib/analytics';
 
 const inputClass =
@@ -108,6 +108,14 @@ export function DemoForm({
         <p className="text-slate-300 leading-relaxed mb-6">
           Recebemos os seus dados. A equipa MOVAGO vai contactá-lo para combinar a demonstração.
         </p>
+        <a
+          href={DEMO_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mb-5 inline-flex min-h-[52px] w-full items-center justify-center rounded-xl bg-[#2563EB] px-6 py-3 text-lg font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
+        >
+          Ver a demonstração agora →
+        </a>
         <p className="text-sm text-slate-400">
           Quer falar já?{' '}
           <a
