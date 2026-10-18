@@ -29,6 +29,7 @@ export function DemoLaunchButton({ origem, children, className }: DemoLaunchButt
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [nameError, setNameError] = useState<string | null>(null);
+  const [companyError, setCompanyError] = useState<string | null>(null);
   const [phoneError, setPhoneError] = useState<string | null>(null);
   const submit = useSubmit(FORMSPREE_FORM_ID);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -40,6 +41,7 @@ export function DemoLaunchButton({ origem, children, className }: DemoLaunchButt
     setDone(false);
     setSubmitting(false);
     setNameError(null);
+    setCompanyError(null);
     setPhoneError(null);
     openerRef.current?.focus();
   };
@@ -53,7 +55,6 @@ export function DemoLaunchButton({ origem, children, className }: DemoLaunchButt
     };
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -61,6 +62,7 @@ export function DemoLaunchButton({ origem, children, className }: DemoLaunchButt
     if (submitting) return;
     const data = new FormData(event.currentTarget);
     const nome = String(data.get('nome') ?? '').trim();
+    const empresa = String(data.get('empresa') ?? '').trim();
     const telefone = normalizeMozPhone(String(data.get('whatsapp') ?? ''));
 
     // 1) Validação SÍNCRONA: sem contacto válido a demo não abre
@@ -69,6 +71,10 @@ export function DemoLaunchButton({ origem, children, className }: DemoLaunchButt
       setNameError('Indique o seu nome.');
       valid = false;
     } else setNameError(null);
+    if (empresa.length < 2) {
+      setCompanyError('Indique o nome da sua empresa.');
+      valid = false;
+    } else setCompanyError(null);
     if (!telefone) {
       setPhoneError('Indique um WhatsApp moçambicano válido, por exemplo +258 84 123 4567.');
       valid = false;
@@ -86,6 +92,7 @@ export function DemoLaunchButton({ origem, children, className }: DemoLaunchButt
     try {
       const result = await submit({
         nome,
+        empresa,
         telefone,
         origem,
         tipo_pedido: 'ver-demonstracao',
@@ -190,6 +197,21 @@ export function DemoLaunchButton({ origem, children, className }: DemoLaunchButt
                     className={inputClass}
                   />
                   {nameError && <p role="alert" className="mt-1 text-sm text-red-400">{nameError}</p>}
+                </div>
+
+                <div>
+                  <label htmlFor={`demo-empresa-${origem}`} className={labelClass}>Empresa *</label>
+                  <input
+                    id={`demo-empresa-${origem}`}
+                    name="empresa"
+                    type="text"
+                    autoComplete="organization"
+                    required
+                    placeholder="Nome da empresa"
+                    aria-invalid={companyError ? true : undefined}
+                    className={inputClass}
+                  />
+                  {companyError && <p role="alert" className="mt-1 text-sm text-red-400">{companyError}</p>}
                 </div>
 
                 <div>
