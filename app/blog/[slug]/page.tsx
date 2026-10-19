@@ -6,7 +6,16 @@ import { getPostBySlug, getPublishedPosts, normalizeSlugForPath } from '@/lib/ap
 import { formatDate } from '@/lib/utils';
 import { processBlogContent } from '@/lib/blog-content';
 import { sanitizeBlogHtml } from '@/lib/html-sanitizer';
+import { BlogPostingSchema, BreadcrumbSchema } from '@/components/seo/JsonLd';
+import { SITE_URL } from '@/lib/constants';
 import './blog.css';
+
+/** O campo "tags" vem do Appwrite e pode ser uma lista, um texto separado por vírgulas ou estar vazio. */
+function toTagList(tags: unknown): string[] {
+  if (Array.isArray(tags)) return tags.map((t) => String(t).trim()).filter(Boolean);
+  if (typeof tags === 'string') return tags.split(',').map((t) => t.trim()).filter(Boolean);
+  return [];
+}
 
 interface Props {
   params: { slug: string };
@@ -46,8 +55,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: { canonical: `/blog/${normalizeSlugForPath(slug)}/` },
     keywords: post.metaKeywords || '',
     openGraph: {
+      type: 'article',
       title: post.title,
-      description: post.excerpt || '',
+      description: post.metaDescription || post.excerpt || '',
+      url: `${SITE_URL}/blog/${normalizeSlugForPath(slug)}/`,
+      siteName: 'MOVAGO',
+      locale: 'pt_MZ',
+      publishedTime: post.publishedAt || post.createdAt,
+      modifiedTime: post.updatedAt,
+      authors: [post.author],
+      tags: toTagList(post.tags),
+      images: post.featuredImage ? [post.featuredImage] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.metaDescription || post.excerpt || '',
       images: post.featuredImage ? [post.featuredImage] : [],
     },
   };
@@ -65,8 +88,27 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
+  const postPath = `/blog/${normalizeSlugForPath(slug)}/`;
+
   return (
     <main className="min-h-screen bg-[#0A0F1E] pt-24 pb-20">
+      <BlogPostingSchema
+        path={postPath}
+        title={post.title}
+        description={post.metaDescription || post.excerpt || post.title}
+        image={post.featuredImage}
+        datePublished={post.publishedAt || post.createdAt}
+        dateModified={post.updatedAt}
+        authorName={post.author}
+        keywords={toTagList(post.tags)}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Início', path: '/' },
+          { name: 'Blog', path: '/blog' },
+          { name: post.title, path: postPath },
+        ]}
+      />
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm text-slate-500 mb-8">

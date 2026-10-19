@@ -294,6 +294,49 @@ export function FaqSchema({ items }: { items: readonly FaqEntry[] }) {
   );
 }
 
+// Artigo do blog (elegível para Google Discover e resultados enriquecidos)
+export function BlogPostingSchema({
+  path,
+  title,
+  description,
+  image,
+  datePublished,
+  dateModified,
+  authorName,
+  keywords,
+}: {
+  path: string;
+  title: string;
+  description: string;
+  image?: string | null;
+  datePublished: string;
+  dateModified?: string;
+  authorName: string;
+  keywords?: string[];
+}) {
+  const isOrg = /movago|equipa/i.test(authorName);
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": { "@type": "WebPage", "@id": absUrl(path) },
+        "headline": title.slice(0, 110),
+        "description": description,
+        ...(image ? { "image": [image] } : {}),
+        "datePublished": datePublished,
+        "dateModified": dateModified || datePublished,
+        "author": isOrg
+          ? { "@type": "Organization", "name": authorName, "url": SITE_URL }
+          : { "@type": "Person", "name": authorName },
+        "publisher": providerRef,
+        "inLanguage": "pt-MZ",
+        ...(keywords && keywords.length ? { "keywords": keywords.join(", ") } : {})
+      }}
+    />
+  );
+}
+
 export function BreadcrumbSchema({ items }: { items: readonly { name: string; path: string }[] }) {
   return (
     <JsonLd
