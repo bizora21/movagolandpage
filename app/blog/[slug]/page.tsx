@@ -10,10 +10,25 @@ import { BlogPostingSchema, BreadcrumbSchema } from '@/components/seo/JsonLd';
 import { SITE_URL } from '@/lib/constants';
 import './blog.css';
 
-/** O campo "tags" vem do Appwrite e pode ser uma lista, um texto separado por vírgulas ou estar vazio. */
+/**
+ * O campo "tags" vem do Appwrite como lista, como texto JSON (ex.: '["a","b"]'), como texto
+ * separado por vírgulas, ou vazio. Devolve sempre uma lista limpa.
+ */
 function toTagList(tags: unknown): string[] {
-  if (Array.isArray(tags)) return tags.map((t) => String(t).trim()).filter(Boolean);
-  if (typeof tags === 'string') return tags.split(',').map((t) => t.trim()).filter(Boolean);
+  const clean = (list: unknown[]) => list.map((t) => String(t).trim()).filter(Boolean);
+  if (Array.isArray(tags)) return clean(tags);
+  if (typeof tags === 'string') {
+    const text = tags.trim();
+    if (text.startsWith('[')) {
+      try {
+        const parsed: unknown = JSON.parse(text);
+        if (Array.isArray(parsed)) return clean(parsed);
+      } catch {
+        // não era JSON válido: cai para a separação por vírgulas
+      }
+    }
+    return clean(text.split(','));
+  }
   return [];
 }
 
