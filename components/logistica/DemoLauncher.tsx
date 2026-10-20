@@ -5,7 +5,7 @@ import { useSubmit } from '@formspree/react';
 import { ExternalLink, Loader2, X } from 'lucide-react';
 import { FORMSPREE_FORM_ID } from '@/lib/constants';
 import { DEMO_URL, normalizeMozPhone } from '@/lib/logistica';
-import { readCampaignParams, trackEvent } from '@/lib/analytics';
+import { MIN_HUMAN_MS, newLeadId, readCampaignParams, trackEvent } from '@/lib/analytics';
 
 /** De onde o clique veio. Vai no campo "origem" do lead. */
 export type DemoOrigin = 'hero' | 'secao' | 'obrigado';
@@ -35,6 +35,7 @@ export function DemoLaunchButton({ origem, children, className }: DemoLaunchButt
   const dialogRef = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const openerRef = useRef<HTMLButtonElement>(null);
+  const openedAt = useRef(0);
 
   const close = () => {
     setOpen(false);
@@ -49,6 +50,7 @@ export function DemoLaunchButton({ origem, children, className }: DemoLaunchButt
   // Foco no primeiro campo ao abrir; Escape fecha
   useEffect(() => {
     if (!open) return;
+    openedAt.current = Date.now();
     nameRef.current?.focus();
     const onKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') close();
@@ -61,6 +63,8 @@ export function DemoLaunchButton({ origem, children, className }: DemoLaunchButt
     event.preventDefault();
     if (submitting) return;
     const data = new FormData(event.currentTarget);
+    // Campo-armadilha preenchido = robô: não se abre a demo nem se envia nada
+    if (String(data.get('_gotcha') ?? '').trim()) return;
     const nome = String(data.get('nome') ?? '').trim();
     const empresa = String(data.get('empresa') ?? '').trim();
     const telefone = normalizeMozPhone(String(data.get('whatsapp') ?? ''));
@@ -89,11 +93,16 @@ export function DemoLaunchButton({ origem, children, className }: DemoLaunchButt
     // 3) Guarda o lead pelo mesmo canal do formulário principal. Falhar aqui nunca bloqueia o
     //    utilizador: a demo já está aberta.
     const campaign = readCampaignParams();
+    // identificador que liga este pedido ao evento Lead da Meta; um envio instantâneo não gera Lead
+    const leadId = newLeadId();
+    const suspeito = Date.now() - openedAt.current < MIN_HUMAN_MS;
     try {
       const result = await submit({
         nome,
         empresa,
         telefone,
+        lead_id: leadId,
+        ...(suspeito ? { envio_rapido: 'sim' } : {}),
         origem,
         tipo_pedido: 'ver-demonstracao',
         _subject: `Lead rápido - Ver demonstração (${origem}) - Logística MOVAGO`,
@@ -102,8 +111,8 @@ export function DemoLaunchButton({ origem, children, className }: DemoLaunchButt
       });
       if (result.kind === 'error') {
         console.error('[lead rápido] o Formspree recusou o envio:', result.getFormErrors());
-      } else {
-        trackEvent('Lead', { content_name: 'Ver demonstração', origem });
+      } else if (!suspeito) {
+        trackEvent('Lead', { content_name: 'Ver demonstração', origem, lead_id: leadId, event_id: leadId });
       }
     } catch (error) {
       console.error('[lead rápido] falha ao enviar o lead:', error);
@@ -176,6 +185,11 @@ export function DemoLaunchButton({ origem, children, className }: DemoLaunchButt
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate className="space-y-4 pt-2">
+                {/* Campo-armadilha anti-robô: invisível para pessoas */}
+                <div className="hidden" aria-hidden="true">
+                  <label htmlFor={`demo-gotcha-${origem}`}>Não preencha este campo</label>
+                  <input id={`demo-gotcha-${origem}`} type="text" name="_gotcha" tabIndex={-1} autoComplete="off" />
+                </div>
                 <h2 id={`demo-modal-title-${origem}`} className="pr-10 text-2xl font-bold text-white">
                   Ver a demonstração
                 </h2>

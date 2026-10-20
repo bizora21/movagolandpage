@@ -68,8 +68,11 @@ function send(name: ConversionEvent, params: Record<string, unknown>): boolean {
     sent = true;
   }
   if (META_PIXEL_ENABLED && typeof window.fbq === 'function') {
-    if (name === 'DemoClick') window.fbq('trackCustom', 'DemoClick', params);
-    else window.fbq('track', name, params);
+    // event_id segue como eventID (a Meta usa-o para não contar duas vezes o mesmo evento)
+    const { event_id: eventId, ...metaParams } = params;
+    const options = eventId ? { eventID: String(eventId) } : undefined;
+    if (name === 'DemoClick') window.fbq('trackCustom', 'DemoClick', metaParams, options);
+    else window.fbq('track', name, metaParams, options);
     sent = true;
   }
   return sent || !TRACKING_ENABLED;
@@ -140,3 +143,20 @@ export function readCampaignParams(): Record<string, string> {
 // Marca que um formulário acabou de ser enviado com sucesso (para o Lead ser
 // contado uma só vez, na página de agradecimento).
 export const PENDING_LEAD_KEY = 'movago-pending-lead';
+
+/**
+ * Identificador de um pedido de contacto. Vai no pedido ao Formspree (campo lead_id) E no evento Lead
+ * enviado à Meta (parâmetro lead_id e eventID), para se poder ligar cada Lead da Meta ao pedido que o
+ * originou. Um Lead sem lead_id não foi disparado por este código.
+ */
+export function newLeadId(): string {
+  try {
+    if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+  } catch {
+    // contexto sem crypto.randomUUID
+  }
+  return `ld-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+}
+
+/** Abaixo deste tempo desde que o formulário apareceu, o envio é tratado como automático (robô). */
+export const MIN_HUMAN_MS = 2500;

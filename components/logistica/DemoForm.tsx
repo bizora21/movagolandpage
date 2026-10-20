@@ -7,7 +7,7 @@ import { useForm, ValidationError } from '@formspree/react';
 import { CheckCircle2, Gift, Loader2, ShieldCheck } from 'lucide-react';
 import { FORMSPREE_FORM_ID, CONTACT_INFO } from '@/lib/constants';
 import { DEMO_URL, LOGISTICS_AUDIENCES, PILOT_OFFER, normalizeMozPhone, whatsappHref } from '@/lib/logistica';
-import { PENDING_LEAD_KEY, UTM_PARAMS, readCampaignParams } from '@/lib/analytics';
+import { MIN_HUMAN_MS, PENDING_LEAD_KEY, UTM_PARAMS, newLeadId, readCampaignParams } from '@/lib/analytics';
 
 const inputClass =
   'w-full min-h-[48px] rounded-xl border border-slate-700 bg-[rgb(var(--color-bg))] px-4 py-3 text-base text-white placeholder:text-slate-500 focus:outline-none focus:border-[rgb(var(--color-primary))] focus:ring-1 focus:ring-[rgb(var(--color-primary))] transition-colors';
@@ -42,9 +42,14 @@ export function DemoForm({
   const [state, submit] = useForm(FORMSPREE_FORM_ID);
   const [phoneError, setPhoneError] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const shownAt = useRef(0);
+  // Identificador do pedido e se parece automático (preenchidos no envio, lidos quando o Formspree aceita)
+  const leadIdRef = useRef<string>('');
+  const suspeitoRef = useRef(false);
 
   // Preenche os campos ocultos (UTMs e página) no navegador, sem causar novo render
   useEffect(() => {
+    shownAt.current = Date.now();
     const form = formRef.current;
     if (!form) return;
     const params = readCampaignParams();
@@ -60,7 +65,8 @@ export function DemoForm({
   useEffect(() => {
     if (!state.succeeded) return;
     try {
-      window.sessionStorage.setItem(PENDING_LEAD_KEY, '1');
+      // Só um envio com cara de humano conta como Lead; o valor guardado é o identificador do pedido
+      if (!suspeitoRef.current) window.sessionStorage.setItem(PENDING_LEAD_KEY, leadIdRef.current || '1');
     } catch {
       // sem sessionStorage: a página de agradecimento abre na mesma, só não conta o Lead
     }
@@ -71,6 +77,9 @@ export function DemoForm({
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
+
+    // Campo-armadilha preenchido = robô. Não se envia nada (e portanto não há Lead).
+    if (String(data.get('_gotcha') ?? '').trim()) return;
 
     const phone = normalizeMozPhone(String(data.get('telefone') ?? ''));
     if (!phone) {
@@ -92,6 +101,13 @@ export function DemoForm({
       if (!payload[key]) payload[key] = value;
     }
     if (!payload.pagina) payload.pagina = window.location.href.slice(0, 500);
+
+    // Identificador que liga este pedido ao evento Lead da Meta. Um envio quase instantâneo é
+    // marcado (o pedido segue para o Formspree, para não perder uma pessoa rápida, mas não gera Lead).
+    leadIdRef.current = newLeadId();
+    suspeitoRef.current = Date.now() - shownAt.current < MIN_HUMAN_MS;
+    payload.lead_id = leadIdRef.current;
+    if (suspeitoRef.current) payload.envio_rapido = 'sim';
 
     await submit(payload);
   };
