@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Cookie, ShieldCheck } from 'lucide-react';
 import {
   OPEN_COOKIE_SETTINGS_EVENT,
@@ -19,6 +20,11 @@ import {
 export function CookieBanner() {
   const [open, setOpen] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
+  // Nas páginas de anúncios (/lp/...) e na de agradecimento, o aviso é uma barra compacta que não
+  // escurece nem bloqueia a página: ali o visitante veio para deixar um contacto e não pode perder
+  // o formulário de vista.
+  const pathname = usePathname() ?? '';
+  const compact = pathname.startsWith('/lp/') || pathname.startsWith('/logistica/obrigado');
 
   useEffect(() => {
     if (!TRACKING_ENABLED) return;
@@ -31,10 +37,11 @@ export function CookieBanner() {
     return () => window.removeEventListener(OPEN_COOKIE_SETTINGS_EVENT, reopen);
   }, []);
 
-  // Leva o foco (leitores de ecrã e teclado) para o aviso quando abre
+  // Leva o foco (leitores de ecrã e teclado) para o aviso quando abre. Na versão compacta não se
+  // rouba o foco, para a página não saltar nem tirar o visitante do que estava a ler.
   useEffect(() => {
-    if (open) dialogRef.current?.focus();
-  }, [open]);
+    if (open && !compact) dialogRef.current?.focus();
+  }, [open, compact]);
 
   if (!open) return null;
 
@@ -42,6 +49,45 @@ export function CookieBanner() {
     setConsent(value);
     setOpen(false);
   };
+
+  if (compact) {
+    return (
+      <div
+        role="dialog"
+        aria-modal="false"
+        aria-labelledby="cookie-title"
+        aria-describedby="cookie-desc"
+        className="fixed inset-x-0 bottom-0 z-[120] p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:p-4"
+      >
+        <div className="mx-auto max-w-3xl rounded-2xl border border-slate-500/60 bg-[#111827] p-4 shadow-2xl">
+          <p id="cookie-title" className="sr-only">A sua privacidade</p>
+          <p id="cookie-desc" className="text-sm leading-snug text-slate-200 sm:text-base">
+            Usamos cookies de medição (Google e Meta) para avaliar os nossos anúncios.{' '}
+            <strong className="text-white">Se recusar, o site funciona na mesma.</strong>{' '}
+            <Link href="/privacidade/#cookies" className="font-semibold text-[rgb(var(--color-accent))] underline">
+              Saber mais
+            </Link>
+          </p>
+          <div className="mt-3 flex gap-2">
+            <button
+              type="button"
+              onClick={() => choose('denied')}
+              className="min-h-[48px] flex-1 rounded-xl border-2 border-slate-400 px-4 py-2 text-base font-semibold text-white transition-colors hover:bg-white/10"
+            >
+              Recusar
+            </button>
+            <button
+              type="button"
+              onClick={() => choose('granted')}
+              className="min-h-[48px] flex-1 rounded-xl bg-[#2563EB] px-4 py-2 text-base font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
+            >
+              Aceitar
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 z-[120] flex items-end justify-center bg-black/70 backdrop-blur-sm sm:p-6">
