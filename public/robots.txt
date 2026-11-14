@@ -4,5 +4,6 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /reset-password
 
 Sitemap: https://movagomz.com/sitemap.xml

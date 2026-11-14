@@ -15,9 +15,9 @@ import {
 const PATH = '/logistica/rastreio-de-encomendas/';
 
 export const metadata: Metadata = {
-  title: 'Rastreio de Encomendas em Moçambique',
+  title: 'Rastrear Encomenda em Moçambique: Veja Onde Está',
   description:
-    'Como rastrear a sua encomenda em Moçambique com a MOVAGO: escreva o código do talão, sem criar conta, e veja o estado e o percurso até à entrega.',
+    'Quer localizar a sua encomenda? Escreva o código do talão e veja já o estado e o percurso até à entrega. Grátis, sem criar conta.',
   alternates: { canonical: `${SITE_URL}${PATH}` },
   openGraph: {
     title: 'Rastreio de Encomendas em Moçambique | MOVAGO',
